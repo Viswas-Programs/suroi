@@ -1,13 +1,14 @@
-import { type ItemDefinition, ItemType } from "../utils/objectDefinitions";
+import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
 
 export interface SkinDefinition extends ItemDefinition {
     readonly itemType: ItemType.Skin
-    readonly notInLoadout?: boolean
+    readonly hideFromLoadout?: boolean
+    readonly grassTint?: boolean
+    readonly hideEquipment?: boolean
     readonly roleRequired?: string
-    readonly noDrop?: boolean
 }
 
-export const Skins: SkinDefinition[] = [
+export const Skins = new ObjectDefinitions<SkinDefinition>([
     {
         idString: "hasanger",
         name: "Hasanger",
@@ -19,6 +20,12 @@ export const Skins: SkinDefinition[] = [
         name: "Leia",
         itemType: ItemType.Skin,
         roleRequired: "leia"
+    },
+    {
+        idString: "limenade",
+        name: "LimeNade",
+        itemType: ItemType.Skin,
+        roleRequired: "limenade"
     },
     {
         idString: "katie",
@@ -45,16 +52,21 @@ export const Skins: SkinDefinition[] = [
         roleRequired: "radians"
     },
     {
-        idString: "dev",
-        name: "Developer Swag",
+        idString: "developr",
+        name: "Developr Swag",
         itemType: ItemType.Skin,
-        roleRequired: "dev"
+        roleRequired: "developr"
     },
     {
-        idString: "artist",
-        name: "Artist Swag",
+        idString: "designr",
+        name: "Designr Swag",
         itemType: ItemType.Skin,
-        roleRequired: "artist"
+        roleRequired: "designr"
+    },
+    {
+        idString: "hazel_jumpsuit",
+        name: "HAZEL Jumpsuit",
+        itemType: ItemType.Skin
     },
     {
         idString: "forest_camo",
@@ -75,12 +87,6 @@ export const Skins: SkinDefinition[] = [
         idString: "bloodlust",
         name: "Bloodlust",
         itemType: ItemType.Skin
-    },
-    {
-        idString: "hazel_jumpsuit",
-        name: "HAZEL Jumpsuit",
-        itemType: ItemType.Skin,
-        notInLoadout: true
     },
     {
         idString: "tomato_skin",
@@ -153,6 +159,16 @@ export const Skins: SkinDefinition[] = [
         itemType: ItemType.Skin
     },
     {
+        idString: "aquatic",
+        name: "Aquatic",
+        itemType: ItemType.Skin
+    },
+    {
+        idString: "floral",
+        name: "Floral",
+        itemType: ItemType.Skin
+    },
+    {
         idString: "sunny",
         name: "Sunny",
         itemType: ItemType.Skin
@@ -196,7 +212,7 @@ export const Skins: SkinDefinition[] = [
         idString: "basic_outfit",
         name: "Basic Outfit",
         itemType: ItemType.Skin,
-        notInLoadout: true
+        hideFromLoadout: true
     },
     {
         idString: "swiss_cheese",
@@ -214,27 +230,102 @@ export const Skins: SkinDefinition[] = [
         itemType: ItemType.Skin
     },
     {
+        idString: "tiger",
+        name: "Tiger",
+        itemType: ItemType.Skin
+    },
+    {
+        idString: "bee",
+        name: "Bee",
+        itemType: ItemType.Skin
+    },
+    {
+        idString: "armadillo",
+        name: "Armadillo",
+        itemType: ItemType.Skin
+    },
+    {
         idString: "printer",
         name: "Printer",
         itemType: ItemType.Skin
     },
     {
+        idString: "distant_shores",
+        name: "Distant Shores",
+        itemType: ItemType.Skin
+    },
+    {
+        idString: "peppermint",
+        name: "Peppermint",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "spearmint",
+        name: "Spearmint",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "coal",
+        name: "Coal",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "henrys_little_helper",
+        name: "Henry's Little Helper",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "candy_cane",
+        name: "Candy Cane",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "christmas_tree_skin",
+        name: "Christmas Tree",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "gingerbread",
+        name: "Gingerbread",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
         idString: "verified",
         name: "Verified",
         itemType: ItemType.Skin,
-        notInLoadout: true
+        hideFromLoadout: true
     },
     {
         idString: "nokilpls",
         name: "no kil pls",
         itemType: ItemType.Skin,
-        notInLoadout: true
+        hideFromLoadout: true
     },
     {
-        idString: "debug",
-        name: "Debug",
+        idString: "stardust",
+        name: "Stardust",
         itemType: ItemType.Skin,
-        roleRequired: "dev",
-        notInLoadout: true
+        hideFromLoadout: true
+    },
+    {
+        idString: "aurora",
+        name: "Aurora",
+        itemType: ItemType.Skin,
+        hideFromLoadout: true
+    },
+    {
+        idString: "ghillie_suit",
+        name: "Ghillie Suit",
+        itemType: ItemType.Skin,
+        grassTint: true,
+        hideEquipment: true,
+        hideFromLoadout: true
     }
-];
+]);

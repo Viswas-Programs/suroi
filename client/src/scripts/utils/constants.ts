@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/indent */
 import { Color } from "pixi.js";
+import { Modes, type ColorKeys } from "../../../../common/src/definitions/modes";
+import { Config } from "../config";
 
 export const UI_DEBUG_MODE = false;
 export const HITBOX_DEBUG_MODE = false;
@@ -11,25 +14,25 @@ export const HITBOX_COLORS = {
     buildingScopeCeiling: new Color("cyan"),
     loot: new Color("magenta"),
     player: new Color("blue"),
-    playerWeapon: new Color("red")
+    playerWeapon: new Color("lime")
 };
 
-export const COLORS = {
-    grass: new Color("hsl(113, 42%, 42%)"),
-    water: new Color("hsl(211, 63%, 42%)"),
-    gas: new Color("hsl(17, 100%, 50%)").setAlpha(0.55),
-    beach: new Color("hsl(40, 39%, 55%)")
-};
+export const MODE = Modes.find(m => m.idString === Config.mode)!;
+
+// Converts the strings in the mode definition to Color objects
+export const COLORS = (Object.keys(MODE.colors) as ColorKeys[])
+    .reduce(
+        (result, key) => {
+            result[key] = new Color(MODE.colors[key]);
+            return result;
+        },
+        // eslint-disable-next-line @typescript-eslint/prefer-reduce-type-parameter, @typescript-eslint/consistent-type-assertions
+        {} as Record<ColorKeys, Color>
+    );
+
+export const GHILLIE_TINT = COLORS.grass.multiply(new Color("hsl(0, 0%, 99%)"));
 
 export const PIXI_SCALE = 20;
-
-export enum EmoteSlot {
-    Top,
-    Right,
-    Bottom,
-    Left,
-    None
-}
 
 export const FIRST_EMOTE_ANGLE = Math.atan2(-1, -1);
 export const SECOND_EMOTE_ANGLE = Math.atan2(1, 1);

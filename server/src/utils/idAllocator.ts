@@ -1,11 +1,15 @@
+import { Queue } from "../../../common/src/utils/misc";
+
 /**
  * A class that manages a pool of numerical identifiers
+ *
+ * Ostensibly a proxy for a {@link Queue}, with some extra validation for inputs
  */
 export class IDAllocator {
     /**
-     * The list of free ID's
+     * Internal backing queue
      */
-    private readonly _list: number[] = [];
+    private readonly _internal = new Queue<number>();
 
     /**
      * The largest id this allocator can store
@@ -18,15 +22,23 @@ export class IDAllocator {
      * @throws {RangeError} If {@linkcode bits} isn't a positive integer
      */
     constructor(bits: number) {
-        if (bits % 1 !== 0 || bits < 0) {
+        if (bits % 1 || bits < 0) {
             throw new RangeError(`Invalid bit count specified (${bits})`);
         }
 
-        this._max = 2 ** bits;
+        for (
+            let i = 0, max = this._max = 1 << bits;
+            i < max;
+            this.give(i++)
+        );
+    }
 
-        for (let i = 0; i < this._max; i++) {
-            this.give(i);
-        }
+    /**
+     * Whether or not this allocator has an ID available for use
+     * @returns Whether or not this allocator has an ID available for use
+     */
+    hasIdAvailable(): boolean {
+        return this._internal.has();
     }
 
     /**
@@ -35,10 +47,7 @@ export class IDAllocator {
      * @throws {Error} If there are no ID's left
      */
     takeNext(): number {
-        const value = this._list.shift();
-        if (value !== undefined) return value;
-
-        throw new Error("Out of IDs");
+        return this._internal.dequeue();
     }
 
     /**
@@ -52,10 +61,10 @@ export class IDAllocator {
      * @throws {RangeError} If the given value isn't a positive integer, or is out of this allocator's range
      */
     give(value: number): void {
-        if (value % 1 !== 0 || value < 0 || value > this._max) {
-            throw new RangeError(`Cannot give back a value thats not in range (value: ${value})`);
+        if (value % 1 || value < 0 || value > this._max) {
+            throw new RangeError(`Cannot give back a value that is not in range (value: ${value})`);
         }
 
-        this._list.push(value);
+        return this._internal.enqueue(value);
     }
 }

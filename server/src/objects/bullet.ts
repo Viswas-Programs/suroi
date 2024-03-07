@@ -1,67 +1,87 @@
-import { Player } from "./player";
-import { type Game } from "../game";
-import { normalizeAngle } from "../../../common/src/utils/math";
-import { GunItem } from "../inventory/gunItem";
-import { vAdd, vMul, type Vector, v } from "../../../common/src/utils/vector";
-import { BaseBullet, type BulletOptions } from "../../../common/src/utils/baseBullet";
-import { Obstacle } from "./obstacle";
-import { type GameObject } from "../types/gameObject";
-import { type ObjectCategory, TICK_SPEED } from "../../../common/src/constants";
+import { GameConstants } from "../../../common/src/constants";
+import { Bullets } from "../../../common/src/definitions/bullets";
+import { type SingleGunNarrowing } from "../../../common/src/definitions/guns";
+import { Loots } from "../../../common/src/definitions/loots";
+import { BaseBullet } from "../../../common/src/utils/baseBullet";
 import { RectangleHitbox } from "../../../common/src/utils/hitbox";
-import { type ObjectType } from "../../../common/src/utils/objectType";
-import { type ExplosionDefinition } from "../../../common/src/definitions/explosions";
-import { type Explosion } from "./explosion";
+import { Angle } from "../../../common/src/utils/math";
 import { randomFloat } from "../../../common/src/utils/random";
+import { Vec, type Vector } from "../../../common/src/utils/vector";
+import { type Game } from "../game";
+import { GunItem } from "../inventory/gunItem";
+import { type Explosion } from "./explosion";
+import { type GameObject } from "./gameObject";
+import { Obstacle } from "./obstacle";
+import { Player } from "./player";
 
-type Weapon = GunItem | ObjectType<ObjectCategory.Explosion, ExplosionDefinition>;
+type Weapon = GunItem | Explosion;
 
 export interface DamageRecord {
-    object: Obstacle | Player
-    damage: number
-    weapon: Weapon
-    source: GameObject
-    position: Vector
+    readonly object: Obstacle | Player
+    readonly damage: number
+    readonly weapon: Weapon
+    readonly source: GameObject
+    readonly position: Vector
 }
 
 export interface ServerBulletOptions {
-    position: Vector
-    rotation: number
-    reflectionCount?: number
-    variance?: number
+    readonly position: Vector
+    readonly rotation: number
+    readonly reflectionCount?: number
+    readonly variance?: number
+    readonly rangeOverride?: number
 }
 
 export class Bullet extends BaseBullet {
     readonly game: Game;
 
-    readonly sourceGun: GunItem | Explosion;
+    readonly sourceGun: Weapon;
     readonly shooter: GameObject;
 
-    constructor(game: Game, source: GunItem | Explosion, shooter: GameObject, options: ServerBulletOptions) {
-        const variance = source.type.definition.ballistics.variance;
-        const bulletOptions: BulletOptions = {
+    readonly clipDistance: number;
+    reflected = false;
+
+    readonly finalPosition: Vector;
+
+    constructor(
+        game: Game,
+        source: Weapon,
+        shooter: GameObject,
+        options: ServerBulletOptions
+    ) {
+        const reference = source instanceof GunItem && source.definition.isDual ? Loots.fromString<SingleGunNarrowing>(source.definition.singleVariant) : source.definition;
+        const definition = Bullets.fromString(`${reference.idString}_bullet`);
+        const variance = definition.rangeVariance;
+
+        super({
             ...options,
-            source: source.type,
+            rotation: Angle.normalize(options.rotation),
+            source: definition,
             sourceID: shooter.id,
             variance: variance ? randomFloat(0, variance) : undefined
-        };
-        super(bulletOptions);
+        });
 
+        this.clipDistance = options.rangeOverride ?? this.definition.range;
         this.game = game;
         this.sourceGun = source;
         this.shooter = shooter;
+
+        this.finalPosition = Vec.add(this.position, Vec.scale(this.direction, this.maxDistance));
     }
 
     update(): DamageRecord[] {
-        const lineRect = RectangleHitbox.fromLine(this.position, vAdd(this.position, vMul(this.velocity, TICK_SPEED)));
+        const lineRect = RectangleHitbox.fromLine(this.position, Vec.add(this.position, Vec.scale(this.velocity, GameConstants.msPerTick)));
 
-        const objects = this.game.grid.intersectsRect(lineRect);
-        const collisions = this.updateAndGetCollisions(TICK_SPEED, objects);
+        const objects = this.game.grid.intersectsHitbox(lineRect);
+        const collisions = this.updateAndGetCollisions(GameConstants.msPerTick, objects);
 
         // Bullets from dead players should not deal damage so delete them
         // Also delete bullets out of map bounds
-        if (this.shooter.dead ||
+        if (
+            this.shooter.dead ||
             this.position.x < 0 || this.position.x > this.game.map.width ||
-            this.position.y < 0 || this.position.y > this.game.map.height) {
+            this.position.y < 0 || this.position.y > this.game.map.height
+        ) {
             this.dead = true;
             return [];
         }
@@ -70,28 +90,35 @@ export class Bullet extends BaseBullet {
 
         for (const collision of collisions) {
             const object = collision.object;
-            const weapon = this.sourceGun instanceof GunItem ? this.sourceGun : this.sourceGun.type;
+
             if (object instanceof Player) {
                 this.position = collision.intersection.point;
                 this.damagedIDs.add(object.id);
                 records.push({
                     object,
                     damage: this.definition.damage / (this.reflectionCount + 1),
-                    weapon,
+                    weapon: this.sourceGun,
                     source: this.shooter,
                     position: collision.intersection.point
                 });
+
+                if (this.definition.penetration?.players) continue;
                 this.dead = true;
                 break;
-            } else if (object instanceof Obstacle) {
+            }
+
+            if (object instanceof Obstacle) {
                 this.damagedIDs.add(object.id);
+
                 records.push({
                     object,
                     damage: this.definition.damage / (this.reflectionCount + 1) * this.definition.obstacleMultiplier,
-                    weapon,
+                    weapon: this.sourceGun,
                     source: this.shooter,
                     position: collision.intersection.point
                 });
+
+                if (this.definition.penetration?.obstacles && !object.definition.impenetrable) continue;
 
                 // skip killing the bullet for obstacles with noCollisions like bushes
                 if (!object.definition.noCollisions) {
@@ -99,6 +126,7 @@ export class Bullet extends BaseBullet {
 
                     if (object.definition.reflectBullets && this.reflectionCount < 3) {
                         this.reflect(collision.intersection.normal);
+                        this.reflected = true;
                     }
 
                     this.dead = true;
@@ -106,22 +134,24 @@ export class Bullet extends BaseBullet {
                 }
             }
         }
+
         return records;
     }
 
     reflect(normal: Vector): void {
-        const normalAngle = Math.atan2(normal.y, normal.x);
+        const rotation = 2 * Math.atan2(normal.y, normal.x) - this.rotation;
 
-        const rotation = normalizeAngle(this.rotation + (normalAngle - this.rotation) * 2);
-
-        // move it a bit so it won't collide again with the same hitbox
-        const position = vAdd(this.position, v(Math.sin(rotation), -Math.cos(rotation)));
-
-        this.game.addBullet(this.sourceGun, this.shooter, {
-            position,
-            rotation,
-            reflectionCount: this.reflectionCount + 1,
-            variance: this.variance
-        });
+        this.game.addBullet(
+            this.sourceGun,
+            this.shooter,
+            {
+                // move it a bit so it won't collide again with the same hitbox
+                position: Vec.add(this.position, Vec.create(Math.sin(rotation), -Math.cos(rotation))),
+                rotation,
+                reflectionCount: this.reflectionCount + 1,
+                variance: this.rangeVariance,
+                rangeOverride: this.clipDistance
+            }
+        );
     }
 }

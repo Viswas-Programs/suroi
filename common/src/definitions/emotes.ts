@@ -1,9 +1,14 @@
-import { type ObjectDefinition, ObjectDefinitions } from "../utils/objectDefinitions";
+import { ObjectDefinitions, type ObjectDefinition } from "../utils/objectDefinitions";
 
 export interface EmoteDefinition extends ObjectDefinition {}
 
 export const Emotes = new ObjectDefinitions<EmoteDefinition>(
     [
+        {
+            // TODO: Find a better for when an emote is set to nothing than to set the emote to a placeholder
+            idString: "none",
+            name: "None"
+        },
         {
             idString: "happy_face",
             name: "Happy Face"
@@ -113,12 +118,20 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
             name: "Flint Logo"
         },
         {
+            idString: "team_equals_ban",
+            name: "Team = Ban"
+        },
+        {
             idString: "gg",
             name: "gg"
         },
         {
             idString: "ez",
             name: "ez"
+        },
+        {
+            idString: "duel",
+            name: "Duel"
         },
         {
             idString: "question_mark",
@@ -143,6 +156,10 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         {
             idString: "froog",
             name: "Froog"
+        },
+        {
+            idString: "bleh",
+            name: "Bleh"
         },
         {
             idString: "fire",
@@ -171,6 +188,10 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         {
             idString: "squid",
             name: "Squid"
+        },
+        {
+            idString: "wave",
+            name: "Wave"
         },
         {
             idString: "melting_face",

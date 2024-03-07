@@ -5,19 +5,24 @@ dist/
 node_modules/
 
 server/reports
-server/bannedIPs.json
+punishments.json
 
 # IDE garbage
 .idea
 .DS_Store
 .vscode
+*.kate-swp
+.history
+
+# node-gyp sometimes does this
+build/
 
 # try to prevent chpster moments from happening
 *.desktop
 *.css
-/.vs/suroi-fresh/FileContentIndex
-/.vs/ProjectSettings.json
-/.vs/slnx.sqlite
-/.vs/suroi-fresh/v17/.wsuo
-/.vs/suroi-fresh/v17/workspaceFileList.bin
-/.vs/VSWorkspaceState.json
+
+# try to prevent damienvesper moments from happening
+.cache/
+.pnpm-cache/
+.npm/
+*.log

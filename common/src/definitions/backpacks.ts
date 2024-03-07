@@ -1,12 +1,15 @@
-import { type ItemDefinition, ItemType } from "../utils/objectDefinitions";
+import { ItemType, ObjectDefinitions, type ItemDefinition, type ReferenceTo } from "../utils/objectDefinitions";
+import { type AmmoDefinition } from "./ammos";
+import { type HealingItemDefinition } from "./healingItems";
+import { type ThrowableDefinition } from "./throwables";
 
 export interface BackpackDefinition extends ItemDefinition {
     readonly itemType: ItemType.Backpack
     readonly level: number
-    readonly maxCapacity: Record<string, number>
+    readonly maxCapacity: Record<ReferenceTo<HealingItemDefinition | AmmoDefinition | ThrowableDefinition>, number>
 }
 
-export const Backpacks: BackpackDefinition[] = [
+export const Backpacks = new ObjectDefinitions<BackpackDefinition>([
     {
         idString: "bag",
         name: "Bag",
@@ -21,13 +24,17 @@ export const Backpacks: BackpackDefinition[] = [
             "556mm": 90,
             "762mm": 90,
             "9mm": 120,
-            power_cell: Infinity
+            "127mm": 10,
+            power_cell: Infinity,
+            curadell: 1,
+            frag_grenade: 3,
+            smoke_grenade: 3
         },
         noDrop: true
     },
     {
-        idString: "satchel",
-        name: "Satchel",
+        idString: "basic_pack",
+        name: "Basic Pack",
         itemType: ItemType.Backpack,
         level: 1,
         maxCapacity: {
@@ -39,12 +46,16 @@ export const Backpacks: BackpackDefinition[] = [
             "556mm": 180,
             "762mm": 180,
             "9mm": 240,
-            power_cell: Infinity
+            "127mm": 20,
+            power_cell: Infinity,
+            curadell: 2,
+            frag_grenade: 6,
+            smoke_grenade: 6
         }
     },
     {
-        idString: "regular_backpack",
-        name: "Regular Backpack",
+        idString: "regular_pack",
+        name: "Regular Pack",
         itemType: ItemType.Backpack,
         level: 2,
         maxCapacity: {
@@ -56,12 +67,16 @@ export const Backpacks: BackpackDefinition[] = [
             "556mm": 240,
             "762mm": 240,
             "9mm": 330,
-            power_cell: Infinity
+            "127mm": 40,
+            power_cell: Infinity,
+            curadell: 3,
+            frag_grenade: 9,
+            smoke_grenade: 9
         }
     },
     {
-        idString: "tactical_backpack",
-        name: "Tactical Backpack",
+        idString: "tactical_pack",
+        name: "Tactical Pack",
         itemType: ItemType.Backpack,
         level: 3,
         maxCapacity: {
@@ -73,7 +88,11 @@ export const Backpacks: BackpackDefinition[] = [
             "556mm": 300,
             "762mm": 300,
             "9mm": 420,
-            power_cell: Infinity
+            "127mm": 80,
+            power_cell: Infinity,
+            curadell: 4,
+            frag_grenade: 12,
+            smoke_grenade: 12
         }
     }
-];
+]);

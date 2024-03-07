@@ -1,11 +1,20 @@
+import { Ammos } from "./definitions/ammos";
+import { HealingItems } from "./definitions/healingItems";
+import { Scopes } from "./definitions/scopes";
+import { Throwables } from "./definitions/throwables";
+import { freezeDeep } from "./utils/misc";
+import { ItemType } from "./utils/objectDefinitions";
+
 export enum ObjectCategory {
     Player,
     Obstacle,
-    Explosion,
     DeathMarker,
     Loot,
     Building,
-    Emote
+    Decal,
+    Parachute,
+    ThrowableProjectile,
+    SyncedParticle
 }
 
 export enum PacketType {
@@ -15,25 +24,29 @@ export enum PacketType {
     Update,
     Input,
     GameOver,
-    Kill,
-    KillFeed,
     Pickup,
     Ping,
-    Item,
     Spectate,
-    Report
+    Report,
+    MapPing
 }
 
 export enum AnimationType {
     None,
     Melee,
+    ThrowableCook,
+    ThrowableThrow,
     Gun,
-    GunClick
+    GunAlt,
+    GunClick,
+    LastShot
 }
 
 export enum KillFeedMessageType {
     Kill,
-    Join
+    KillLeaderAssigned,
+    KillLeaderDead,
+    KillLeaderUpdated
 }
 
 export enum GasState {
@@ -49,13 +62,14 @@ export enum FireMode {
 }
 
 export enum InputActions {
-    None,
     EquipItem,
+    EquipLastItem,
     DropItem,
     SwapGunSlots,
     Interact,
     Reload,
     Cancel,
+    UseItem,
     TopEmoteSlot,
     RightEmoteSlot,
     BottomEmoteSlot,
@@ -67,6 +81,7 @@ export enum SpectateActions {
     SpectatePrevious,
     SpectateNext,
     SpectateSpecific,
+    SpectateKillLeader,
     Report
 }
 
@@ -76,31 +91,93 @@ export enum PlayerActions {
     UseItem
 }
 
-// ArmorType has to be in constants.ts and not armors.ts, or it'll cause recursive import issues
-export enum ArmorType {
-    Helmet,
-    Vest
+export enum KillType {
+    Suicide,
+    TwoPartyInteraction,
+    Gas,
+    Airdrop
 }
 
-const calculateEnumPacketBits = (enumeration: Record<string | number, string | number>): number => Math.ceil(Math.log2(Object.keys(enumeration).length / 2));
+export const DEFAULT_INVENTORY: Record<string, number> = {};
 
-export const PACKET_TYPE_BITS = calculateEnumPacketBits(PacketType);
-export const OBJECT_CATEGORY_BITS = calculateEnumPacketBits(ObjectCategory);
-export const OBJECT_ID_BITS = 12;
-export const VARIATION_BITS = 3;
-export const ANIMATION_TYPE_BITS = calculateEnumPacketBits(AnimationType);
-export const INPUT_ACTIONS_BITS = calculateEnumPacketBits(InputActions);
-export const SPECTATE_ACTIONS_BITS = calculateEnumPacketBits(SpectateActions);
-export const PLAYER_ACTIONS_BITS = calculateEnumPacketBits(PlayerActions);
-export const KILL_FEED_MESSAGE_TYPE_BITS = calculateEnumPacketBits(KillFeedMessageType);
-export const INVENTORY_MAX_WEAPONS = 3;
-export const MIN_OBJECT_SCALE = 0.25;
-export const MAX_OBJECT_SCALE = 2;
-export const PLAYER_NAME_MAX_LENGTH = 16;
-export const TICK_SPEED = 30;
-export const GRID_SIZE = 16;
+for (const item of [...HealingItems, ...Ammos, ...Scopes, ...Throwables]) {
+    let amount = 0;
 
-export const PLAYER_RADIUS = 2.25;
+    switch (true) {
+        case item.itemType === ItemType.Ammo && item.ephemeral: amount = Infinity; break;
+        case item.itemType === ItemType.Scope && item.giveByDefault: amount = 1; break;
+    }
 
-export const DEFAULT_USERNAME = "Player";
-export const ALLOW_NON_ASCII_USERNAME_CHARS = false;
+    DEFAULT_INVENTORY[item.idString] = amount;
+}
+
+Object.freeze(DEFAULT_INVENTORY);
+
+const tickrate = 40;
+const inventorySlotTypings = Object.freeze([ItemType.Gun, ItemType.Gun, ItemType.Melee, ItemType.Throwable] as const);
+export const GameConstants = freezeDeep({
+    // !!!!! NOTE: Increase this every time a bit stream change is made between latest release and master
+    // or a new item is added to a definition list
+    protocolVersion: 16,
+    gridSize: 32,
+    tickrate,
+    // this is fine cause the object is frozen anyways, so
+    // these two attributes can't ever be desynced
+    msPerTick: 1000 / tickrate,
+    maxPosition: 1632,
+    player: {
+        radius: 2.25,
+        nameMaxLength: 16,
+        defaultName: "Player",
+        defaultHealth: 100,
+        maxAdrenaline: 100,
+        inventorySlotTypings,
+        maxWeapons: inventorySlotTypings.length,
+        killLeaderMinKills: 3,
+        maxMouseDist: 128
+    },
+    airdrop: {
+        fallTime: 8000,
+        flyTime: 30000,
+        damage: 300
+    }
+});
+
+export enum ZIndexes {
+    Ground,
+    UnderWaterDeathMarkers,
+    UnderWaterDeadObstacles,
+    UnderWaterObstacles,
+    UnderWaterLoot,
+    UnderwaterGroundedThrowables,
+    UnderwaterPlayers,
+    BuildingsFloor,
+    Decals,
+    DeadObstacles,
+    DeathMarkers,
+    /**
+     * This is the default layer for obstacles
+     */
+    ObstaclesLayer1,
+    Loot,
+    GroundedThrowables,
+    ObstaclesLayer2,
+    Bullets,
+    Players,
+    /**
+     * bushes, tables etc
+     */
+    ObstaclesLayer3,
+    AirborneThrowables,
+    /**
+     * trees
+     */
+    ObstaclesLayer4,
+    BuildingsCeiling,
+    /**
+     * obstacles that should show on top of ceilings
+     */
+    ObstaclesLayer5,
+    Emotes,
+    Gas
+}

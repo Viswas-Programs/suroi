@@ -1,41 +1,47 @@
-import type { Game } from "../game";
-
-import { ObjectCategory } from "../../../../common/src/constants";
-import { SuroiSprite, toPixiCoords } from "../utils/pixi";
-import { distance } from "../../../../common/src/utils/math";
-import { Obstacle } from "./obstacle";
-import { PIXI_SCALE } from "../utils/constants";
+import { Color } from "pixi.js";
+import { ZIndexes } from "../../../../common/src/constants";
 import { BaseBullet, type BulletOptions } from "../../../../common/src/utils/baseBullet";
+import { Geometry } from "../../../../common/src/utils/math";
+import { type Game } from "../game";
+import { MODE, PIXI_SCALE } from "../utils/constants";
+import { SuroiSprite, toPixiCoords } from "../utils/pixi";
+import { Obstacle } from "./obstacle";
 import { Player } from "./player";
 
 export class Bullet extends BaseBullet {
     readonly game: Game;
     readonly image: SuroiSprite;
     readonly maxLength: number;
-    trailReachedMaxLength = false;
-    trailTicks = 0;
+    readonly tracerLength: number;
+
+    private _trailReachedMaxLength = false;
+    private _trailTicks = 0;
 
     constructor(game: Game, options: BulletOptions) {
         super(options);
 
         this.game = game;
 
-        let key: string;
-        if (this.source.category === ObjectCategory.Loot) key = this.source.definition.ammoType;
-        else key = "shrapnel";
-        this.image = new SuroiSprite(`${key}_trail`)
+        const tracerStats = this.definition.tracer;
+
+        this.image = new SuroiSprite(tracerStats?.image ?? "base_trail")
             .setRotation(this.rotation - Math.PI / 2)
             .setVPos(toPixiCoords(this.position));
 
-        this.maxLength = this.image.width;
+        this.tracerLength = tracerStats?.length ?? 1;
+        this.maxLength = this.image.width * this.tracerLength;
+        this.image.scale.y = tracerStats?.width ?? 1;
+        this.image.alpha = (tracerStats?.opacity ?? 1) / (this.reflectionCount + 1);
 
-        this.image.scale.set(0, this.definition.tracerWidth ?? 1);
+        if (!this.definition.tracer?.particle) this.image.anchor.set(1, 0.5);
 
-        this.image.anchor.set(1, 0.5);
+        const color = new Color(this.definition.tracer?.color ?? 0xffffff);
+        if (MODE.bulletTrailAdjust) color.multiply(MODE.bulletTrailAdjust);
 
-        this.image.alpha = (this.definition.tracerOpacity ?? 1) / (this.reflectionCount + 1);
+        this.image.tint = color;
+        this.image.zIndex = this.definition.tracer?.zIndex ?? ZIndexes.Bullets;
 
-        this.game.bulletsContainer.addChild(this.image);
+        this.game.camera.addObject(this.image);
     }
 
     update(delta: number): void {
@@ -50,31 +56,50 @@ export class Bullet extends BaseBullet {
                 }
 
                 this.damagedIDs.add(object.id);
-                if (object instanceof Obstacle && (object.type.definition.noCollisions)) continue;
+
+                if (object instanceof Obstacle) {
+                    if (
+                        (this.definition.penetration?.obstacles && !object.definition.impenetrable) ??
+                        object.definition.noCollisions
+                    ) continue;
+                }
+                if (this.definition.penetration?.players && object instanceof Player) continue;
 
                 this.dead = true;
                 this.position = collision.intersection.point;
                 break;
             }
-
-            if (!this.trailReachedMaxLength) this.trailTicks += delta;
-        } else {
-            this.trailTicks -= delta;
         }
 
-        const dist = distance(this.initialPosition, this.position);
+        if (!this.dead && !this._trailReachedMaxLength) {
+            this._trailTicks += delta;
+        } else if (this.dead || this.definition.tracer?.particle) {
+            this._trailTicks -= delta;
+        }
 
-        const fadeDist = this.definition.speed * this.trailTicks;
+        const traveledDistance = Geometry.distance(this.initialPosition, this.position);
 
-        const length = Math.min(Math.min(fadeDist, dist) * PIXI_SCALE, this.maxLength);
+        if (this.definition.tracer?.particle) {
+            this.image.scale.set(1 + (traveledDistance / this.maxDistance));
+            this.image.alpha = 2 * this.definition.speed * this._trailTicks / this.maxDistance;
 
-        if (length === this.maxLength) this.trailReachedMaxLength = true;
+            this._trailReachedMaxLength ||= this.image.alpha >= 1;
+        } else {
+            const length = Math.min(
+                Math.min(
+                    this.definition.speed * this._trailTicks,
+                    traveledDistance
+                ) * PIXI_SCALE,
+                this.maxLength
+            );
+            this.image.width = length;
 
-        this.image.scale.x = length / this.maxLength;
+            this._trailReachedMaxLength ||= length >= this.maxLength;
+        }
 
         this.image.setVPos(toPixiCoords(this.position));
 
-        if (this.trailTicks <= 0 && this.dead) {
+        if (this._trailTicks <= 0 && this.dead) {
             this.destroy();
         }
     }

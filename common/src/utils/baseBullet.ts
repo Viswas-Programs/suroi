@@ -1,32 +1,41 @@
-import { distanceSquared } from "./math";
-import { type Vector, v, vAdd, vMul, vClone } from "./vector";
-import { type GunDefinition } from "../definitions/guns";
-import { type ObjectType } from "./objectType";
-import { type ObjectCategory } from "../constants";
+import { ObjectCategory } from "../constants";
+import { Bullets, type BulletDefinition } from "../definitions/bullets";
+import { type ObstacleDefinition } from "../definitions/obstacles";
 import { type Hitbox } from "./hitbox";
-import { type ExplosionDefinition } from "../definitions/explosions";
-import { type BulletDefinition } from "./objectDefinitions";
+import { Geometry, Numeric } from "./math";
+import { type ReifiableDef } from "./objectDefinitions";
+import { type SuroiBitStream } from "./suroiBitStream";
+import { Vec, type Vector } from "./vector";
 
 export interface BulletOptions {
-    position: Vector
-    rotation: number
-    source: ObjectType<ObjectCategory.Explosion, ExplosionDefinition> | ObjectType<ObjectCategory.Loot, GunDefinition>
-    sourceID: number
-    reflectionCount?: number
-    variance?: number
+    readonly position: Vector
+    readonly rotation: number
+    readonly source: ReifiableDef<BulletDefinition>
+    readonly sourceID: number
+    readonly reflectionCount?: number
+    readonly variance?: number
+    readonly rangeOverride?: number
 }
 
-interface GameObject {
-    position: Vector
-    hitbox?: Hitbox
-    dead: boolean
-    damageable: boolean
-    id: number
-}
+type GameObject = {
+    readonly position: Vector
+    readonly hitbox?: Hitbox
+    readonly dead: boolean
+    readonly damageable: boolean
+    readonly id: number
+} & ({
+    readonly type: ObjectCategory.Obstacle
+    readonly definition: ObstacleDefinition
+} | {
+    readonly type: Exclude<ObjectCategory, ObjectCategory.Obstacle>
+});
 
 interface Collision {
-    intersection: { point: Vector, normal: Vector }
-    object: GameObject
+    readonly intersection: {
+        readonly point: Vector
+        readonly normal: Vector
+    }
+    readonly object: GameObject
 }
 
 export class BaseBullet {
@@ -35,6 +44,7 @@ export class BaseBullet {
 
     readonly rotation: number;
     readonly velocity: Vector;
+    readonly direction: Vector;
 
     readonly maxDistance: number;
     readonly maxDistanceSquared: number;
@@ -45,31 +55,35 @@ export class BaseBullet {
 
     readonly damagedIDs = new Set<number>();
 
-    readonly variance: number;
+    readonly rangeVariance: number;
 
     dead = false;
-
-    readonly source: ObjectType<ObjectCategory.Loot, GunDefinition> | ObjectType<ObjectCategory.Explosion, ExplosionDefinition>;
 
     readonly definition: BulletDefinition;
 
     readonly canHitShooter: boolean;
 
     constructor(options: BulletOptions) {
-        this.initialPosition = vClone(options.position);
+        this.initialPosition = Vec.clone(options.position);
         this.position = options.position;
         this.rotation = options.rotation;
-        this.source = options.source;
         this.reflectionCount = options.reflectionCount ?? 0;
         this.sourceID = options.sourceID;
-        this.variance = options.variance ?? 0;
+        this.rangeVariance = options.variance ?? 0;
 
-        this.definition = this.source.definition.ballistics;
-        this.maxDistance = (this.definition.maxDistance * (this.variance + 1)) / (this.reflectionCount + 1);
+        this.definition = Bullets.reify(options.source);
 
+        let range = this.definition.range;
+
+        if (this.definition.allowRangeOverride && options.rangeOverride !== undefined) {
+            range = Numeric.clamp(options.rangeOverride, 0, this.definition.range);
+        }
+        this.maxDistance = (range * (this.rangeVariance + 1)) / (this.reflectionCount + 1);
         this.maxDistanceSquared = this.maxDistance ** 2;
 
-        this.velocity = vMul(v(Math.sin(this.rotation), -Math.cos(this.rotation)), this.definition.speed * (this.variance + 1));
+        this.direction = Vec.create(Math.sin(this.rotation), -Math.cos(this.rotation));
+
+        this.velocity = Vec.scale(this.direction, this.definition.speed * (this.rangeVariance + 1));
 
         this.canHitShooter = (this.definition.shrapnel ?? this.reflectionCount > 0);
     }
@@ -81,21 +95,27 @@ export class BaseBullet {
      * @returns An array containing the objects that the bullet collided and the intersection data
      */
     updateAndGetCollisions(delta: number, objects: { [Symbol.iterator]: () => Iterator<GameObject> }): Collision[] {
-        const oldPosition = vClone(this.position);
+        const oldPosition = Vec.clone(this.position);
 
-        this.position = vAdd(this.position, vMul(this.velocity, delta));
+        this.position = Vec.add(this.position, Vec.scale(this.velocity, delta));
 
-        if (distanceSquared(this.initialPosition, this.position) > this.maxDistanceSquared) {
+        if (Geometry.distanceSquared(this.initialPosition, this.position) > this.maxDistanceSquared) {
             this.dead = true;
-            this.position = vAdd(this.initialPosition, (vMul(v(Math.sin(this.rotation), -Math.cos(this.rotation)), this.maxDistance)));
+            this.position = Vec.add(this.initialPosition, (Vec.scale(this.direction, this.maxDistance)));
         }
+
+        if (this.definition.noCollision) return [];
 
         const collisions: Collision[] = [];
 
         for (const object of objects) {
-            if (object.damageable && !object.dead &&
+            if (object.type === ObjectCategory.Obstacle && object.definition.noBulletCollision) continue;
+
+            if (
+                object.damageable && !object.dead &&
                 !(!this.canHitShooter && object.id === this.sourceID) &&
-                !this.damagedIDs.has(object.id)) {
+                !this.damagedIDs.has(object.id)
+            ) {
                 const collision = object.hitbox?.intersectsLine(oldPosition, this.position);
 
                 if (collision) {
@@ -108,10 +128,45 @@ export class BaseBullet {
         }
 
         // Sort by closest to initial position
-        collisions.sort((a, b) => {
-            return distanceSquared(a.intersection?.point, this.initialPosition) - distanceSquared(b.intersection?.point, this.initialPosition);
-        });
+        collisions.sort(
+            (a, b) =>
+                Geometry.distanceSquared(a.intersection?.point, this.initialPosition) -
+                Geometry.distanceSquared(b.intersection?.point, this.initialPosition)
+        );
 
         return collisions;
+    }
+
+    serialize(stream: SuroiBitStream): void {
+        Bullets.writeToStream(stream, this.definition);
+        stream.writePosition(this.initialPosition);
+        stream.writeRotation(this.rotation, 16);
+        stream.writeFloat(this.rangeVariance, 0, 1, 4);
+        stream.writeBits(this.reflectionCount, 2);
+        stream.writeObjectID(this.sourceID);
+
+        if (this.definition.allowRangeOverride) {
+            stream.writeFloat(this.maxDistance, 0, this.definition.range, 16);
+        }
+    }
+
+    static deserialize(stream: SuroiBitStream): BulletOptions {
+        const source = Bullets.readFromStream(stream);
+        const position = stream.readPosition();
+        const rotation = stream.readRotation(16);
+        const variance = stream.readFloat(0, 1, 4);
+        const reflectionCount = stream.readBits(2);
+        const sourceID = stream.readObjectID();
+        const clipDistance = source.allowRangeOverride ? stream.readFloat(0, source.range, 16) : undefined;
+
+        return {
+            source,
+            position,
+            rotation,
+            variance,
+            reflectionCount,
+            sourceID,
+            rangeOverride: clipDistance
+        };
     }
 }

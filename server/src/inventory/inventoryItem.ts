@@ -1,22 +1,20 @@
-import { type WearerAttributes, type ItemDefinition, type ItemType } from "../../../common/src/utils/objectDefinitions";
-import { ObjectType } from "../../../common/src/utils/objectType";
+import { Loots, type LootDefinition, type WeaponDefinition } from "../../../common/src/definitions/loots";
+import { type ItemType, type ReifiableDef, type WearerAttributes } from "../../../common/src/utils/objectDefinitions";
 import { type Player } from "../objects/player";
-import { ObjectCategory } from "../../../common/src/constants";
-import { type LootDefinition } from "../../../common/src/definitions/loots";
 
 /**
  * Represents some item in the player's inventory *that can be equipped*
  * @abstract
  */
-export abstract class InventoryItem {
+export abstract class InventoryItem<Def extends WeaponDefinition = WeaponDefinition> {
     /**
-     * The category of item this is, either melee or gun
+     * The category of item this is, either melee, gun or throwable
      */
     readonly category: ItemType;
     /**
      * The `ObjectType` instance associated with this item
      */
-    readonly type: ObjectType<ObjectCategory.Loot, LootDefinition>;
+    readonly definition: Def;
     /**
      * The player this item belongs to
      */
@@ -31,8 +29,6 @@ export abstract class InventoryItem {
         // Additive
         minAdrenaline: 0
     };
-
-    abstract readonly definition: ItemDefinition;
 
     private _isActive = false;
 
@@ -75,19 +71,20 @@ export abstract class InventoryItem {
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/lines-between-class-members
     get stats() { return this._stats; }
 
-    _lastUse = 0;
+    protected _lastUse = 0;
     get lastUse(): number { return this._lastUse; }
 
-    _switchDate = 0;
+    switchDate = 0;
 
     /**
      * Creates a new `InventoryItem` given a string and a player
-     * @param idString The `idString` of an item in the item schema that will be represented by this instance
+     * @param definition The definition of an item in the item schema
+     * that will be represented by this instance
      * @param owner The `Player` this item belongs to
      */
-    constructor(idString: string, owner: Player) {
-        this.type = ObjectType.fromString(ObjectCategory.Loot, idString);
-        this.category = this.type.definition.itemType;
+    protected constructor(definition: ReifiableDef<LootDefinition>, owner: Player) {
+        this.definition = Loots.reify(definition);
+        this.category = this.definition.itemType;
         this.owner = owner;
     }
 
@@ -95,10 +92,27 @@ export abstract class InventoryItem {
      * A method which will be called whenever the player owning this item attempts to use the item.
      *
      * It is this method's responsibility to ensure that the player is in a position to use the item, as well
-     * as take care of any side-effects such usage may entail (spawning objects, modifying state, etc)
+     * as take care of any side-effects such usage may entail (spawning objects, modifying state, etc). It is
+     * also this method's responsibility to take care of any scheduling of events, such as scheduling reloads,
+     * refire (ex. automatic weapons) or attempts to fire (input buffering)
      * @abstract
      */
     abstract useItem(): void;
+
+    /**
+     * A method which *does nothing*, but that can be overridden by subclasses if desired. This method is called
+     * whenever the player stops attacking while having this weapon equipped _or_ when the user starts attacking
+     * with a weapon and switches off of it. In the latter case, this method will always be called _after_ the switch
+     * has been done (so `this.owner.activeItem !== this` and `this.isActive === false`). Subclasses can use these facts
+     * to differentiate the two cases.
+     *
+     * It is usually the case that subclasses overriding this method are interested in the cases where a player starts
+     * attacking with this item and then stops attacking; for example, a throwable would show the cooking animation and start
+     * the fuse in the `useItem` method and would then launch the projectile in this one. Properly managing and sharing state
+     * between these two methods is thus quite important. As with the `useItem` method, subclasses' overrides are fully responsible
+     * for taking care of any side-effects such as spawning objects and modifying state.
+     */
+    stopUse(): void {}
 
     refreshModifiers(): void {
         const definition = this.definition;
@@ -119,7 +133,7 @@ export abstract class InventoryItem {
         };
 
         if (passive) applyModifiers(passive);
-        if (active && this.isActive) applyModifiers(active);
+        if (active && this._isActive) applyModifiers(active);
 
         if (on) {
             const { damageDealt, kill } = on;
@@ -139,12 +153,50 @@ export abstract class InventoryItem {
                     }
                 }
             }
+        }
 
-            this._modifiers.maxHealth = newModifiers.maxHealth;
-            this._modifiers.maxAdrenaline = newModifiers.maxAdrenaline;
-            this._modifiers.minAdrenaline = newModifiers.minAdrenaline;
-            this._modifiers.baseSpeed = newModifiers.baseSpeed;
-            this.owner.updateAndApplyModifiers();
+        this._modifiers.maxHealth = newModifiers.maxHealth;
+        this._modifiers.maxAdrenaline = newModifiers.maxAdrenaline;
+        this._modifiers.minAdrenaline = newModifiers.minAdrenaline;
+        this._modifiers.baseSpeed = newModifiers.baseSpeed;
+        this.owner.updateAndApplyModifiers();
+    }
+
+    protected _bufferAttack(cooldown: number, internalCallback: (this: this) => void): void {
+        const owner = this.owner;
+        const now = owner.game.now;
+
+        const timeToFire = cooldown - (now - this._lastUse);
+        const timeToSwitch = owner.effectiveSwitchDelay - (now - this.switchDate);
+
+        if (
+            timeToFire <= 0 &&
+            timeToSwitch <= 0
+        ) {
+            internalCallback.call(this);
+        } else {
+            const bufferDuration = Math.max(timeToFire, timeToSwitch);
+
+            // We only honor buffered inputs shorter than 200ms
+            if (bufferDuration >= 200) return;
+
+            owner.bufferedAttack?.kill();
+            owner.bufferedAttack = owner.game.addTimeout(
+                () => {
+                    if (
+                        owner.activeItem === this &&
+                        owner.attacking
+                    ) {
+                        owner.bufferedAttack?.kill();
+                        this.useItem();
+                    }
+                },
+                bufferDuration
+            );
         }
     }
+}
+
+export abstract class CountableInventoryItem<Def extends WeaponDefinition = WeaponDefinition> extends InventoryItem<Def> {
+    abstract count: number;
 }

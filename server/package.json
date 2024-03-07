@@ -9,8 +9,6 @@
     "moderation": "node dist/server/src/moderation.js",
     "validateDefinitions": "node dist/server/src/validateDefinitions.js",
     "dev": "ts-node-dev --respawn --rs --transpile-only src/server.ts",
-    "lint": "eslint . --fix --ext .ts",
-    "lint:ci": "eslint . --ext .ts",
     "dev:test": "tsc && node --enable-source-maps dist/server/src/stressTest.js"
   },
   "engines": {
@@ -19,23 +17,15 @@
   "keywords": [],
   "license": "GPL-3.0",
   "devDependencies": {
-    "@types/node": "^20.6.4",
-    "@types/sanitize-html": "^2.9.0",
-    "@types/ws": "^8.5.5",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
-    "eslint": "^8.50.0",
-    "eslint-config-standard-with-typescript": "^39.1.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-n": "^16.1.0",
-    "eslint-plugin-promise": "^6.1.1",
+    "@types/node": "^20.11.19",
+    "@types/sanitize-html": "^2.11.0",
+    "@types/ws": "^8.5.10",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "5.3.3"
   },
   "dependencies": {
-    "@damienvesper/bit-buffer": "^1.0.0",
-    "sanitize-html": "^2.11.0",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.31.0",
-    "ws": "^8.14.2"
+    "@damienvesper/bit-buffer": "^1.0.1",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.41.0",
+    "ws": "^8.16.0"
   }
 }

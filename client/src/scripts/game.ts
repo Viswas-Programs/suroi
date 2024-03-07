@@ -1,51 +1,83 @@
+import { sound, type Sound } from "@pixi/sound";
 import $ from "jquery";
-
-import { UpdatePacket } from "./packets/receiving/updatePacket";
-import { JoinedPacket } from "./packets/receiving/joinedPacket";
-import { GameOverPacket, gameOverScreenTimeout } from "./packets/receiving/gameOverPacket";
-import { KillPacket } from "./packets/receiving/killPacket";
-import { KillFeedPacket } from "./packets/receiving/killFeedPacket";
-import { PingedPacket } from "./packets/receiving/pingedPacket";
-import { PingPacket } from "./packets/sending/pingPacket";
-
-import { Player } from "./objects/player";
-import { type SendingPacket } from "./types/sendingPacket";
-import { type GameObject } from "./types/gameObject";
-import { type Bullet } from "./objects/bullet";
-
-import { SuroiBitStream } from "../../../common/src/utils/suroiBitStream";
-import { ObjectCategory, PacketType, TICK_SPEED } from "../../../common/src/constants";
-
-import { PlayerManager } from "./utils/playerManager";
-import { MapPacket } from "./packets/receiving/mapPacket";
-import { enablePlayButton } from "./main";
-import { PickupPacket } from "./packets/receiving/pickupPacket";
-import { PIXI_SCALE, UI_DEBUG_MODE } from "./utils/constants";
-import { ReportPacket } from "./packets/receiving/reportPacket";
-import { JoinPacket } from "./packets/sending/joinPacket";
-import { localStorageInstance } from "./utils/localStorageHandler";
-import { Obstacle } from "./objects/obstacle";
-import { Loot } from "./objects/loot";
-import { InputPacket } from "./packets/sending/inputPacket";
-import { CircleHitbox, type Hitbox } from "../../../common/src/utils/hitbox";
-import { type CollisionRecord, circleCollision, distanceSquared } from "../../../common/src/utils/math";
-import { Building } from "./objects/building";
-import { ItemType } from "../../../common/src/utils/objectDefinitions";
-import { getIconFromInputName } from "./utils/inputManager";
-import { Container, type Application } from "pixi.js";
-import { Camera } from "./rendering/camera";
-import { SoundManager } from "./utils/soundManager";
-import { Gas } from "./rendering/gas";
-import { Minimap } from "./rendering/map";
-import { type Tween } from "./utils/tween";
-import { ParticleManager } from "./objects/particles";
-import { type BuildingDefinition } from "../../../common/src/definitions/buildings";
-import { ObjectPool } from "../../../common/src/utils/objectPool";
-import { type ObjectType } from "../../../common/src/utils/objectType";
-import { type ObstacleDefinition } from "../../../common/src/definitions/obstacles";
-import { DeathMarker } from "./objects/deathMarker";
-import { type LootDefinition } from "../../../common/src/definitions/loots";
+import { Application, Color } from "pixi.js";
+import { GameConstants, InputActions, ObjectCategory, PacketType } from "../../../common/src/constants";
+import { ArmorType } from "../../../common/src/definitions/armors";
+import { Badges, type BadgeDefinition } from "../../../common/src/definitions/badges";
+import { Emotes } from "../../../common/src/definitions/emotes";
+import { Loots, type LootDefinition } from "../../../common/src/definitions/loots";
 import { Scopes } from "../../../common/src/definitions/scopes";
+import { GameOverPacket } from "../../../common/src/packets/gameOverPacket";
+import { JoinPacket } from "../../../common/src/packets/joinPacket";
+import { JoinedPacket } from "../../../common/src/packets/joinedPacket";
+import { MapPacket } from "../../../common/src/packets/mapPacket";
+import { type Packet } from "../../../common/src/packets/packet";
+import { PickupPacket } from "../../../common/src/packets/pickupPacket";
+import { PingPacket } from "../../../common/src/packets/pingPacket";
+import { ReportPacket } from "../../../common/src/packets/reportPacket";
+import { UpdatePacket } from "../../../common/src/packets/updatePacket";
+import { CircleHitbox } from "../../../common/src/utils/hitbox";
+import { Geometry } from "../../../common/src/utils/math";
+import { Timeout } from "../../../common/src/utils/misc";
+import { ItemType, ObstacleSpecialRoles } from "../../../common/src/utils/objectDefinitions";
+import { ObjectPool } from "../../../common/src/utils/objectPool";
+import { type FullData } from "../../../common/src/utils/objectsSerializations";
+import { SuroiBitStream } from "../../../common/src/utils/suroiBitStream";
+import { enablePlayButton } from "./main";
+import { Building } from "./objects/building";
+import { Bullet } from "./objects/bullet";
+import { DeathMarker } from "./objects/deathMarker";
+import { Decal } from "./objects/decal";
+import { explosion } from "./objects/explosion";
+import { type GameObject } from "./objects/gameObject";
+import { Loot } from "./objects/loot";
+import { Obstacle } from "./objects/obstacle";
+import { Parachute } from "./objects/parachute";
+import { ParticleManager } from "./objects/particles";
+import { Plane } from "./objects/plane";
+import { Player } from "./objects/player";
+import { SyncedParticle } from "./objects/syncedParticle";
+import { ThrowableProjectile } from "./objects/throwableProj";
+import { Camera } from "./rendering/camera";
+import { Gas, GasRender } from "./rendering/gas";
+import { Minimap, Ping } from "./rendering/minimap";
+import { setupUI } from "./ui";
+import { setUpCommands } from "./utils/console/commands";
+import { GameConsole } from "./utils/console/gameConsole";
+import { COLORS, MODE, PIXI_SCALE, UI_DEBUG_MODE } from "./utils/constants";
+import { InputManager } from "./utils/inputManager";
+import { SoundManager } from "./utils/soundManager";
+import { type Tween } from "./utils/tween";
+import { UIManager } from "./utils/uiManager";
+
+interface ObjectClassMapping {
+    readonly [ObjectCategory.Player]: typeof Player
+    readonly [ObjectCategory.Obstacle]: typeof Obstacle
+    readonly [ObjectCategory.DeathMarker]: typeof DeathMarker
+    readonly [ObjectCategory.Loot]: typeof Loot
+    readonly [ObjectCategory.Building]: typeof Building
+    readonly [ObjectCategory.Decal]: typeof Decal
+    readonly [ObjectCategory.Parachute]: typeof Parachute
+    readonly [ObjectCategory.ThrowableProjectile]: typeof ThrowableProjectile
+    readonly [ObjectCategory.SyncedParticle]: typeof SyncedParticle
+}
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+const ObjectClassMapping: ObjectClassMapping = {
+    [ObjectCategory.Player]: Player,
+    [ObjectCategory.Obstacle]: Obstacle,
+    [ObjectCategory.DeathMarker]: DeathMarker,
+    [ObjectCategory.Loot]: Loot,
+    [ObjectCategory.Building]: Building,
+    [ObjectCategory.Decal]: Decal,
+    [ObjectCategory.Parachute]: Parachute,
+    [ObjectCategory.ThrowableProjectile]: ThrowableProjectile,
+    [ObjectCategory.SyncedParticle]: SyncedParticle
+};
+
+type ObjectMapping = {
+    readonly [Cat in keyof ObjectClassMapping]: InstanceType<ObjectClassMapping[Cat]>
+};
 
 /*localStorageInstance.update({
     "loadout": {
@@ -58,79 +90,97 @@ import { Scopes } from "../../../common/src/definitions/scopes";
     } })
     */
 export class Game {
-    socket!: WebSocket;
+    private _socket?: WebSocket;
 
-    objects = new ObjectPool<GameObject>();
-    players = new ObjectPool<Player>();
-    loots = new Set<Loot>();
-    bullets = new Set<Bullet>();
+    readonly objects = new ObjectPool<ObjectMapping>();
+    readonly bullets = new Set<Bullet>();
+    readonly planes = new Set<Plane>();
+
+    readonly playerNames = new Map<number, {
+        readonly name: string
+        readonly hasColor: boolean
+        readonly nameColor: Color
+        readonly badge?: BadgeDefinition
+    }>();
 
     activePlayerID = -1;
-
     get activePlayer(): Player | undefined {
         return this.objects.get(this.activePlayerID) as Player;
     }
-
-    floorHitboxes = new Map<Hitbox, string>();
 
     gameStarted = false;
     gameOver = false;
     spectating = false;
     error = false;
 
-    playerManager = new PlayerManager(this);
+    uiManager = new UIManager(this);
 
-    lastPingDate = Date.now();
+    lastPingDate = 0;
 
-    tickTimeoutID: number | undefined;
+    private _tickTimeoutID: number | undefined;
 
-    gas!: Gas;
+    readonly pixi: Application<HTMLCanvasElement>;
+    readonly soundManager: SoundManager;
+    readonly particleManager = new ParticleManager(this);
+    readonly map: Minimap;
+    readonly camera: Camera;
+    readonly console = new GameConsole(this);
+    readonly inputManager = new InputManager(this);
 
-    pixi: Application;
+    readonly gasRender = new GasRender(PIXI_SCALE);
+    readonly gas = new Gas(this);
 
-    soundManager = new SoundManager();
+    readonly music: Sound;
 
-    particleManager = new ParticleManager(this);
+    readonly tweens = new Set<Tween<unknown>>();
 
-    map: Minimap;
+    private readonly _timeouts = new Set<Timeout>();
 
-    camera: Camera;
+    addTimeout(callback: () => void, delay?: number): Timeout {
+        const timeout = new Timeout(callback, Date.now() + (delay ?? 0));
+        this._timeouts.add(timeout);
+        return timeout;
+    }
 
-    // Since all players and bullets have the same depth
-    // Add all to a container so pixi has to do less sorting of zIndexes
-    playersContainer = new Container();
-    bulletsContainer = new Container();
+    constructor() {
+        this.console.readFromLocalStorage();
+        this.inputManager.setupInputs();
 
-    music = new Howl({ src: localStorageInstance.config.oldMenuMusic ? "./audio/music/old_menu_music.mp3" : "./audio/music/menu_music.mp3", loop: true });
-    musicPlaying = false;
+        // Initialize the Application object
+        this.pixi = new Application({
+            resizeTo: window,
+            background: COLORS.grass,
+            antialias: this.console.getBuiltInCVar("cv_antialias"),
+            autoDensity: true,
+            resolution: window.devicePixelRatio || 1
+        });
 
-    tweens = new Set<Tween<unknown>>();
-
-    constructor(pixi: Application) {
-        this.pixi = pixi;
+        $("#game").append(this.pixi.view);
 
         this.pixi.ticker.add(this.render.bind(this));
 
-        this.camera = new Camera(this);
+        setUpCommands(this);
+        this.soundManager = new SoundManager(this);
+        this.inputManager.generateBindsConfigScreen();
 
+        setupUI(this);
+
+        this.camera = new Camera(this);
         this.map = new Minimap(this);
 
-        this.playersContainer.zIndex = 4;
-        this.bulletsContainer.zIndex = 3;
+        this.music = sound.add("menu_music", {
+            url: `./audio/music/menu_music${this.console.getBuiltInCVar("cv_use_old_menu_music") ? "_old" : MODE.specialMenuMusic ? `_${MODE.idString}` : ""}.mp3`,
+            singleInstance: true,
+            preload: true,
+            autoPlay: true,
+            volume: this.console.getBuiltInCVar("cv_music_volume")
+        });
 
         setInterval(() => {
-            if (localStorageInstance.config.showFPS) {
+            if (this.console.getBuiltInCVar("pf_show_fps")) {
                 $("#fps-counter").text(`${Math.round(this.pixi.ticker.FPS)} fps`);
             }
         }, 500);
-
-        window.addEventListener("resize", this.resize.bind(this));
-
-        if (!this.musicPlaying) {
-            this.music.play();
-            this.music.volume(localStorageInstance.config.musicVolume);
-            this.musicPlaying = true;
-        }
     }
 
     connect(address: string): void {
@@ -138,92 +188,143 @@ export class Game {
 
         if (this.gameStarted) return;
 
-        this.socket = new WebSocket(address);
-        this.socket.binaryType = "arraybuffer";
+        this._socket = new WebSocket(address);
+        this._socket.binaryType = "arraybuffer";
 
-        this.socket.onopen = (): void => {
+        this._socket.onopen = (): void => {
             this.music.stop();
-            this.musicPlaying = false;
             this.gameStarted = true;
             this.gameOver = false;
             this.spectating = false;
 
             if (!UI_DEBUG_MODE) {
-                clearTimeout(gameOverScreenTimeout);
+                clearTimeout(this.uiManager.gameOverScreenTimeout);
                 $("#game-over-overlay").hide();
                 $("#kill-msg").hide();
                 $("#ui-kills").text("0");
                 $("#kill-feed").html("");
-                $("#spectating-msg").hide();
-                $("#spectating-buttons-container").hide();
+                $("#spectating-container").hide();
+                $("#joysticks-containers").show();
             }
-            this.sendPacket(new PingPacket(this.playerManager));
-            this.sendPacket(new JoinPacket(this.playerManager));
 
-            this.gas = new Gas(PIXI_SCALE, this.camera.container);
-            this.camera.container.addChild(this.playersContainer, this.bulletsContainer);
+            this.sendPacket(new PingPacket());
+            this.lastPingDate = Date.now();
+
+            const joinPacket = new JoinPacket();
+            joinPacket.isMobile = this.inputManager.isMobile;
+            joinPacket.name = this.console.getBuiltInCVar("cv_player_name");
+            joinPacket.skin = Loots.fromString(this.console.getBuiltInCVar("cv_loadout_skin"));
+
+            const badge = this.console.getBuiltInCVar("cv_loadout_badge");
+            if (badge) {
+                joinPacket.badge = Badges.fromString(badge);
+            }
+
+            for (const emote of ["top", "right", "bottom", "left", "death", "win"] as const) {
+                joinPacket.emotes.push(Emotes.fromString(this.console.getBuiltInCVar(`cv_loadout_${emote}_emote`)));
+            }
+
+            this.sendPacket(joinPacket);
+
+            this.camera.addObject(this.gasRender.graphics);
 
             this.map.indicator.setFrame("player_indicator");
 
-            this.tickTimeoutID = window.setInterval(this.tick.bind(this), TICK_SPEED);
+            this._tickTimeoutID = window.setInterval(this.tick.bind(this), GameConstants.msPerTick);
         };
 
         // Handle incoming messages
-        this.socket.onmessage = (message: MessageEvent): void => {
+        this._socket.onmessage = (message: MessageEvent<ArrayBuffer>): void => {
             const stream = new SuroiBitStream(message.data);
             switch (stream.readPacketType()) {
                 case PacketType.Joined: {
-                    new JoinedPacket(this.playerManager).deserialize(stream);
+                    const packet = new JoinedPacket();
+                    packet.deserialize(stream);
+                    this.startGame(packet);
                     break;
                 }
                 case PacketType.Map: {
-                    new MapPacket(this.playerManager).deserialize(stream);
+                    const packet = new MapPacket();
+                    packet.deserialize(stream);
+                    this.map.updateFromPacket(packet);
                     break;
                 }
                 case PacketType.Update: {
-                    const packet = new UpdatePacket(this.playerManager);
+                    const packet = new UpdatePacket();
+                    packet.previousData = this.uiManager;
                     packet.deserialize(stream);
                     this.processUpdate(packet);
                     break;
                 }
                 case PacketType.GameOver: {
-                    new GameOverPacket(this.playerManager).deserialize(stream);
+                    const packet = new GameOverPacket();
+                    packet.deserialize(stream);
+                    this.uiManager.showGameOverScreen(packet);
                     break;
                 }
-                case PacketType.Kill: {
-                    new KillPacket(this.playerManager).deserialize(stream);
-                    break;
-                }
-                case PacketType.KillFeed: {
-                    new KillFeedPacket(this.playerManager).deserialize(stream);
-                    break;
-                }
-                case PacketType.Pickup: {
-                    new PickupPacket(this.playerManager).deserialize(stream);
+                case PacketType.Ping: {
+                    const ping = Date.now() - this.lastPingDate;
+                    $("#ping-counter").text(`${ping} ms`);
+                    setTimeout((): void => {
+                        this.sendPacket(new PingPacket());
+                        this.lastPingDate = Date.now();
+                    }, 5000);
                     break;
                 }
                 case PacketType.Report: {
-                    new ReportPacket(this.playerManager).deserialize(stream);
+                    const packet = new ReportPacket();
+                    packet.deserialize(stream);
+                    $("#reporting-name").text(packet.playerName);
+                    $("#report-id").text(packet.reportID);
+                    $("#report-modal").fadeIn(250);
                     break;
                 }
-                // TODO: maybe disconnect players that haven't sent a ping in a while?
-                case PacketType.Ping: {
-                    new PingedPacket(this.playerManager).deserialize(stream);
+                case PacketType.Pickup: {
+                    const packet = new PickupPacket();
+                    packet.deserialize(stream);
+
+                    let soundID: string;
+                    switch (packet.item.itemType) {
+                        case ItemType.Ammo:
+                            soundID = "ammo_pickup";
+                            break;
+                        case ItemType.Healing:
+                            soundID = `${packet.item.idString}_pickup`;
+                            break;
+                        case ItemType.Scope:
+                            soundID = "scope_pickup";
+                            break;
+                        case ItemType.Armor:
+                            if (packet.item.armorType === ArmorType.Helmet) soundID = "helmet_pickup";
+                            else soundID = "vest_pickup";
+                            break;
+                        case ItemType.Backpack:
+                            soundID = "backpack_pickup";
+                            break;
+                        case ItemType.Throwable:
+                            soundID = "throwable_pickup";
+                            break;
+                        default:
+                            soundID = "pickup";
+                            break;
+                    }
+
+                    this.soundManager.play(soundID);
                     break;
                 }
             }
         };
 
-        this.socket.onerror = (): void => {
+        this._socket.onerror = (): void => {
             this.error = true;
             $("#splash-server-message-text").html("Error joining game.");
             $("#splash-server-message").show();
             enablePlayButton();
         };
 
-        this.socket.onclose = (): void => {
+        this._socket.onclose = (): void => {
             enablePlayButton();
-            if (!this.spectating && !this.gameOver) {
+            if (!this.gameOver) {
                 if (this.gameStarted) {
                     $("#splash-ui").fadeIn();
                     $("#splash-server-message-text").html("Connection lost.");
@@ -235,190 +336,252 @@ export class Game {
         };
     }
 
-    endGame(): void {
-        clearTimeout(this.tickTimeoutID);
+    startGame(packet: JoinedPacket): void {
+        if (packet.protocolVersion !== GameConstants.protocolVersion) {
+            alert("Invalid game version.");
+            // reload the page with a time stamp to try clearing cache
+            location.search = `t=${Date.now()}`;
+        }
 
-        if (this.activePlayer?.actionSound) this.soundManager.stop(this.activePlayer.actionSound);
+        const selectors = [".emote-top", ".emote-right", ".emote-bottom", ".emote-left"];
+        for (let i = 0; i < 4; i++) {
+            $(`#emote-wheel > ${selectors[i]}`)
+                .css(
+                    "background-image",
+                    `url("./img/game/emotes/${packet.emotes[i].idString}.svg")`
+                );
+        }
+
+        $("canvas").addClass("active");
+        $("#splash-ui").fadeOut(enablePlayButton);
+
+        $("#kill-leader-leader").html("Waiting for leader");
+        $("#kill-leader-kills-counter").text("0");
+        $("#btn-spectate-kill-leader").hide();
+    }
+
+    endGame(): void {
+        clearTimeout(this._tickTimeoutID);
+
+        this.soundManager.stopAll();
 
         $("#action-container").hide();
         $("#game-menu").hide();
         $("#game-over-overlay").hide();
         $("canvas").removeClass("active");
+        $("#kill-leader-leader").text("Waiting for leader");
+        $("#kill-leader-kills-counter").text("0");
         $("#splash-ui").fadeIn();
 
         this.gameStarted = false;
-        this.socket.close();
+        this._socket?.close();
 
         // reset stuff
+        for (const object of this.objects) object.destroy();
+        for (const plane of this.planes) plane.destroy();
         this.objects.clear();
-        this.players.clear();
         this.bullets.clear();
+        this.planes.clear();
         this.camera.container.removeChildren();
-        this.playersContainer.removeChildren();
-        this.bulletsContainer.removeChildren();
         this.particleManager.clear();
         this.map.gasGraphics.clear();
-        this.floorHitboxes.clear();
-        this.loots.clear();
+        this.map.pingGraphics.clear();
+        this.map.pings.clear();
+        this.map.pingsContainer.removeChildren();
+        this.playerNames.clear();
+        this._timeouts.clear();
 
-        this.camera.zoom = Scopes[0].zoomLevel;
+        this.camera.zoom = Scopes.definitions[0].zoomLevel;
 
-        this.playerManager = new PlayerManager(this);
-
-        if (!this.musicPlaying) {
-            this.music.stop().play();
-            this.music.volume(localStorageInstance.config.musicVolume);
-            this.musicPlaying = true;
-        }
+        void this.music.play();
     }
 
-    sendPacket(packet: SendingPacket): void {
-        const stream = SuroiBitStream.alloc(packet.allocBytes);
-        try {
-            packet.serialize(stream);
-        } catch (e) {
-            console.error("Error serializing packet. Details:", e);
-        }
-
-        this.sendData(stream);
+    sendPacket(packet: Packet): void {
+        packet.serialize();
+        this.sendData(packet.getBuffer());
     }
 
-    sendData(stream: SuroiBitStream): void {
+    sendData(buffer: ArrayBuffer): void {
         try {
-            this.socket.send(stream.buffer.slice(0, Math.ceil(stream.index / 8)));
+            this._socket?.send(buffer);
         } catch (e) {
             console.warn("Error sending packet. Details:", e);
         }
-    }
-
-    resize(): void {
-        this.camera.resize();
     }
 
     render(): void {
         if (!this.gameStarted) return;
         const delta = this.pixi.ticker.deltaMS;
 
-        if (localStorageInstance.config.movementSmoothing) {
-            for (const player of this.players) {
-                player.updateContainerPosition();
-                if (
-                    localStorageInstance.config.rotationSmoothing &&
-                    !(player.isActivePlayer && localStorageInstance.config.clientSidePrediction)
-                ) player.updateContainerRotation();
+        // execute timeouts
+        const now = Date.now();
+        for (const timeout of this._timeouts) {
+            if (timeout.killed) {
+                this._timeouts.delete(timeout);
+                continue;
             }
+            if (now > timeout.end) {
+                timeout.callback();
+                this._timeouts.delete(timeout);
+            }
+        }
 
-            for (const loot of this.loots) loot.updateContainerPosition();
+        if (this.console.getBuiltInCVar("cv_movement_smoothing")) {
+            for (const player of this.objects.getCategory(ObjectCategory.Player)) {
+                player.updateContainerPosition();
+                if (!player.isActivePlayer || !this.console.getBuiltInCVar("cv_responsive_rotation") || this.spectating) {
+                    player.updateContainerRotation();
+                }
+            }
 
             if (this.activePlayer) {
                 this.camera.position = this.activePlayer.container.position;
             }
+
+            for (const loot of this.objects.getCategory(ObjectCategory.Loot)) {
+                loot.updateContainerPosition();
+            }
+
+            for (const projectile of this.objects.getCategory(ObjectCategory.ThrowableProjectile)) {
+                projectile.updateContainerPosition();
+                projectile.updateContainerRotation();
+            }
+
+            for (const syncedParticle of this.objects.getCategory(ObjectCategory.SyncedParticle)) {
+                syncedParticle.updateContainerPosition();
+                syncedParticle.updateContainerRotation();
+                syncedParticle.updateContainerScale();
+            }
         }
 
-        for (const tween of this.tweens) {
-            tween.update();
-        }
+        for (const tween of this.tweens) tween.update();
 
-        for (const bullet of this.bullets) {
-            bullet.update(delta);
-        }
+        for (const bullet of this.bullets) bullet.update(delta);
 
         this.particleManager.update(delta);
 
         this.map.update();
-        this.gas.update();
+        this.gasRender.update(this.gas);
+
+        for (const plane of this.planes) plane.update();
 
         this.camera.update();
     }
 
     processUpdate(updateData: UpdatePacket): void {
+        for (const newPlayer of updateData.newPlayers) {
+            this.playerNames.set(newPlayer.id, {
+                name: newPlayer.name,
+                hasColor: newPlayer.hasColor,
+                nameColor: new Color(newPlayer.nameColor),
+                badge: newPlayer.loadout.badge
+            });
+        }
+
+        const playerData = updateData.playerData;
+        if (playerData) this.uiManager.updateUI(playerData);
+
+        for (const deletedPlayerId of updateData.deletedPlayers) {
+            this.playerNames.delete(deletedPlayerId);
+        }
+
         for (const { id, type, data } of updateData.fullDirtyObjects) {
-            let object: GameObject | undefined = this.objects.get(id);
+            const object: GameObject | undefined = this.objects.get(id);
+
             if (object === undefined || object.destroyed) {
-                switch (type.category) {
-                    case ObjectCategory.Player: {
-                        object = new Player(this, id);
-                        this.players.add(object as Player);
-                        break;
-                    }
-                    case ObjectCategory.Obstacle: {
-                        object = new Obstacle(this, type as ObjectType<ObjectCategory.Obstacle, ObstacleDefinition>, id);
-                        break;
-                    }
-                    case ObjectCategory.DeathMarker: {
-                        object = new DeathMarker(this, type as ObjectType<ObjectCategory.DeathMarker>, id);
-                        break;
-                    }
-                    case ObjectCategory.Loot: {
-                        object = new Loot(this, type as ObjectType<ObjectCategory.Loot, LootDefinition>, id);
-                        this.loots.add(object as Loot);
-                        break;
-                    }
-                    case ObjectCategory.Building: {
-                        object = new Building(this, type as ObjectType<ObjectCategory.Building, BuildingDefinition>, id);
-                        break;
-                    }
-                }
+                type K = typeof type;
+                this.objects.add(
+                    new (
+                        ObjectClassMapping[type] as (new (game: Game, id: number, data: FullData<K>) => ObjectMapping[K])
+                    )(this, id, data)
+                );
             }
+
             if (object) {
-                this.objects.add(object);
-                object?.updateFromData(data);
+                object.updateFromData(data, false);
             }
         }
 
         for (const { id, data } of updateData.partialDirtyObjects) {
             const object = this.objects.get(id);
             if (object) {
-                object.updateFromData(data);
+                (object as GameObject).updateFromData(data, false);
             }
         }
+
         for (const id of updateData.deletedObjects) {
             const object = this.objects.get(id);
             if (object === undefined) {
                 console.warn(`Trying to delete unknown object with ID ${id}`);
                 continue;
             }
+
             object.destroy();
             this.objects.delete(object);
-            if (object instanceof Player) {
-                this.players.delete(object);
-            } else if (object instanceof Loot) {
-                this.loots.delete(object);
+        }
+
+        for (const bullet of updateData.deserializedBullets) {
+            this.bullets.add(new Bullet(this, bullet));
+        }
+
+        for (const explosionData of updateData.explosions) {
+            explosion(this, explosionData.definition, explosionData.position);
+        }
+
+        for (const emote of updateData.emotes) {
+            const player = this.objects.get(emote.playerID);
+            if (player instanceof Player) {
+                player.emote(emote.definition);
+            } else {
+                console.warn(`Tried to emote on behalf of ${player === undefined ? "a non-existant player" : `a/an ${ObjectCategory[player.type]}`}`);
             }
+        }
+
+        this.gas.updateFrom(updateData);
+
+        if (updateData.aliveCount !== undefined) {
+            $("#ui-players-alive").text(updateData.aliveCount);
+            $("#btn-spectate").toggle(updateData.aliveCount > 1);
+        }
+
+        for (const message of updateData.killFeedMessages) {
+            this.uiManager.processKillFeedMessage(message);
+        }
+
+        for (const plane of updateData.planes) {
+            this.planes.add(new Plane(this, plane.position, plane.direction));
+        }
+
+        for (const ping of updateData.mapPings) {
+            this.soundManager.play("airdrop_ping");
+            this.map.pings.add(new Ping(ping));
         }
     }
 
-    tick = (() => {
-        const getPickupBind = (): string => localStorageInstance.config.keybinds.interact[0];
-
-        let skipLootCheck = true;
-
-        /*
-            Context: rerendering ui elements needlessly is bad, so we
-            determine the information that should trigger a re-render if
-            changed, and cache them in order to detect such changes
-
-            In the case of the pickup message thingy, those informations are:
-            - the item the pickup message concerns
-            - its quantity
-            - the bind to interact has changed
-            - whether the user can interact with it
+    // yes this might seem evil. but the two local variables really only need to
+    // exist so this method can use them: therefore, making them attributes on the
+    // enclosing instance is pointless and might induce people into thinking they
+    // can use them to do something when they probably can't and shouldn't
+    readonly tick = (() => {
+        /**
+         * Context: rerendering ui elements needlessly is bad, so we
+         * determine the information that should trigger a re-render if
+         * changed, and cache them in order to detect such changes
+         *
+         * In the case of the pickup message thingy, those informations are:
+         * - the item the pickup message concerns
+         * - its quantity
+         * - the bind to interact has changed
+         * - whether the user can interact with it
         */
         const cache: {
             object?: Loot | Obstacle
             offset?: number
-            pickupBind?: string
+            isAction?: boolean
+            bind?: string
             canInteract?: boolean
-            readonly clear: () => void
-            readonly pickupBindIsValid: () => boolean
-        } = {
-            clear() {
-                this.object = this.pickupBind = undefined;
-            },
-            pickupBindIsValid() {
-                return getPickupBind() === this.pickupBind;
-            }
-        };
+        } = {};
+
         /**
          * When a bind is changed, the corresponding html won't
          * get changed because rendering only occurs when an item
@@ -427,53 +590,67 @@ export class Game {
          */
         let bindChangeAcknowledged = false;
 
-        return (): void => {
+        return () => {
             if (!this.gameStarted || (this.gameOver && !this.spectating)) return;
+            this.inputManager.update();
+            this.soundManager.update();
 
-            if (this.playerManager.dirty.inputs) {
-                this.playerManager.dirty.inputs = false;
-                this.sendPacket(new InputPacket(this.playerManager));
-            }
-
-            // Only run interact message and loot checks every other tick
-            skipLootCheck = !skipLootCheck;
-            if (skipLootCheck) return;
             const player = this.activePlayer;
             if (!player) return;
 
-            // Loop through all loot objects to check if the player is colliding with one to show the interact message
-            let minDist = Number.MAX_VALUE;
-            let closestObject: Loot | Obstacle | undefined;
-            let canInteract: boolean | undefined;
-            const doorDetectionHitbox = new CircleHitbox(3, player.position);
+            for (const building of this.objects.getCategory(ObjectCategory.Building)) {
+                building.toggleCeiling();
+            }
+
+            const isAction = this.uiManager.action.active;
+            let canInteract = true;
+
+            if (isAction) {
+                this.uiManager.updateAction();
+            }
+
+            interface CloseObject {
+                object?: Loot | Obstacle
+                minDist: number
+            }
+
+            const interactable: CloseObject = {
+                object: undefined,
+                minDist: Number.MAX_VALUE
+            };
+            const uninteractable: CloseObject = {
+                object: undefined,
+                minDist: Number.MAX_VALUE
+            };
+            const detectionHitbox = new CircleHitbox(3, player.position);
 
             for (const object of this.objects) {
-                if (object instanceof Obstacle && object.isDoor && !object.dead) {
-                    const record: CollisionRecord | undefined = object.hitbox?.distanceTo(doorDetectionHitbox);
-                    const dist = distanceSquared(object.position, player.position);
-                    if (dist < minDist && record?.collided) {
-                        minDist = dist;
-                        closestObject = object;
-                        canInteract = !object.dead;
+                if (
+                    (object instanceof Loot || (object instanceof Obstacle && object.canInteract(player))) &&
+                    object.hitbox.collidesWith(detectionHitbox)
+                ) {
+                    const dist = Geometry.distanceSquared(object.position, player.position);
+                    if ((object instanceof Obstacle || object.canInteract(player)) && dist < interactable.minDist) {
+                        interactable.minDist = dist;
+                        interactable.object = object;
+                    } else if (object instanceof Loot && dist < uninteractable.minDist) {
+                        uninteractable.minDist = dist;
+                        uninteractable.object = object;
                     }
-                } else if (object instanceof Loot) {
-                    const dist = distanceSquared(object.position, player.position);
-                    if (dist < minDist && circleCollision(player.position, 3, object.position, object.hitbox.radius)) {
-                        minDist = dist;
-                        closestObject = object;
-                        canInteract = closestObject.canInteract(this.playerManager);
-                    }
-                } else if (object instanceof Building) {
-                    if (!object.dead) object.toggleCeiling(!object.ceilingHitbox?.collidesWith(player.hitbox));
                 }
             }
 
-            const getOffset = (): number | undefined => closestObject instanceof Obstacle ? closestObject.door?.offset : undefined;
+            const object = interactable.object ?? uninteractable.object;
+            const offset = object instanceof Obstacle ? object.door?.offset : undefined;
+            canInteract = interactable.object !== undefined;
+
+            const bind = this.inputManager.binds.getInputsBoundToAction(object === undefined ? "cancel_action" : "interact")[0];
 
             const differences = {
-                object: cache.object?.id !== closestObject?.id,
-                offset: cache.offset !== getOffset(),
-                bind: !cache.pickupBindIsValid(),
+                object: cache.object?.id !== object?.id,
+                offset: cache.offset !== offset,
+                isAction: cache.isAction !== isAction,
+                bind: cache.bind !== bind,
                 canInteract: cache.canInteract !== canInteract
             };
 
@@ -482,89 +659,102 @@ export class Game {
             if (
                 differences.object ||
                 differences.offset ||
+                differences.isAction ||
                 differences.bind ||
                 differences.canInteract
             ) {
                 // Cache miss, rerender
-                cache.clear();
-                cache.object = closestObject;
-                cache.offset = getOffset();
-                cache.pickupBind = getPickupBind();
+                cache.object = object;
+                cache.offset = offset;
+                cache.isAction = isAction;
+                cache.bind = bind;
                 cache.canInteract = canInteract;
 
-                if (closestObject !== undefined) {
-                    const prepareInteractText = (): void => {
-                        if (
-                            closestObject === undefined ||
+                const { interactKey, interactMsg } = this.uiManager.ui;
+                const type = (object?.definition as LootDefinition)?.itemType;
 
-                            // If the loot object hasn't changed, we don't need to redo the text
-                            !(differences.object || differences.offset)
-                        ) return;
-
-                        let interactText = "";
-                        if (closestObject instanceof Obstacle) interactText += closestObject.door?.offset === 0 ? "Open " : "Close ";
-                        interactText += closestObject.type.definition.name;
-                        if (closestObject instanceof Loot && closestObject.count > 1) interactText += ` (${closestObject.count})`;
-                        $("#interact-text").text(interactText);
-                    };
-
-                    if (this.playerManager.isMobile) {
-                        const lootDef = closestObject.type.definition;
-
-                        // Autoloot
-                        if (closestObject instanceof Obstacle && closestObject.isDoor && closestObject.door?.offset === 0) {
-                            this.playerManager.interact();
-                        }
-
-                        if (
-                            closestObject instanceof Loot && "itemType" in lootDef &&
-                            ((lootDef.itemType !== ItemType.Gun && lootDef.itemType !== ItemType.Melee) ||
-                                (lootDef.itemType === ItemType.Gun && (!this.playerManager.weapons[0] || !this.playerManager.weapons[1])))
-                        ) {
-                            this.playerManager.interact();
-                        } else if (
-                            (closestObject instanceof Loot && "itemType" in lootDef && (lootDef.itemType === ItemType.Gun || lootDef.itemType === ItemType.Melee)) ||
-                            closestObject instanceof Obstacle
-                        ) {
-                            prepareInteractText();
-
-                            if (canInteract) {
-                                // noinspection HtmlUnknownTarget
-                                $("#interact-key").html('<img src="./img/misc/tap-icon.svg" alt="Tap">').addClass("active").show();
-                            } else {
-                                $("#interact-key").removeClass("active").hide();
+                // Update interact message
+                if (
+                    (
+                        this.inputManager.isMobile
+                            // Only show interact message on mobile if object needs to be tapped to pick up
+                            ? (object instanceof Loot || object instanceof Obstacle)
+                            : object !== undefined
+                    ) ||
+                    isAction
+                ) {
+                    // If the loot object hasn't changed, we don't need to redo the text
+                    if (differences.object || differences.offset || differences.isAction) {
+                        let interactText;
+                        switch (true) {
+                            case object instanceof Obstacle: {
+                                switch (object.definition.role) {
+                                    case ObstacleSpecialRoles.Door:
+                                        interactText = object.door?.offset === 0 ? "Open Door" : "Close Door";
+                                        break;
+                                    case ObstacleSpecialRoles.Activatable:
+                                        interactText = `${object.definition.interactText} ${object.definition.name}`;
+                                        break;
+                                }
+                                break;
                             }
-                            $("#interact-message").show();
-                            return;
-                        }
-
-                        $("#interact-message").hide();
-                    } else {
-                        prepareInteractText();
-
-                        if (!bindChangeAcknowledged) {
-                            bindChangeAcknowledged = true;
-
-                            const input = getPickupBind();
-                            const icon = getIconFromInputName(input);
-
-                            if (icon === undefined) {
-                                $("#interact-key").text(input);
-                            } else {
-                                $("#interact-key").html(`<img src="${icon}" alt="${input}"/>`);
+                            case object instanceof Loot: {
+                                interactText = `${object.definition.name}${object.count > 1 ? ` (${object.count})` : ""}`;
+                                break;
+                            }
+                            case isAction: {
+                                interactText = "Cancel";
+                                break;
                             }
                         }
 
-                        if (canInteract) {
-                            $("#interact-key").addClass("active").show();
-                        } else {
-                            $("#interact-key").removeClass("active").hide();
-                        }
-
-                        $("#interact-message").show();
+                        if (interactText) $("#interact-text").text(interactText);
                     }
+
+                    if (!this.inputManager.isMobile && (!bindChangeAcknowledged || (object === undefined && isAction))) {
+                        bindChangeAcknowledged = true;
+
+                        const icon = InputManager.getIconFromInputName(bind);
+
+                        if (icon === undefined) {
+                            interactKey.text(bind);
+                        } else {
+                            interactKey.html(`<img src="${icon}" alt="${bind}"/>`);
+                        }
+                    }
+
+                    if (canInteract || (object === undefined && isAction)) {
+                        interactKey.addClass("active").show();
+                    } else {
+                        interactKey.removeClass("active").hide();
+                    }
+
+                    interactMsg.show();
                 } else {
-                    $("#interact-message").hide();
+                    interactMsg.hide();
+                }
+
+                // Mobile stuff
+                if (
+                    this.inputManager.isMobile &&
+                    canInteract &&
+                    (
+                        ( // Auto pickup
+                            object instanceof Loot &&
+                            // Only pick up melees if no melee is equipped
+                            (type !== ItemType.Melee || this.uiManager.inventory.weapons?.[2]?.definition.idString === "fists") &&
+                            // Only pick up guns if there's a free slot
+                            (type !== ItemType.Gun || (!this.uiManager.inventory.weapons?.[0] || !this.uiManager.inventory.weapons?.[1])) &&
+                            type !== ItemType.Skin
+                        ) ||
+                        ( // Auto open doors
+                            object instanceof Obstacle &&
+                            object.canInteract(player) &&
+                            object.door?.offset === 0
+                        )
+                    )
+                ) {
+                    this.inputManager.addAction(InputActions.Interact);
                 }
             }
         };

@@ -1,16 +1,16 @@
-import { type Application, Container } from "pixi.js";
-import { type Vector, v, vAdd, vMul, vAdd2 } from "../../../../common/src/utils/vector";
-import { EaseFunctions, Tween } from "../utils/tween";
-import { type Game } from "../game";
+import { Container, type Application, type DisplayObject } from "pixi.js";
 import { randomFloat } from "../../../../common/src/utils/random";
-import { localStorageInstance } from "../utils/localStorageHandler";
+import { Vec, type Vector } from "../../../../common/src/utils/vector";
+import { type Game } from "../game";
+import { Tween } from "../utils/tween";
+import { EaseFunctions } from "../../../../common/src/utils/math";
 
 export class Camera {
     pixi: Application;
     container: Container;
     game: Game;
 
-    position = v(0, 0);
+    position = Vec.create(0, 0);
 
     private _zoom = 48;
     get zoom(): number { return this._zoom; }
@@ -26,6 +26,9 @@ export class Camera {
     shakeDuration!: number;
     shakeIntensity!: number;
 
+    width = 1;
+    height = 1;
+
     constructor(game: Game) {
         this.game = game;
         this.pixi = game.pixi;
@@ -34,10 +37,15 @@ export class Camera {
         this.pixi.stage.addChild(this.container);
 
         this.resize();
+
+        this.pixi.renderer.on("resize", this.resize.bind(this));
     }
 
     resize(animation = false): void {
-        const size = window.innerHeight < window.innerWidth ? window.innerWidth : window.innerHeight;
+        this.width = this.pixi.screen.width;
+        this.height = this.pixi.screen.height;
+
+        const size = this.height < this.width ? this.width : this.height;
         const scale = (size / 2560) * (48 / this.zoom); // 2560 = 1x, 5120 = 2x
 
         this.zoomTween?.kill();
@@ -47,7 +55,7 @@ export class Camera {
                 target: this.container.scale,
                 to: { x: scale, y: scale },
                 duration: 800,
-                ease: EaseFunctions.outCubic
+                ease: EaseFunctions.cubicOut
             });
         } else {
             this.container.scale.set(scale);
@@ -58,23 +66,28 @@ export class Camera {
         let position = this.position;
 
         if (this.shaking) {
-            const s = this.shakeIntensity;
-            position = vAdd2(position, randomFloat(-s, s), randomFloat(-s, s));
+            const intensity = this.shakeIntensity;
+            position = Vec.addComponent(position, randomFloat(-intensity, intensity), randomFloat(-intensity, intensity));
             if (Date.now() - this.shakeStart > this.shakeDuration) this.shaking = false;
         }
 
-        const cameraPos = vAdd(
-            vMul(position, this.container.scale.x),
-            v(-this.pixi.screen.width / 2, -this.pixi.screen.height / 2)
+        const cameraPos = Vec.add(
+            Vec.scale(position, this.container.scale.x),
+            Vec.create(-this.width / 2, -this.height / 2)
         );
+
         this.container.position.set(-cameraPos.x, -cameraPos.y);
     }
 
     shake(duration: number, intensity: number): void {
-        if (!localStorageInstance.config.cameraShake) return;
+        if (!this.game.console.getBuiltInCVar("cv_camera_shake_fx")) return;
         this.shaking = true;
         this.shakeStart = Date.now();
         this.shakeDuration = duration;
         this.shakeIntensity = intensity;
+    }
+
+    addObject(...objects: DisplayObject[]): void {
+        this.container.addChild(...objects);
     }
 }

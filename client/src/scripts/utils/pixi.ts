@@ -1,133 +1,151 @@
-import { BaseTexture, Sprite, type SpriteSheetJson, Spritesheet, Texture, type Graphics, type ColorSource } from "pixi.js";
-import { type Vector, vMul } from "../../../../common/src/utils/vector";
-import { PIXI_SCALE } from "./constants";
-import { CircleHitbox, ComplexHitbox, type Hitbox, RectangleHitbox } from "../../../../common/src/utils/hitbox";
-import { Buildings } from "../../../../common/src/definitions/buildings";
-
-declare const ATLAS_HASH: string;
+import { Sprite, Spritesheet, Texture, type ColorSource, type Graphics, type ISpritesheetData } from "pixi.js";
+import { atlases } from "virtual:spritesheets-jsons";
+import { Reskins } from "../../../../common/src/definitions/modes";
+import { HitboxType, type Hitbox } from "../../../../common/src/utils/hitbox";
+import { Vec, type Vector } from "../../../../common/src/utils/vector";
+import { MODE, PIXI_SCALE } from "./constants";
 
 const textures: Record<string, Texture> = {};
 
-async function loadImage(key: string, path: string): Promise<void> {
-    console.log(`Loading image ${path}`);
-    textures[key] = await Texture.fromURL(path);
-}
+export async function loadTextures(): Promise<void> {
+    const promises: Array<Promise<void>> = [];
 
-export async function loadAtlases(): Promise<void> {
-    for (const atlas of ["main"]) {
-        const path = `img/atlases/${atlas}.${ATLAS_HASH}`;
+    for (const atlas of atlases as ISpritesheetData[]) {
+        const image = atlas.meta.image!;
 
-        const spritesheetData = await (await fetch(`./${path}.json`)).json() as SpriteSheetJson;
+        console.log(`Loading atlas ${location.origin}/${image}`);
 
-        console.log(`Loading atlas: ${location.toString()}${path}.png`);
+        promises.push(
+            new Promise<void>(resolve => {
+                Texture.fromURL(image)
+                    .then(texture => {
+                        new Spritesheet(texture, atlas)
+                            .parse()
+                            .then(sheetTextures => {
+                                for (const frame in sheetTextures) {
+                                    textures[frame] = sheetTextures[frame];
+                                }
+                                console.log(`Atlas ${image} loaded.`);
 
-        const spriteSheet = new Spritesheet(BaseTexture.from(`./${path}.png`), spritesheetData);
-
-        await spriteSheet.parse();
-
-        for (const frame in spriteSheet.textures) {
-            const frameName = frame.replace(/(.svg|.png)/, "");
-            if (textures[frameName]) console.warn(`Duplicated atlas frame key: ${frame}`);
-            textures[frameName] = spriteSheet.textures[frame];
-        }
+                                resolve();
+                            })
+                            .catch(console.error);
+                    })
+                    .catch(console.error);
+            })
+        );
     }
-    for (const building of Buildings.definitions) {
-        for (const image of building.floorImages) {
-            await loadImage(image.key, require(`/public/img/buildings/${image.key}.png`));
-        }
-        for (const image of building.ceilingImages) {
-            await loadImage(image.key, require(`/public/img/buildings/${image.key}.png`));
-            if (image.residue) await loadImage(image.residue, require(`/public/img/buildings/${image.residue}.png`));
-        }
-    }
+
+    await Promise.all(promises);
 }
 
 export class SuroiSprite extends Sprite {
     constructor(frame?: string) {
-        let texture: Texture | undefined;
-
-        if (frame) {
-            if (!textures[frame]) frame = "_missing_texture.svg";
-            texture = textures[frame];
-        }
-        super(texture);
+        super(frame ? SuroiSprite.getTexture(frame) : undefined);
 
         this.anchor.set(0.5);
         this.setPos(0, 0);
     }
 
-    setFrame(frame: string): SuroiSprite {
-        if (!textures[frame]) frame = "_missing_texture.svg";
-        this.texture = textures[frame];
+    static getTexture(frame: string): Texture {
+        if (MODE.reskin && Reskins[MODE.reskin]?.textures.includes(frame)) frame += `_${MODE.reskin}`;
+        return textures[frame] ?? textures._missing_texture;
+    }
+
+    setFrame(frame: string): this {
+        this.texture = SuroiSprite.getTexture(frame);
         return this;
     }
 
-    setAnchor(anchor: Vector): SuroiSprite {
+    setAnchor(anchor: Vector): this {
         this.anchor.copyFrom(anchor);
         return this;
     }
 
-    setPos(x: number, y: number): SuroiSprite {
+    setPos(x: number, y: number): this {
         this.position.set(x, y);
         return this;
     }
 
-    setVPos(pos: Vector): SuroiSprite {
+    setVPos(pos: Vector): this {
         this.position.set(pos.x, pos.y);
         return this;
     }
 
-    setVisible(visible: boolean): SuroiSprite {
+    setVisible(visible: boolean): this {
         this.visible = visible;
         return this;
     }
 
-    setAngle(angle?: number): SuroiSprite {
+    setAngle(angle?: number): this {
         this.angle = angle ?? 0;
         return this;
     }
 
-    setRotation(rotation?: number): SuroiSprite {
+    setRotation(rotation?: number): this {
         this.rotation = rotation ?? 0;
         return this;
     }
 
-    setDepth(depth: number): SuroiSprite {
-        this.zIndex = depth;
+    setScale(scale?: number): this {
+        this.scale = Vec.create(scale ?? 1, scale ?? 1);
         return this;
     }
 
-    setAlpha(alpha: number): SuroiSprite {
+    setTint(tint: ColorSource): this {
+        this.tint = tint;
+        return this;
+    }
+
+    setZIndex(zIndex: number): this {
+        this.zIndex = zIndex;
+        return this;
+    }
+
+    setAlpha(alpha: number): this {
         this.alpha = alpha;
         return this;
     }
 }
 
 export function toPixiCoords(pos: Vector): Vector {
-    return vMul(pos, PIXI_SCALE);
+    return Vec.scale(pos, PIXI_SCALE);
 }
 
-export function drawHitbox(hitbox: Hitbox, color: ColorSource, graphics: Graphics): Graphics {
+export function drawHitbox<T extends Graphics>(hitbox: Hitbox, color: ColorSource, graphics: T): T {
     graphics.lineStyle({
         color,
         width: 2
     });
+
     graphics.beginFill();
     graphics.fill.alpha = 0;
-    if (hitbox instanceof RectangleHitbox) {
-        const min = toPixiCoords(hitbox.min);
-        const max = toPixiCoords(hitbox.max);
-        graphics.moveTo(min.x, min.y)
-            .lineTo(max.x, min.y)
-            .lineTo(max.x, max.y)
-            .lineTo(min.x, max.y)
-            .lineTo(min.x, min.y);
-    } else if (hitbox instanceof CircleHitbox) {
-        const pos = toPixiCoords(hitbox.position);
-        graphics.arc(pos.x, pos.y, hitbox.radius * PIXI_SCALE, 0, Math.PI * 2);
-    } else if (hitbox instanceof ComplexHitbox) {
-        for (const h of hitbox.hitboxes) drawHitbox(h, color, graphics);
+
+    switch (hitbox.type) {
+        case HitboxType.Rect: {
+            const min = toPixiCoords(hitbox.min);
+            const max = toPixiCoords(hitbox.max);
+            graphics
+                .moveTo(min.x, min.y)
+                .lineTo(max.x, min.y)
+                .lineTo(max.x, max.y)
+                .lineTo(min.x, max.y)
+                .lineTo(min.x, min.y);
+            break;
+        }
+        case HitboxType.Circle: {
+            const pos = toPixiCoords(hitbox.position);
+            graphics.arc(pos.x, pos.y, hitbox.radius * PIXI_SCALE, 0, Math.PI * 2);
+            break;
+        }
+        case HitboxType.Group:
+            for (const h of hitbox.hitboxes) drawHitbox(h, color, graphics);
+            break;
+        case HitboxType.Polygon:
+            graphics.drawPolygon(hitbox.points.map(point => toPixiCoords(point)));
+            break;
     }
+
     graphics.closePath().endFill();
 
     return graphics;

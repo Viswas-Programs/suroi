@@ -1,37 +1,41 @@
+import { AnimationType, FireMode } from "../../../common/src/constants";
 import { type GunDefinition } from "../../../common/src/definitions/guns";
-import { InventoryItem } from "./inventoryItem";
-import { type Player } from "../objects/player";
-import { degreesToRadians, distanceSquared, normalizeAngle } from "../../../common/src/utils/math";
-import { v, vAdd, vRotate, vSub } from "../../../common/src/utils/vector";
-import { randomFloat } from "../../../common/src/utils/random";
-import { ItemType } from "../../../common/src/utils/objectDefinitions";
-import { FireMode, AnimationType, type ObjectCategory } from "../../../common/src/constants";
-import { ReloadAction } from "./action";
-import { clearTimeout } from "timers";
-import { type ObjectType } from "../../../common/src/utils/objectType";
-import { Obstacle } from "../objects/obstacle";
 import { RectangleHitbox } from "../../../common/src/utils/hitbox";
+import { Angle, Geometry } from "../../../common/src/utils/math";
+import { type Timeout } from "../../../common/src/utils/misc";
+import { ItemType, type ReferenceTo } from "../../../common/src/utils/objectDefinitions";
+import { randomFloat, randomPointInsideCircle } from "../../../common/src/utils/random";
+import { Vec } from "../../../common/src/utils/vector";
+import { Obstacle } from "../objects/obstacle";
+import { type Player } from "../objects/player";
+import { ReloadAction } from "./action";
+import { InventoryItem } from "./inventoryItem";
 
 /**
  * A class representing a firearm
  */
-export class GunItem extends InventoryItem {
+export class GunItem extends InventoryItem<GunDefinition> {
     declare readonly category: ItemType.Gun;
-    declare readonly type: ObjectType<ObjectCategory.Loot, GunDefinition>;
-
-    readonly definition: GunDefinition;
 
     ammo = 0;
 
     private _shots = 0;
 
-    private _reloadTimeoutID: NodeJS.Timeout | undefined;
+    private _reloadTimeout?: Timeout;
 
-    private _burstTimeoutID: NodeJS.Timeout | undefined;
+    // those need to be nodejs timeouts because some guns fire rate are too close to the tick rate
+    private _burstTimeout?: NodeJS.Timeout;
+    private _autoFireTimeout?: NodeJS.Timeout;
 
-    private _autoFireTimeoutID: NodeJS.Timeout | undefined;
+    private _altFire = false;
 
-    cancelReload(): void { clearTimeout(this._reloadTimeoutID); }
+    cancelAllTimers(): void {
+        this._reloadTimeout?.kill();
+        clearTimeout(this._burstTimeout);
+        clearTimeout(this._autoFireTimeout);
+    }
+
+    cancelReload(): void { this._reloadTimeout?.kill(); }
 
     /**
      * Constructs a new gun
@@ -39,14 +43,12 @@ export class GunItem extends InventoryItem {
      * @param owner The `Player` that owns this gun
      * @throws {TypeError} If the `idString` given does not point to a definition for a gun
      */
-    constructor(idString: string, owner: Player) {
+    constructor(idString: ReferenceTo<GunDefinition>, owner: Player) {
         super(idString, owner);
 
         if (this.category !== ItemType.Gun) {
             throw new TypeError(`Attempted to create a Gun object based on a definition for a non-gun object (Received a ${this.category as unknown as string} definition)`);
         }
-
-        this.definition = this.type.definition;
     }
 
     /**
@@ -61,16 +63,18 @@ export class GunItem extends InventoryItem {
         if (
             (!skipAttackCheck && !owner.attacking) ||
             owner.dead ||
-            owner.disconnected
+            owner.disconnected ||
+            this !== this.owner.activeItem ||
+            (definition.summonAirdrop && owner.isInsideBuilding)
         ) {
             this._shots = 0;
             return;
         }
 
         if (this.ammo <= 0) {
-            if (owner.inventory.items[definition.ammoType] <= 0) {
-                owner.animation.type = AnimationType.GunClick;
-                owner.animation.seq = !owner.animation.seq;
+            if (!owner.inventory.items.hasItem(definition.ammoType)) {
+                owner.animation = AnimationType.GunClick;
+                owner.game.partialDirtyObjects.add(owner);
             }
 
             this._shots = 0;
@@ -78,16 +82,14 @@ export class GunItem extends InventoryItem {
         }
 
         this.owner.action?.cancel();
-        clearTimeout(this._burstTimeoutID);
+        clearTimeout(this._burstTimeout);
 
-        if (definition.fireMode === FireMode.Burst && this._shots >= definition.burstProperties.shotsPerBurst) {
-            this._shots = 0;
-            this._burstTimeoutID = setTimeout(this._useItemNoDelayCheck.bind(this, false), definition.burstProperties.burstCooldown);
-            return;
-        }
+        owner.animation = definition.ballistics.lastShotFX && this.ammo === 1
+            ? AnimationType.LastShot
+            : this._altFire
+                ? AnimationType.GunAlt
+                : AnimationType.Gun;
 
-        owner.animation.type = AnimationType.Gun;
-        owner.animation.seq = !this.owner.animation.seq;
         owner.game.partialDirtyObjects.add(owner);
 
         owner.dirty.weapons = true;
@@ -96,48 +98,101 @@ export class GunItem extends InventoryItem {
 
         this._lastUse = owner.game.now;
 
-        const spread = degreesToRadians((definition.shotSpread + (this.owner.isMoving ? definition.moveSpread : 0)) / 2);
+        const { moveSpread, shotSpread } = definition;
 
-        const rotated = vRotate(v(definition.length, 0), owner.rotation); // player radius + gun length
-        let position = vAdd(owner.position, rotated);
+        const spread = Angle.degreesToRadians((this.owner.isMoving ? moveSpread : shotSpread) / 2);
+        const jitter = definition.jitterRadius ?? 0;
 
-        const objects = this.owner.game.grid.intersectsRect(RectangleHitbox.fromLine(owner.position, position));
-        for (const object of objects) {
-            if (!object.dead && object.hitbox && object instanceof Obstacle && !object.definition.noCollisions) {
+        const offset = definition.isDual
+            // eslint-disable-next-line no-cond-assign
+            ? ((this._altFire = !this._altFire) ? 1 : -1) * definition.leftRightOffset
+            : 0;
+
+        const startPosition = Vec.rotate(Vec.create(0, offset), owner.rotation);
+
+        let position = Vec.add(
+            owner.position,
+            Vec.rotate(Vec.create(definition.length + (definition.centerJitterOnMuzzle ? 0 : jitter), offset), owner.rotation) // player radius + gun length
+        );
+
+        for (
+            const object of
+            this.owner.game.grid.intersectsHitbox(RectangleHitbox.fromLine(startPosition, position))
+        ) {
+            if (
+                object.dead ||
+                object.hitbox === undefined ||
+                !(object instanceof Obstacle) ||
+                object.definition.noCollisions === true
+            ) continue;
+
+            for (
+                const object of
+                this.owner.game.grid.intersectsHitbox(RectangleHitbox.fromLine(owner.position, position))
+            ) {
+                if (
+                    object.dead ||
+                    object.hitbox === undefined ||
+                    !(object instanceof Obstacle) ||
+                    object.definition.noCollisions === true
+                ) continue;
+
                 const intersection = object.hitbox.intersectsLine(owner.position, position);
                 if (intersection === null) continue;
 
-                if (distanceSquared(this.owner.position, position) > distanceSquared(this.owner.position, intersection.point)) {
-                    position = vSub(intersection.point, vRotate(v(0.2, 0), owner.rotation));
+                if (Geometry.distanceSquared(this.owner.position, position) > Geometry.distanceSquared(this.owner.position, intersection.point)) {
+                    position = Vec.sub(intersection.point, Vec.rotate(Vec.create(0.2 + jitter, 0), owner.rotation));
                 }
             }
         }
 
-        const limit = definition.bulletCount ?? 1;
+        const rangeOverride = this.owner.distanceToMouse - this.definition.length;
+        const projCount = definition.bulletCount ?? 1;
 
-        for (let i = 0; i < limit; i++) {
-            const rotation = normalizeAngle(
-                owner.rotation + Math.PI / 2 +
-                (
-                    definition.consistentPatterning === true
-                        ? i / limit - 0.5
-                        : randomFloat(-1, 1)
-                ) * spread
+        for (let i = 0; i < projCount; i++) {
+            this.owner.game.addBullet(
+                this,
+                this.owner,
+                {
+                    position: jitter
+                        ? randomPointInsideCircle(position, jitter)
+                        : position,
+                    rotation: owner.rotation + Math.PI / 2 +
+                        (definition.consistentPatterning === true
+                            ? 2 * (i / projCount - 0.5)
+                            : randomFloat(-1, 1)) * spread,
+                    rangeOverride
+                }
             );
-            this.owner.game.addBullet(this, this.owner, { position, rotation });
         }
 
         owner.recoil.active = true;
         owner.recoil.time = owner.game.now + definition.recoilDuration;
         owner.recoil.multiplier = definition.recoilMultiplier;
 
+        if (definition.summonAirdrop) {
+            owner.game.summonAirdrop(owner.position);
+        }
+
         if (!definition.infiniteAmmo) {
             --this.ammo;
         }
 
         if (this.ammo <= 0) {
-            this._reloadTimeoutID = setTimeout(this.reload.bind(this, true), this.definition.fireDelay);
             this._shots = 0;
+            this._reloadTimeout = this.owner.game.addTimeout(
+                this.reload.bind(this, true),
+                definition.fireDelay
+            );
+            return;
+        }
+
+        if (definition.fireMode === FireMode.Burst && this._shots >= definition.burstProperties.shotsPerBurst) {
+            this._shots = 0;
+            this._burstTimeout = setTimeout(
+                this._useItemNoDelayCheck.bind(this, false),
+                definition.burstProperties.burstCooldown
+            );
             return;
         }
 
@@ -145,27 +200,30 @@ export class GunItem extends InventoryItem {
             (definition.fireMode !== FireMode.Single || this.owner.isMobile) &&
             this.owner.activeItem === this
         ) {
-            clearTimeout(this._autoFireTimeoutID);
-            this._autoFireTimeoutID = setTimeout(this._useItemNoDelayCheck.bind(this, false), definition.fireDelay);
+            clearTimeout(this._autoFireTimeout);
+            this._autoFireTimeout = setTimeout(
+                this._useItemNoDelayCheck.bind(this, false),
+                definition.fireDelay
+            );
         }
     }
 
     override useItem(): void {
-        let attackCooldown = this.definition.fireDelay;
-        if (this.definition.fireMode === FireMode.Burst) attackCooldown = this.definition.burstProperties.burstCooldown;
-        if (
-            this.owner.game.now - this._lastUse > attackCooldown &&
-            this.owner.game.now - this._switchDate > this.owner.effectiveSwitchDelay
-        ) {
-            this._useItemNoDelayCheck(true);
-        }
+        const def = this.definition;
+
+        super._bufferAttack(
+            def.fireMode === FireMode.Burst
+                ? def.burstProperties.burstCooldown
+                : def.fireDelay,
+            this._useItemNoDelayCheck.bind(this, true)
+        );
     }
 
     reload(skipFireDelayCheck = false): void {
         if (
             this.definition.infiniteAmmo === true ||
             this.ammo >= this.definition.capacity ||
-            this.owner.inventory.items[this.definition.ammoType] <= 0 ||
+            !this.owner.inventory.items.hasItem(this.definition.ammoType) ||
             this.owner.action !== undefined ||
             this.owner.activeItem !== this ||
             (!skipFireDelayCheck && this.owner.game.now - this._lastUse < this.definition.fireDelay)
