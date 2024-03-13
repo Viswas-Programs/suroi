@@ -524,7 +524,7 @@ export class UIManager {
                                 killMessage = `${killerName}${killerBadgeText}, {PLACEHOLDER} ${playerName}${playerBadgeText}ஐ கொன்றார் `;
                                 break;
                             case KillType.Gas:
-                                killMessage = `${playerName}${playerBadgeText} கெடுவாயுவிற்கு செத்தார்`;
+                                killMessage = `${playerName}${playerBadgeText} கொடுவாயுவிற்கு செத்தார்`;
                                 break;
                             case KillType.Airdrop:
                                 killMessage = `${playerName}${playerBadgeText} காற்று பெட்டியால் நசுக்கப்பட்டார்`;
@@ -612,7 +612,7 @@ export class UIManager {
             }
 
             case KillFeedMessageType.KillLeaderDead: {
-                $("#kill-leader-leader").text("கொலை முன்னனிக்காக காத்திருக்கிறது");
+                $("#kill-leader-leader").text("முன்னனிக்கு காத்திரு");
                 $("#kill-leader-kills-counter").text("0");
                 // noinspection HtmlUnknownTarget
                 messageText = `<img class="kill-icon" src="./img/misc/skull_icon.svg" alt="Skull"> ${killerID

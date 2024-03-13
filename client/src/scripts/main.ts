@@ -1,4 +1,4 @@
-import $ from "jquery";
+﻿import $ from "jquery";
 import { Color } from "pixi.js";
 import "../../node_modules/@fortawesome/fontawesome-free/css/brands.css";
 import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
@@ -11,7 +11,7 @@ import { loadTextures } from "./utils/pixi";
 const playButton: JQuery = $("#btn-play-solo");
 
 export function enablePlayButton(): void {
-    playButton.removeClass("btn-disabled").prop("disabled", false).text("Play Solo");
+    playButton.removeClass("btn-disabled").prop("disabled", false).text("விளையாடு");
 }
 
 function disablePlayButton(text: string): void {

@@ -1,4 +1,4 @@
-import { sound, type Sound } from "@pixi/sound";
+﻿import { sound, type Sound } from "@pixi/sound";
 import $ from "jquery";
 import { Application, Color } from "pixi.js";
 import { GameConstants, InputActions, ObjectCategory, PacketType } from "../../../common/src/constants";
@@ -365,7 +365,7 @@ export class Game {
         $("canvas").addClass("active");
         $("#splash-ui").fadeOut(enablePlayButton);
 
-        $("#kill-leader-leader").html("Waiting for leader");
+        $("#kill-leader-leader").html("முன்னனிக்கு காத்திரு");
         $("#kill-leader-kills-counter").text("0");
         $("#btn-spectate-kill-leader").hide();
     }

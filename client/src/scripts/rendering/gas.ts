@@ -1,4 +1,4 @@
-import $ from "jquery";
+﻿import $ from "jquery";
 import { Graphics } from "pixi.js";
 import { GameConstants, GasState, ZIndexes } from "../../../../common/src/constants";
 import { type UpdatePacket } from "../../../../common/src/packets/updatePacket";
@@ -60,15 +60,15 @@ export class Gas {
             let gasMessage = "";
             switch (this.state) {
                 case GasState.Waiting: {
-                    gasMessage = `Toxic gas advances in ${formatDate(time)}`;
+                    gasMessage = `கொடுவாயு ${formatDate(time)}இல் முன்வரும்`;
                     break;
                 }
                 case GasState.Advancing: {
-                    gasMessage = "Toxic gas is advancing! Move to the safe zone";
+                    gasMessage = "கொடுவாயு முன்வருகிரது! உடனே நல்ல பகுதிக்கு செல்லவும்";
                     break;
                 }
                 case GasState.Inactive: {
-                    gasMessage = "Waiting for players...";
+                    gasMessage = "வீரர்களுக்காக கார்த்திருக்கிரோம்...";
                     break;
                 }
             }
