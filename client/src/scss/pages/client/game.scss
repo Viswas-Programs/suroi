@@ -1409,12 +1409,12 @@
     }
 
     #game-over-stats {
-        width: 250px;
+        width: 425px;
         margin: auto;
         padding: 16px 20px 16px 20px;
 
         @media screen and (max-width: $screen_large) {
-            width: 200px;
+            width: 275px;
             padding: 8px 20px 8px 20px;
         }
 

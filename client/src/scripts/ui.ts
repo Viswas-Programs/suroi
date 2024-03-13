@@ -1,4 +1,4 @@
-import { sound } from "@pixi/sound";
+﻿import { sound } from "@pixi/sound";
 import $ from "jquery";
 import { isMobile, isWebGPUSupported } from "pixi.js";
 import { GameConstants, InputActions, SpectateActions } from "../../../common/src/constants";
@@ -191,9 +191,9 @@ export function setupUI(game: Game): void {
     });
 
     $("#btn-report").on("click", () => {
-        if (confirm(`Are you sure you want to report this player?
-Players should only be reported for teaming or hacking.
-Video evidence is required.`)) {
+        if (confirm(`இந்த வீர்ர் மீது புகாரலிக்க வேண்டுமா?
+அந்த வீர்ர் மற்றவருடன் சேர்ந்தாலோ அல்லது மற்ற மென்பொருள் உதவியுடன் விளையாடினால் மட்டுமே புகாரலிக்கவும்.
+காணொளி ஆதாரம் அவசியம்.`)) {
             sendSpectatePacket(SpectateActions.Report);
         }
     });
@@ -638,11 +638,12 @@ Video evidence is required.`)) {
     // Import settings
     $("#import-settings-btn").on("click", () => {
         if (!confirm("This option will overwrite all settings and reload the page. Continue?")) return;
+        if (!confirm("இந்த முடிவு உங்களின் பழைய அமைப்புகளை மேலெழுதும். தொடரவும்?")) return;
         const error = (): void => {
             alert("Invalid config.");
         };
         try {
-            const input = prompt("Enter a config:");
+            const input = prompt("அமைப்புகளை செலுத்துக:");
             if (!input) {
                 error();
                 return;
@@ -655,7 +656,7 @@ Video evidence is required.`)) {
             }
 
             localStorage.setItem("suroi_config", input);
-            alert("Settings loaded successfully.");
+            alert("அமைப்புகள் பதிவேறின");
             window.location.reload();
         } catch (e) {
             error();
@@ -666,7 +667,7 @@ Video evidence is required.`)) {
     $("#export-settings-btn").on("click", () => {
         const exportedSettings = localStorage.getItem("suroi_config");
         const error = (): void => {
-            alert('Unable to copy settings. To export settings manually, open the dev tools with Ctrl+Shift+I and type in the following: localStorage.getItem("suroi_config")');
+            alert('அமைப்புகளை நகலெடுக்க இயலவில்லை! அமைப்புகளை கைமுறையாக பதிவிரக்க, Ctrl+Shift+I அழுத்தி டெவெலப்பர் கருவியில் இதை செலுத்தவும்: localStorage.getItem("suroi_config")');
         };
         if (exportedSettings === null) {
             error();
@@ -675,7 +676,7 @@ Video evidence is required.`)) {
         navigator.clipboard
             .writeText(exportedSettings)
             .then(() => {
-                alert("Settings copied to clipboard.");
+                alert("அமைப்புகள் நகலெடுத்துவிட்டன");
             })
             .catch(error);
     });

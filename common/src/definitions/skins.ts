@@ -65,67 +65,67 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "hazel_jumpsuit",
-        name: "HAZEL Jumpsuit",
+        name: "ஹேஸல் ஜம்ப்ஸூட்",
         itemType: ItemType.Skin
     },
     {
         idString: "forest_camo",
-        name: "Forest Camo",
+        name: "வணத்தின் உருமறைப்பு",
         itemType: ItemType.Skin
     },
     {
         idString: "desert_camo",
-        name: "Desert Camo",
+        name: "பாலையின் உருமறைப்பு",
         itemType: ItemType.Skin
     },
     {
         idString: "arctic_camo",
-        name: "Arctic Camo",
+        name: "பனியின் உருமறைப்பு",
         itemType: ItemType.Skin
     },
     {
         idString: "bloodlust",
-        name: "Bloodlust",
+        name: "இரத்தவெறி",
         itemType: ItemType.Skin
     },
     {
         idString: "tomato_skin",
-        name: "Tomato",
+        name: "தக்காளி",
         itemType: ItemType.Skin
     },
     {
         idString: "greenhorn",
-        name: "Greenhorn",
+        name: "பச்சைக்கொம்பு",
         itemType: ItemType.Skin
     },
     {
         idString: "blue_blood",
-        name: "Blue Blood",
+        name: "நீல இரத்தம்",
         itemType: ItemType.Skin
     },
     {
         idString: "silver_lining",
-        name: "Silver Lining",
+        name: "வெள்ளிப் புறணி",
         itemType: ItemType.Skin
     },
     {
         idString: "pot_o_gold",
-        name: "Pot o' Gold",
+        name: "தங்கப்பானை",
         itemType: ItemType.Skin
     },
     {
         idString: "gunmetal",
-        name: "Gunmetal",
+        name: "துப்பாக்கி உலோகம்",
         itemType: ItemType.Skin
     },
     {
         idString: "algae",
-        name: "Algae",
+        name: "பாசி",
         itemType: ItemType.Skin
     },
     {
         idString: "twilight_zone",
-        name: "Twilight Zone",
+        name: "அந்தி மண்டலம்",
         itemType: ItemType.Skin
     },
     {
@@ -135,12 +135,12 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "sunrise",
-        name: "Sunrise",
+        name: "சூரிய உதயம்",
         itemType: ItemType.Skin
     },
     {
         idString: "sunset",
-        name: "Sunset",
+        name: "சூரிய அஸ்தமனம்",
         itemType: ItemType.Skin
     },
     {
@@ -150,7 +150,7 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "mango",
-        name: "Mango",
+        name: "மாம்பழம்",
         itemType: ItemType.Skin
     },
     {
@@ -170,12 +170,12 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "sunny",
-        name: "Sunny",
+        name: "வெயில்",
         itemType: ItemType.Skin
     },
     {
         idString: "volcanic",
-        name: "Volcanic",
+        name: "எரிமலை",
         itemType: ItemType.Skin
     },
     {
@@ -205,7 +205,7 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "full_moon",
-        name: "Full Moon",
+        name: "முழு நிலா",
         itemType: ItemType.Skin
     },
     {
@@ -231,27 +231,27 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "tiger",
-        name: "Tiger",
+        name: "புலி",
         itemType: ItemType.Skin
     },
     {
         idString: "bee",
-        name: "Bee",
+        name: "தேனி",
         itemType: ItemType.Skin
     },
     {
         idString: "armadillo",
-        name: "Armadillo",
+        name: "ஆர்மடில்லோ",
         itemType: ItemType.Skin
     },
     {
         idString: "printer",
-        name: "Printer",
+        name: "அச்சுப்பொறி",
         itemType: ItemType.Skin
     },
     {
         idString: "distant_shores",
-        name: "Distant Shores",
+        name: "தூரக்கரைகள்",
         itemType: ItemType.Skin
     },
     {
@@ -268,7 +268,7 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "coal",
-        name: "Coal",
+        name: "நிலக்கரி",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
@@ -280,19 +280,19 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "candy_cane",
-        name: "Candy Cane",
+        name: "மிட்டாய் கரும்பு",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
     {
         idString: "christmas_tree_skin",
-        name: "Christmas Tree",
+        name: "கிரிஸ்துமஸ் மரம்",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
     {
         idString: "gingerbread",
-        name: "Gingerbread",
+        name: "இஞ்சிரொட்டி",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
@@ -304,25 +304,25 @@ export const Skins = new ObjectDefinitions<SkinDefinition>([
     },
     {
         idString: "nokilpls",
-        name: "no kil pls",
+        name: "டேய் என்ன கொல்லாதடா",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
     {
         idString: "stardust",
-        name: "Stardust",
+        name: "நட்சத்திரதூசு",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
     {
         idString: "aurora",
-        name: "Aurora",
+        name: "அரோரா",
         itemType: ItemType.Skin,
         hideFromLoadout: true
     },
     {
         idString: "ghillie_suit",
-        name: "Ghillie Suit",
+        name: "கிள்ளி ஆடை",
         itemType: ItemType.Skin,
         grassTint: true,
         hideEquipment: true,
