@@ -10,37 +10,36 @@ export const news: NewsPost[] = [
         content: `நாங்கள் புதிய துப்பாக்கிகள், கட்டமைப்புகள் மற்றும் பலவற்றைக் கொண்டு வருகிறோம். தங்க காற்று-பெட்டிகளினுல் இரண்டு புதிய சக்திவாய்ந்த ஆயுதங்கள் கிடைக்கின்றன. மேலும் ஒரு புதிய துப்பாக்கி சுடும் வீரர் அணியில் சேர்ந்துள்ளார். அதை எங்கே கண்டுபிடிப்பது? கேப்டனின் இழுவைப்படகில், நிச்சயமாக! நனைந்த துணிமனிகள் பரவாயில்லை!<br><br>
 
 லில்லி பேட்கள், நதி பெட்டிகள், பாலங்கள் மற்றும் பல, இந்த புதுப்பிப்பில் தோற்றமளிக்கின்றன, மேலும் உங்கள் அனுபவத்தை சிறந்ததாக்க பல மாற்றங்கள் மற்றும் பிழை திருத்தங்கள் உள்ளன. இரட்டையர் அடுத்த புதுப்பிப்பில் வருகிறது, காத்திருங்கள்!`,
-        longContent: `<h2>Suroi v0.16.0</h2>
-<h3>New features</h3>
+        longContent: `<h2>சரொய் v0.16.0</h2>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
-  <li>New structures: tugboat, sea traffic control, bridges.</li>
-  <li>New guns: Model 89 (a DMR), CZ-600 (a sniper), and PP-19 (a suppressed SMG).</li>
-  <li>New crate: river crate.</li>
-  <li>New obstacles: lily pads.</li>
-  <li>New crate: grenade box. Sometimes spawns in place of boxes in the warehouse.</li>
-  <li>Added win and death emotes.</li>
-  <li>New skin: Distant Shores.</li>
-  <li>Added a loading screen.</li>
+  <li>புதிய கட்டமைப்புகள்: இழுவை படகு, கடல் போக்குவரத்து கட்டுப்பாடு, பாலங்கள்</li>
+  <li>புதிய துப்பாக்கிகள்: Model 89, CZ-600, மற்றும் PP-19.</li>
+  <li>புதிய பெட்டி: நதி பெட்டி, குண்டு பெட்டி .</li>
+  <li>புதிய தடைகள்: லில்லி பட்டைகள்.</li>
+  <li>புதிய வெற்றி மற்றும் தோல்வி உணர்வுகள்</li>
+  <li>புதிய ஆடை: தூரக்கரைகள்.</li>
+  <li>இனையதலம் ஆரம்ப திரை சேர்க்கப்பட்டது.</li>
 </ul>
 
-<h3>Changes</h3>
+<h3>மாற்றங்கள்</h3>
 <ul>
-  <li>Scope is now reduced to 1x inside of smoke.</li>
-  <li>Added quit button to spectate menu.</li>
-  <li>Nerfed HP18.</li>
-  <li>Added 12.7mm and Curadell (radio ammo) to ammo crates.</li>
-  <li>Made rivers slightly narrower.</li>
-  <li>Added a strap to the M1 Garand loot image, to make it easier to tell apart from the Mosin.</li>
-  <li>New Curadell loot image.</li>
-  <li>Improved mobile home and porta potty footstep hitboxes.</li>
-  <li>Removed Fireball and Blueberry Smoothie skins.</li>
+  <li>உருப்பெருக்காண் புகையுள் 1வது நிலைக்குச்செல்லும்</li>
+  <li>பார்வையிடும்போது வெலியேற வசதி கொண்டுவரப்பட்டுள்ளது</li>
+  <li>HP18ஐ தரங்குறைக்கப்பட்டது</li>
+  <li>12.7mm மற்றும் Curadell (radio ammo) அம்மோ பெட்டிகளுக்குள் சேர்கப்பட்டுள்ளது</li>
+  <li>நதிகளின் அகலம் சிரிது குரைக்கப்பட்டுள்ளது</li>
+  <li>M1 Garandஇன் படத்திற்கு ஒரு பட்டாவைச் சேர்க்கப்பட்டுள்ளது. இதனால் Mosin Nagantஉடன் வேறுபடுத்தமுடியும் </li>
+  <li>புதிய Curadell படம்.</li>
+  <li>மேம்படுத்தப்பட்ட மொபைல் வீடு மற்றும் போர்டா பொட்டி கால்நடை சத்தம்.</li>
+  <li>'நெருப்பு-பந்து' மற்றும் 'அவுரிநெல்லி' ஆடைகள் எடுக்கப்பட்டுள்ளன.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed grenades sometimes going to the right on mobile regardless of joystick position.</li>
-  <li>Fixed not being able to cycle throwables by clicking/tapping on the slot.</li>
-  <li>Fixed aim line not showing up on mobile.</li>
+  <li>குண்டுகள் ஜாய்ஸ்டிக்கை கருதாமல் தாமாக வலதுபுரம் செல்வதை சரிசெய்துள்ளோம்</li>
+  <li>ஆயுதகாட்டியில் குண்டுகளை அழுத்தினால் அவை மாராமல் இருப்பதை சரிசெய்துள்ளோம்</li>
+  <li>குரி-கோடு அலைபேசிகளிள் வராமல் இருப்பது சரிசெய்துள்ளோம்</li>
 </ul>`
     },
     {

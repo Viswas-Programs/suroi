@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Be sure to add new posts to the TOP of the JSON array!
  * Fields:
  *  - date (required): The UNIX timestamp for Date.now() in milliseconds.
@@ -30,7 +30,7 @@ export function processPost(post: NewsPost): string {
     newsText += '<article class="splash-news-entry">';
     newsText += `<h3 class="news-title">${post.title}</h3>`;
     newsText += `<div class="news-date">${date}`;
-    newsText += `<br><i>Written by: ${post.author}</i>`;
+    newsText += `<br><i>எழுதியவர்: ${post.author}</i>`;
     newsText += "</div>";
 
     if (post.bannerImage !== undefined) {
