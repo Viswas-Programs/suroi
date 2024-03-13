@@ -21,7 +21,7 @@ export const HealingItems = new ObjectDefinitions<HealingItemDefinition>([
         healType: HealType.Health,
         restoreAmount: 15,
         useTime: 3,
-        useText: "போடப்படுகின்றன"
+        useText: "போடப்படுகின்றது"
     },
     {
         idString: "medikit",
@@ -30,16 +30,16 @@ export const HealingItems = new ObjectDefinitions<HealingItemDefinition>([
         healType: HealType.Health,
         restoreAmount: 100,
         useTime: 6,
-        useText: "Using"
+        useText: "பயன்படுத்துவது"
     },
     {
         idString: "cola",
-        name: "குடிகள்",
+        name: "கோலா",
         itemType: ItemType.Healing,
         healType: HealType.Adrenaline,
         restoreAmount: 25,
         useTime: 3,
-        useText: "Drinking"
+        useText: "குடிக்கப்படுகின்றது"
     },
     {
         idString: "tablets",
@@ -48,6 +48,6 @@ export const HealingItems = new ObjectDefinitions<HealingItemDefinition>([
         healType: HealType.Adrenaline,
         restoreAmount: 50,
         useTime: 5,
-        useText: "Taking"
+        useText: "முழுங்கப்படுவது"
     }
 ]);

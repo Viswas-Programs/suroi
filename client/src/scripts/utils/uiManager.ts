@@ -195,7 +195,7 @@ export class UIManager {
         $("#game-over-text").html(
             packet.won
                 ? "Winner winner chicken dinner!"
-                : `${this.game.spectating ? this.getPlayerName(packet.playerID) : "You"} died.`
+                : `${this.game.spectating ? this.getPlayerName(packet.playerID) : "நீ"} செத்தாய்.`
         );
 
         $("#game-over-player-name").html(playerName + playerBadgeText);
@@ -442,7 +442,7 @@ export class UIManager {
 
         $("#kill-msg-kills").text(killText);
         $("#kill-msg-player-name").html(name);
-        $("#kill-msg-weapon-used").text(` with ${weaponUsed}${streak ? ` (streak: ${streak})` : ""}`);
+        $("#kill-msg-weapon-used").text(` ${weaponUsed}உடன் ${streak ? ` (streak: ${streak})` : ""}`);
 
         this.ui.killModal.fadeIn(350, () => {
             // clear the previous fade out timeout so it won't fade away too
@@ -518,16 +518,16 @@ export class UIManager {
                         let killMessage = "";
                         switch (killType) {
                             case KillType.Suicide:
-                                killMessage = `${playerName}${playerBadgeText} committed suicide`;
+                                killMessage = `${playerName}${playerBadgeText} {PLACEHOLDER} தற்கொலை செய்துகொண்டார்`;
                                 break;
                             case KillType.TwoPartyInteraction:
-                                killMessage = `${killerName}${killerBadgeText} killed ${playerName}${playerBadgeText}`;
+                                killMessage = `${killerName}${killerBadgeText}, {PLACEHOLDER} ${playerName}${playerBadgeText}ஐ கொன்றார் `;
                                 break;
                             case KillType.Gas:
-                                killMessage = `${playerName}${playerBadgeText} died to the gas`;
+                                killMessage = `${playerName}${playerBadgeText} கெடுவாயுவிற்கு செத்தார்`;
                                 break;
                             case KillType.Airdrop:
-                                killMessage = `${playerName}${playerBadgeText} was crushed by an airdrop`;
+                                killMessage = `${playerName}${playerBadgeText} காற்று பெட்டியால் நசுக்கப்பட்டார்`;
                                 break;
                         }
 
@@ -537,12 +537,12 @@ export class UIManager {
                          * but to be honest, short of downloading a library off of somewhere, this'll have to do
                          */
                         const article = `a${"aeiou".includes(fullyQualifiedName[0]) ? "n" : ""}`;
-                        const weaponNameText = weaponPresent ? ` with ${isGrenadeImpactKill ? `the impact of ${article} ` : ""}${fullyQualifiedName}` : "";
+                        const weaponNameText = weaponPresent ? `  ${isGrenadeImpactKill ? `${article}இன் தாக்கத்தை ` : ""} ${fullyQualifiedName} வைத்து` : "";
 
                         messageText = `
                         ${hasKillstreak ? killstreak : ""}
                         <img class="kill-icon" src="./img/misc/skull_icon.svg" alt="Skull">
-                        ${killMessage}${weaponNameText}`;
+                        ${killMessage.replace('{PLACEHOLDER}', weaponNameText)}`;
                         break;
                     }
                     case "icon": {
@@ -599,7 +599,7 @@ export class UIManager {
                 $("#kill-leader-kills-counter").text(kills!);
 
                 if (!hideInKillfeed) {
-                    messageText = `<i class="fa-solid fa-crown"></i> ${playerName}${playerBadgeText} promoted to Kill Leader!`;
+                    messageText = `<i class="fa-solid fa-crown"></i> ${playerName}${playerBadgeText} கொலை முன்னனியாலரானார்!`;
                     this.game.soundManager.play("kill_leader_assigned");
                 }
                 $("#btn-spectate-kill-leader").show();
@@ -612,14 +612,14 @@ export class UIManager {
             }
 
             case KillFeedMessageType.KillLeaderDead: {
-                $("#kill-leader-leader").text("Waiting for leader");
+                $("#kill-leader-leader").text("கொலை முன்னனிக்காக காத்திருக்கிறது");
                 $("#kill-leader-kills-counter").text("0");
                 // noinspection HtmlUnknownTarget
                 messageText = `<img class="kill-icon" src="./img/misc/skull_icon.svg" alt="Skull"> ${killerID
                     ? `${killerID !== playerID
-                        ? `${killerName}${killerBadgeText} killed Kill Leader!`
-                        : "The Kill Leader is dead!"}`
-                    : "The Kill Leader killed themselves!"
+                        ? `${killerName}${killerBadgeText}  கொலை முன்னனியாலரை கொன்றார்!`
+                        : " கொலை முன்னனியாலர் மரணரடைந்தார்!"}`
+                    : "கொலை முன்னனியாலர் தற்கொலை செய்தார்!"
                 }`;
                 if (killerID === this.game.activePlayerID) classes.push("kill-feed-item-killer");
                 else if (playerID === this.game.activePlayerID) classes.push("kill-feed-item-victim");

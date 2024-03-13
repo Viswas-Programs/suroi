@@ -1,4 +1,4 @@
-import { ItemType, type InventoryItemDefinition, type ReferenceTo } from "../utils/objectDefinitions";
+﻿import { ItemType, type InventoryItemDefinition, type ReferenceTo } from "../utils/objectDefinitions";
 import { Vec, type Vector } from "../utils/vector";
 import { type ExplosionDefinition } from "./explosions";
 import { type SyncedParticleSpawnerDefinition } from "./syncedParticles";
@@ -62,7 +62,7 @@ export type ThrowableDefinition = InventoryItemDefinition & {
 export const Throwables: ThrowableDefinition[] = [
     {
         idString: "frag_grenade",
-        name: "Frag Grenade",
+        name: "கையெறி குண்டு",
         itemType: ItemType.Throwable,
         speedMultiplier: 0.92,
         cookSpeedMultiplier: 0.7,
@@ -98,7 +98,7 @@ export const Throwables: ThrowableDefinition[] = [
     },
     {
         idString: "smoke_grenade",
-        name: "Smoke Grenade",
+        name: "புகை குண்டு",
         itemType: ItemType.Throwable,
         speedMultiplier: 0.92,
         cookSpeedMultiplier: 0.7,

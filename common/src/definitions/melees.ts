@@ -1,4 +1,4 @@
-import { type FireMode } from "../constants";
+﻿import { type FireMode } from "../constants";
 import { ItemType, type InventoryItemDefinition } from "../utils/objectDefinitions";
 import { Vec, type Vector } from "../utils/vector";
 
@@ -32,7 +32,7 @@ export interface MeleeDefinition extends InventoryItemDefinition {
 export const Melees: MeleeDefinition[] = [
     {
         idString: "fists",
-        name: "Fists",
+        name: "கைகள்",
         itemType: ItemType.Melee,
         damage: 20,
         obstacleMultiplier: 1,
@@ -53,7 +53,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "baseball_bat",
-        name: "Baseball Bat",
+        name: "மட்டை",
         itemType: ItemType.Melee,
         damage: 34,
         obstacleMultiplier: 1.5,
@@ -79,7 +79,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "kbar",
-        name: "K-bar",
+        name: "கே-பார்",
         itemType: ItemType.Melee,
         damage: 25,
         obstacleMultiplier: 1.25,
@@ -105,7 +105,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "maul",
-        name: "Maul",
+        name: "மால்",
         itemType: ItemType.Melee,
         damage: 54,
         obstacleMultiplier: 2,
@@ -132,7 +132,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "gas_can",
-        name: "Gas Can",
+        name: "வாயு கொள்கலன்",
         itemType: ItemType.Melee,
         damage: 22,
         obstacleMultiplier: 1,
@@ -158,7 +158,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "heap_sword",
-        name: "HE-AP sword",
+        name: "HE-AP வாள்",
         itemType: ItemType.Melee,
         damage: 75,
         obstacleMultiplier: 2.5,
@@ -186,7 +186,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "ice_pick",
-        name: "Ice Pick",
+        name: "பனியெடுப்பான்",
         itemType: ItemType.Melee,
         damage: 35,
         obstacleMultiplier: 1.9,

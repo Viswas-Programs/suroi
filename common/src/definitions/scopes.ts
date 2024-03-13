@@ -1,4 +1,4 @@
-import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
+﻿import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
 
 export interface ScopeDefinition extends ItemDefinition {
     readonly itemType: ItemType.Scope
@@ -9,7 +9,7 @@ export interface ScopeDefinition extends ItemDefinition {
 export const Scopes = new ObjectDefinitions<ScopeDefinition>([
     {
         idString: "1x_scope",
-        name: "1x Scope",
+        name: "1வது நிலை உருப்பெருக்காண்",
         itemType: ItemType.Scope,
         zoomLevel: 48,
         noDrop: true,
@@ -17,25 +17,25 @@ export const Scopes = new ObjectDefinitions<ScopeDefinition>([
     },
     {
         idString: "2x_scope",
-        name: "2x Scope",
+        name: "2வது நிலை உருப்பெருக்காண்",
         itemType: ItemType.Scope,
         zoomLevel: 62
     },
     {
         idString: "4x_scope",
-        name: "4x Scope",
+        name: "4வது நிலை உருப்பெருக்காண்",
         itemType: ItemType.Scope,
         zoomLevel: 83
     },
     {
         idString: "8x_scope",
-        name: "8x Scope",
+        name: "8வது நிலை உருப்பெருக்காண்",
         itemType: ItemType.Scope,
         zoomLevel: 116
     },
     {
         idString: "15x_scope",
-        name: "15x Scope",
+        name: "15வது நிலை உருப்பெருக்காண்",
         itemType: ItemType.Scope,
         zoomLevel: 178
     }
