@@ -1,4 +1,4 @@
-import { ItemType, ObjectDefinitions, type ItemDefinition, type ReferenceTo } from "../utils/objectDefinitions";
+﻿import { ItemType, ObjectDefinitions, type ItemDefinition, type ReferenceTo } from "../utils/objectDefinitions";
 import { type AmmoDefinition } from "./ammos";
 import { type HealingItemDefinition } from "./healingItems";
 import { type ThrowableDefinition } from "./throwables";
@@ -12,7 +12,7 @@ export interface BackpackDefinition extends ItemDefinition {
 export const Backpacks = new ObjectDefinitions<BackpackDefinition>([
     {
         idString: "bag",
-        name: "Bag",
+        name: "பை",
         itemType: ItemType.Backpack,
         level: 0,
         maxCapacity: {
@@ -34,7 +34,7 @@ export const Backpacks = new ObjectDefinitions<BackpackDefinition>([
     },
     {
         idString: "basic_pack",
-        name: "Basic Pack",
+        name: "அடிப்படையான முதுகுப்பை",
         itemType: ItemType.Backpack,
         level: 1,
         maxCapacity: {
@@ -55,7 +55,7 @@ export const Backpacks = new ObjectDefinitions<BackpackDefinition>([
     },
     {
         idString: "regular_pack",
-        name: "Regular Pack",
+        name: "வழக்கமான முதுகுப்பை",
         itemType: ItemType.Backpack,
         level: 2,
         maxCapacity: {
@@ -76,7 +76,7 @@ export const Backpacks = new ObjectDefinitions<BackpackDefinition>([
     },
     {
         idString: "tactical_pack",
-        name: "Tactical Pack",
+        name: "தந்திரோபாய முதுகுப்பை",
         itemType: ItemType.Backpack,
         level: 3,
         maxCapacity: {

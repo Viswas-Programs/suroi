@@ -1,4 +1,4 @@
-import { ObjectDefinitions, type ObjectDefinition } from "../utils/objectDefinitions";
+﻿import { ObjectDefinitions, type ObjectDefinition } from "../utils/objectDefinitions";
 
 export interface EmoteDefinition extends ObjectDefinition {}
 
@@ -11,11 +11,11 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "happy_face",
-            name: "Happy Face"
+            name: "சிரித்த முகம்"
         },
         {
             idString: "sad_face",
-            name: "Sad Face"
+            name: "வருந்திய முகம்"
         },
         {
             idString: "thumbs_up",
@@ -27,15 +27,15 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "disappointed_face",
-            name: "Disappointed Face"
+            name: "கவலையுடைய முகம்"
         },
         {
             idString: "sobbing_face",
-            name: "Sobbing Face"
+            name: "அழுகும் முகம்"
         },
         {
             idString: "angry_face",
-            name: "Angry Face"
+            name: "கோபமுடைய முகம்"
         },
         {
             idString: "heart_face",
@@ -43,7 +43,7 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "joyful_face",
-            name: "Joyful Face"
+            name: "சிரிக்கும் முகம்"
         },
         {
             idString: "cool_face",

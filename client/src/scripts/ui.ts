@@ -637,7 +637,6 @@ export function setupUI(game: Game): void {
 
     // Import settings
     $("#import-settings-btn").on("click", () => {
-        if (!confirm("This option will overwrite all settings and reload the page. Continue?")) return;
         if (!confirm("இந்த முடிவு உங்களின் பழைய அமைப்புகளை மேலெழுதும். தொடரவும்?")) return;
         const error = (): void => {
             alert("Invalid config.");
@@ -683,8 +682,8 @@ export function setupUI(game: Game): void {
 
     // Reset settings
     $("#reset-settings-btn").on("click", () => {
-        if (!confirm("This option will reset all settings and reload the page. Continue?")) return;
-        if (!confirm("Are you sure? This action cannot be undone.")) return;
+        if (!confirm("இந்த முடிவு உங்களின் பழைய அமைப்புகளை மேலெழுதும். தொடரவும்?")) return;
+        if (!confirm("இந்த முடிவை பிறகு மாற்ற முடியாது. தொடரவும்?")) return;
         localStorage.removeItem("suroi_config");
         window.location.reload();
     });

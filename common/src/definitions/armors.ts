@@ -1,4 +1,4 @@
-import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
+﻿import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
 
 export interface ArmorDefinition extends ItemDefinition {
     readonly itemType: ItemType.Armor
@@ -15,7 +15,7 @@ export enum ArmorType {
 export const Armors = new ObjectDefinitions<ArmorDefinition>([
     {
         idString: "basic_helmet",
-        name: "Basic Helmet",
+        name: "அடிப்படையான தலைகவசம்",
         itemType: ItemType.Armor,
         armorType: ArmorType.Helmet,
         level: 1,
@@ -23,7 +23,7 @@ export const Armors = new ObjectDefinitions<ArmorDefinition>([
     },
     {
         idString: "regular_helmet",
-        name: "Regular Helmet",
+        name: "வழக்கமான தலைகவசம்",
         itemType: ItemType.Armor,
         armorType: ArmorType.Helmet,
         level: 2,
@@ -31,7 +31,7 @@ export const Armors = new ObjectDefinitions<ArmorDefinition>([
     },
     {
         idString: "tactical_helmet",
-        name: "Tactical Helmet",
+        name: "தந்திரோபாய தலைகவசம்",
         itemType: ItemType.Armor,
         armorType: ArmorType.Helmet,
         level: 3,
@@ -42,7 +42,7 @@ export const Armors = new ObjectDefinitions<ArmorDefinition>([
     //
     {
         idString: "basic_vest",
-        name: "Basic Vest",
+        name: "அடிப்படையான உடுப்பு",
         itemType: ItemType.Armor,
         armorType: ArmorType.Vest,
         level: 1,
@@ -50,7 +50,7 @@ export const Armors = new ObjectDefinitions<ArmorDefinition>([
     },
     {
         idString: "regular_vest",
-        name: "Regular Vest",
+        name: "வழக்கமான உடுப்பு",
         itemType: ItemType.Armor,
         armorType: ArmorType.Vest,
         level: 2,
@@ -58,7 +58,7 @@ export const Armors = new ObjectDefinitions<ArmorDefinition>([
     },
     {
         idString: "tactical_vest",
-        name: "Tactical Vest",
+        name: "தந்திரோபாய உடுப்பு",
         itemType: ItemType.Armor,
         armorType: ArmorType.Vest,
         level: 3,

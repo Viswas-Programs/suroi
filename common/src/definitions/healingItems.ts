@@ -1,4 +1,4 @@
-import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
+﻿import { ItemType, ObjectDefinitions, type ItemDefinition } from "../utils/objectDefinitions";
 
 export interface HealingItemDefinition extends ItemDefinition {
     readonly itemType: ItemType.Healing
@@ -16,16 +16,16 @@ export enum HealType {
 export const HealingItems = new ObjectDefinitions<HealingItemDefinition>([
     {
         idString: "gauze",
-        name: "Gauze",
+        name: "கட்டுகள்",
         itemType: ItemType.Healing,
         healType: HealType.Health,
         restoreAmount: 15,
         useTime: 3,
-        useText: "Applying"
+        useText: "போடப்படுகின்றன"
     },
     {
         idString: "medikit",
-        name: "Medikit",
+        name: "மருந்துபெட்டி",
         itemType: ItemType.Healing,
         healType: HealType.Health,
         restoreAmount: 100,
@@ -34,7 +34,7 @@ export const HealingItems = new ObjectDefinitions<HealingItemDefinition>([
     },
     {
         idString: "cola",
-        name: "Cola",
+        name: "குடிகள்",
         itemType: ItemType.Healing,
         healType: HealType.Adrenaline,
         restoreAmount: 25,
@@ -43,7 +43,7 @@ export const HealingItems = new ObjectDefinitions<HealingItemDefinition>([
     },
     {
         idString: "tablets",
-        name: "Tablets",
+        name: "மாத்திரைகள்",
         itemType: ItemType.Healing,
         healType: HealType.Adrenaline,
         restoreAmount: 50,
