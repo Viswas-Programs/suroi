@@ -5,11 +5,11 @@ export const news: NewsPost[] = [
     {
         date: 1708892369000,
         author: "HAZEL",
-        title: "A Sailor's Dream",
+        title: "ஒரு படகோட்டுபவரின் கணவு",
         bannerImage: "../img/news/v0.16.0.png",
-        content: `We're back with new guns, structures, and more for ye landlubbers to check out! Two new powerful weapons are available in golden airdrops, and a new sniper has joined the ranks. Where do you find it? Why, in the captain's tugboat, of course! The soggy pants will be worth it.<br><br>
+        content: `நாங்கள் புதிய துப்பாக்கிகள், கட்டமைப்புகள் மற்றும் பலவற்றைக் கொண்டு வருகிறோம். தங்க காற்று-பெட்டிகளினுல் இரண்டு புதிய சக்திவாய்ந்த ஆயுதங்கள் கிடைக்கின்றன. மேலும் ஒரு புதிய துப்பாக்கி சுடும் வீரர் அணியில் சேர்ந்துள்ளார். அதை எங்கே கண்டுபிடிப்பது? கேப்டனின் இழுவைப்படகில், நிச்சயமாக! நனைந்த துணிமனிகள் பரவாயில்லை!<br><br>
 
-Lily pads, river crates, bridges, and more are making an appearance this update, as well as a multitude of changes and bug fixes to make your experience better. Duos are coming in the next update, so stay tuned!`,
+லில்லி பேட்கள், நதி பெட்டிகள், பாலங்கள் மற்றும் பல, இந்த புதுப்பிப்பில் தோற்றமளிக்கின்றன, மேலும் உங்கள் அனுபவத்தை சிறந்ததாக்க பல மாற்றங்கள் மற்றும் பிழை திருத்தங்கள் உள்ளன. இரட்டையர் அடுத்த புதுப்பிப்பில் வருகிறது, காத்திருங்கள்!`,
         longContent: `<h2>Suroi v0.16.0</h2>
 <h3>New features</h3>
 <ul>

@@ -1,10 +1,10 @@
-export const Config = {
+﻿export const Config = {
     regions: {
-        dev: { name: "Local Server", address: "127.0.0.1:8000", https: false },
-        na: { name: "North America", address: "na.suroi.io", https: true },
-        eu: { name: "Europe", address: "eu.suroi.io", https: true },
-        sa: { name: "South America", address: "sa.suroi.io", https: true },
-        as: { name: "Asia", address: "as.suroi.io", https: true }
+        dev: { name: "உங்கள் வீட்டு சர்வர்", address: "127.0.0.1:8000", https: false },
+        na: { name: "வடக்கு அமெரிகா", address: "na.suroi.io", https: true },
+        eu: { name: "ஐரோபா", address: "eu.suroi.io", https: true },
+        sa: { name: "தெற்கு அமெரிகா", address: "sa.suroi.io", https: true },
+        as: { name: "ஆசியா", address: "as.suroi.io", https: true }
     },
     defaultRegion: "na",
     mode: "normal"
