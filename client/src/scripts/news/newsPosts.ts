@@ -45,31 +45,31 @@ export const news: NewsPost[] = [
     {
         date: 1705262400000,
         author: "HAZEL",
-        title: "Pulling the Pin",
+        title: "அவன்மேல வீசுடா குண்ட!",
         bannerImage: "../img/news/v0.15.0.png",
-        content: `Yank a pin out, cook the 'nade, and toss it to blow your enemy sky high! The throwables update is here and brings a plethora of new features and content the game.<br><br>
+        content: `ஒரு குண்டை எடுத்து, அதனை தூக்கி எரிந்து, எதிரியை பரக்க செய்யுங்கள்! குண்டுகள் புதுப்பிப்பு இங்கு வந்துள்ளது. இதனுள் புதுப்புது அம்சங்கள் வந்துள்ளன<br><br>
 
-First and foremost: throwables. Punch a grenade box, scattered around the map, to find frag and smoke grenades. Frags have a timed fuse and produce a powerful explosion, while smokes can provide cover to hide from enemies.<br><br>
+முதன்மையாக: குண்டுகள். களத்திள் அங்கிங்கு கடக்கும் குண்டு பெட்டிகளை திறத்நு, கையெறி குண்டும் புகைகுண்டுகளும் பெறுங்கள். கையெறி குண்டு வீசிய சிரிய நொடிகள் பிறகு வெடிக்கும், ஆனால் புகைகுண்டு வீசிய பகுதியில் புகை சூழ்ந்து எதிரிகளிடமிருந்து பாதுகாப்பு தரும்<br><br>
 
-Two new powerful weapons have made it ashore in this update: the Vepr-12 and the Vector. The Vector is incredibly strong, but burns through ammo fast. Similarly, the Vepr-12 will send opponents running, but keep an eye on your 12-gauge ammo reserves.<br><br>
+இந்த புதுப்பிப்பில் இரண்டு சக்திவாய்ந்த துப்பாக்கிகள் வந்துள்ளது: Vepr-12 மற்றும் Vector. Vector மிகவும் சக்திவாய்ந்தது, ஆனால் அம்மோவை உரியும். அதைப்போல, Vepr-12 எதிரிகளை ஓடச்செய்யும், ஆனால் உங்கள் 12-gauge அம்மோ இருப்புகளை பார்த்துக்கொல்லுங்கள்.<br><br>
 
-The first new building (in a while!) also makes its debut. The armory is a bastion of strength for the island, and the weapons and density of loot live up to that. Explore the office, bunkhouse, APC, and the vault, which contains powerful loot.<br><br>
+ஒரு புது கட்டிடமும் (நிரைய நாட்கள் கழித்து!) இந்த புதுப்பிப்பில் வந்துள்ளது. Armory என்பது தீவின் சக்தியாலான கோட்டைக் காவல் ஆகும், அதைப்போல அங்குள்ள துப்பாக்கிகள் மற்றும் பொருட்களும் இதனுடைய சக்தியை பிரதிபலிக்கிரது. Explore the office, bunkhouse, APC, and the vault, which contains powerful loot.<br><br>
 
-There are a bunch more new features to check out, such as a new port layout (including an oil tanker!), mobile home, Viking chests, the seax, maul, and major UI changes. Stay survivn'!`,
-        longContent: `<h2>Suroi v0.15.0</h2>
-<h3>New features</h3>
+இன்னும் நிறைய அம்சங்கள் உள்ளன, புதிய துறைமுக கட்டமைப்பு (எண்ணெய் டேங்கர் கூட!), மோபைல் வீடு, வைக்கிங் பெட்டிகள், ஸீஅக்ஸ், மால், மற்றும் பயன்பாட்டு பென்பொருள் மேம்பாடுகள் கொண்டுவரப்பட்டுள்ளது. வாழ்ந்துகொண்டே இரு!`,
+        longContent: `<h2>சரொய் v0.15.0</h2>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
-  <li>**Throwables!** Added frag grenades and smoke grenades. Other throwables, like mines and MIRV equivalents, will be added in a future update.</li>
-  <li>**New structures!** Added the armory and mobile home.</li>
-  <li>**New guns!** Added the Vector (an SMG), and the Vepr-12 (a full auto shotgun; equivalent to surviv's Saiga-12).</li>
-  <li>**Updated port!** The port is now smaller, and a new type of ship, the oil tanker, has a 50% chance of spawning in place of the normal ship.</li>
-  <li>**New melees!** Added the maul (a heavy hammer), and the seax (a Viking dagger).</li>
-  <li>**New UI layout!** The UI has been overhauled.</li>
-  <li>Added river rocks.</li>
-  <li>Redesigned 2 skins, and added 6 new ones, 1 of which is airdrop exclusive.</li>
+  <li>**குண்டுகள்!** Added frag grenades and smoke grenades. Other throwables, like mines and MIRV equivalents, will be added in a future update.</li>
+  <li>**புதிய கட்டிடங்கள்!** Added the armory and mobile home.</li>
+  <li>**புதிய துப்பாக்கிகள்!** Added the Vector (an SMG), and the Vepr-12 (a full auto shotgun; equivalent to surviv's Saiga-12).</li>
+  <li>**புதுப்பிக்கப்பட்ட துறைமுகம்!** The port is now smaller, and a new type of ship, the oil tanker, has a 50% chance of spawning in place of the normal ship.</li>
+  <li>**புதிய கை-ஆயுதங்கள்** Added the maul (a heavy hammer), and the seax (a Viking dagger).</li>
+  <li>**புதிய பயன்பாடு மென்பொருள் கட்டமைப்பு** The UI has been overhauled.</li>
+  <li>நநி பாறைகள் சேர்கப்பட்டுள்ளன</li>
+  <li>2 ஆடைகளை மறுவடிவமைக்கப்பட்டதுடன் 6 புது ஆடைகள் சேர்கப்பட்டுள்ளன, அதில் ஒன்று காற்று-பெட்டியிலிருந்து மட்டுமே பெறமுடியும்</li>
 </ul>
 
-<h3>Changes</h3>
+<h3>மாற்றங்கள்</h3>
 <ul>
   <li>Winter mode is over.</li>
   <li>Increased movement speed slightly, to match surviv.</li>
@@ -78,7 +78,7 @@ There are a bunch more new features to check out, such as a new port layout (inc
   <li>Adjusted melee weapon stats.</li>
   <li>Adjusted obstacle multipliers for explosions.</li>
   <li>Smoke now spawns when airdrops land.</li>
-  <li>The fists icon now changes with the equipped skin.</li>
+  <li>The fists icon now மாற்றங்கள் with the equipped skin.</li>
   <li>New airdrop ping sound.</li>
   <li>New dry fire sound.</li>
 </ul>`
@@ -88,11 +88,11 @@ There are a bunch more new features to check out, such as a new port layout (inc
         author: "HAZEL",
         title: "Double Trouble",
         bannerImage: "../img/news/v0.14.0.png",
-        content: `The weather grows cold, the trees lose their leaves, and the snowdrifts pile high. But we've got a couple new features to spice up the winter season! The entire map has been reskinned to frosty perfection, with more surprises in store soon! Also, we've added the long-awaited dual-wielding feature for pistols—if one isn't enough, grab another for twice the firepower!<br><br>
+        content: `The weather grows cold, the trees lose their leaves, and the snowdrifts pile high. But we've got a couple புதிய அம்சங்கள் to spice up the winter season! The entire map has been reskinned to frosty perfection, with more surprises in store soon! Also, we've added the long-awaited dual-wielding feature for pistols—if one isn't enough, grab another for twice the firepower!<br><br>
 
-Of course, we've made a few changes and fixes, including a circular action timer, reworked airdrops, and a larger map grid. Go warm yourself up with a toasty chicken dinner!`,
+Of course, we've made a few மாற்றங்கள் and fixes, including a circular action timer, reworked airdrops, and a larger map grid. Go warm yourself up with a toasty chicken dinner!`,
         longContent: `<h2>Suroi v0.14.0</h2>
-<h3>New features</h3>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
   <li><strong>Winter mode!</strong> Just a reskin for now. More content coming soon.</li>
   <li><strong>Dual wielding!</strong> You can now dual wield pistols.</li>
@@ -101,7 +101,7 @@ Of course, we've made a few changes and fixes, including a circular action timer
   <li>Added keybind to toggle UI.</li>
 </ul>
 
-<h3>Changes</h3>
+<h3>மாற்றங்கள்</h3>
 <ul>
   <li><strong>Better rivers!</strong> River generation has been improved further. Rivers are now smoother, and loot flows down them.</li>
   <li><strong>Circular action timer!</strong> A circular timer is now displayed when reloading/using healing items.</li>
@@ -117,7 +117,7 @@ Of course, we've made a few changes and fixes, including a circular action timer
   <li>New helmet pickup sound.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed airdrops spawning in the gas.</li>
   <li>Fixed airdrop pings not showing up sometimes.</li>
@@ -133,16 +133,16 @@ Of course, we've made a few changes and fixes, including a circular action timer
         bannerImage: "../img/news/v0.13.0.png",
         content: `Expect routine supply shipments from the A.E.G.I.S. aeronautical division, complete with everything you need to win a savory chicken dinner! Or, notify them directly by using a radio to get your own personal airdrop. If you're lucky, you'll get one of the 3 new and very powerful guns!<br><br>
 
-Erosion has worked its magic on the island, and rivers look much cleaner than they ever have before. We've made a whole host of changes and bug fixes, including better mobile layout and building visibility. Get out there, these airdrops are comin' in hot!`,
+Erosion has worked its magic on the island, and rivers look much cleaner than they ever have before. We've made a whole host of மாற்றங்கள் and சரிசெய்துள்ள தவருகள், including better mobile layout and building visibility. Get out there, these airdrops are comin' in hot!`,
         longContent: `<h2>Suroi v0.13.0</h2>
-<h3>New features</h3>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
   <li>Airdrops! Two airdrops now spawn every game. They can also be called with radios, which are a rare drop from crates.</li>
   <li>More guns! Added 3 guns, which spawn only in airdrops: the Barrett M95 (a sniper rifle; equivalent to surviv.io's AWM-S), the M1 Garand (a DMR), and the ACR (an assault rifle; equivalent to surviv.io's M4A1-S).</li>
   <li>More skins! Added 3 airdrop exclusive skins, including the Ghillie Suit.</li>
 </ul>
 
-<h3>Changes</h3>
+<h3>மாற்றங்கள்</h3>
 <ul>
   <li>Tweaked loot tables. Higher level equipment and powerful weapons are now much rarer.</li>
   <li>Better building visibility! You can now see inside buildings from further away, and through open doors.</li>
@@ -161,7 +161,7 @@ Erosion has worked its magic on the island, and rivers look much cleaner than th
   <li>Disallowed extended ASCII characters in usernames.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed the gas always shrinking to the center of the map.</li>
   <li>Fixed barrel smoke particles not showing.</li>
@@ -179,7 +179,7 @@ Erosion has worked its magic on the island, and rivers look much cleaner than th
         bannerImage: "../img/news/v0.12.0.png",
         content: `The island grows dark. The trees begin to turn, the rivers run red, and the full moon rises. A new spooky orange obstacle drops one of two new weapons: a training weapon from A.E.G.I.S. stores, and a very powerful shotgun specially modified by H.A.Z.E.L.'s R&D team.<br><br>
 
-After checking out these frightening additions, enjoy your candy while reading all the bug fixes and QoL changes this update brings. Happy Halloween!`,
+After checking out these frightening additions, enjoy your candy while reading all the சரிசெய்துள்ள தவருகள் and QoL மாற்றங்கள் this update brings. Happy Halloween!`,
         longContent: `<h2>Suroi v0.12.0</h2>
 <h3>Changelog</h3>
 <ul>
@@ -229,9 +229,9 @@ If you like swimming, you’re in luck! Rivers now snake through the landscape, 
 
 We've added two new guns to our arsenal: the Flues, a sawn-off double-barrel shotgun, and the M1895, a revolver.<br><br>
 
-In addition, we've made many quality of life changes, including shorter guns, custom crosshairs, and a kill leader mechanic.`,
+In addition, we've made many quality of life மாற்றங்கள், including shorter guns, custom crosshairs, and a kill leader mechanic.`,
         longContent: `<h2>Suroi v0.11.0</h2>
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Rivers & ocean! Rivers have been added. The ocean is now accessible.</li>
   <li>New buildings! Added the port, the largest structure so far. Added shipping containers, which spawn at the port and throughout the map.</li>
@@ -261,7 +261,7 @@ In addition, we've made many quality of life changes, including shorter guns, cu
   <li>Added an option to enable the old menu music.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed full auto guns not continuing to fire when holding the fire button/joystick after reloading.</li>
   <li>Fixed more issues with auto loot pickup on mobile.</li>
@@ -283,7 +283,7 @@ We're also happy to announce a large shipment containing 4 new types of guns, in
 Our scouts have fully mapped out the island, including its beaches. We've decided to begin adding name markers to the map to aid in navigation. You're welcome!`,
         longContent: `<h2>Suroi v0.10.0</h2>
 
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>New building! Added the refinery, the largest structure yet!</li>
   <li>More guns! Added 4 guns: the Stoner 63 (a LMG), SR-25 (a DMR), ARX-160 (an assault rifle), and Mini-14 (a DMR).</li>
@@ -320,7 +320,7 @@ There are also two new Austrian arrivals to the island. Like the Micro Uzi but w
 Surians can now customize their skins, and express themselves with emotes too! Everything is unlocked until accounts are added.`,
         longContent: `<h2>Suroi v0.9.0</h2>
 
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Buildings! Added 3 buildings: the house, the warehouse, and the porta potty.</li>
   <li>Skins & emotes! Added 22 skins and 59 emotes. All skins and emotes will be unlocked until accounts are added.</li>
@@ -330,7 +330,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
   <li>Games are now longer.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed an issue with the game getting stuck on "Connecting..." on older iOS devices.</li>
   <li>Fixed an issue causing the server to crash occasionally.</li>
@@ -343,7 +343,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         content: `H.A.Z.E.L. has made various improvements to weapons systems to refine them further, and a small shipment of antiquated arms has been received from Flint Industries. Scouts have explored more of the island. We've mapped out the gas release points, allowing us to predict the gas's movement accurately. Additionally, new AR software updates have been pushed out to ensure battle readiness.`,
         longContent: `<h2>Suroi v0.8.0</h2>
 
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Bigger map! The map is now bigger, and games are longer.</li>
   <li>More guns! Added 2 guns: the MP40 (an SMG), and the VSS (a DMR).</li>
@@ -363,7 +363,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         content: `A long-awaited shipment, containing helmets, vests, backpacks, and scopes, has finally arrived on the island! Pack in extra ammo with backpacks, protect yourself with helmets and vests, and get the jump on your enemy with scopes. Unfortunately, due to supply shortages, guns have become more scarce.`,
         longContent: `<h2>Suroi v0.7.0</h2>
 
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Equipment! Added helmets, vests, backpacks, and scopes.</li>
   <li>Replaced the 940 Pro with the HP18, a functionally identical gun which should be easier to distinguish from other shotguns.</li>
@@ -377,7 +377,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         content: `A new adrenaline item, tablets, can now be found! Tablets, along with all other healing items, can now be picked up and carried—but they no longer work instantly. Check out the Featured YouTubr and Streamr on the redesigned title screen! The kill feed and settings menu have also been redesigned. A golden object may drop a very powerful weapon...`,
         longContent: `<h2>Suroi v0.6.0</h2>
 
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Better healing items! Healing items can now be picked up, and take time to use. Added tablets, which heal 50% adrenaline.</li>
   <li>Better kill feed! Redesigned the kill feed. It now shows weapon icons instead of names.</li>
@@ -394,7 +394,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
   <li>Minor tweaks to textures and sound effects.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed a bug causing reloading to break when picking up a gun.</li>
   <li>Fixed blood particles not appearing.</li>
@@ -410,7 +410,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         content: `The newest supply shipment to the island has arrived, along with a slew of new weapons! Blast enemies all day long with the 47 round pan on the Lewis gun, or test your marksmanship with the Tango 51. Prefer hand-to-hand combat? The K-bar or the baseball bat may be for you. A glint of gold may yield a fruitful surprise...`,
         longContent: `<h2>Suroi v0.5.0</h2>
 
-<h3>New features</h3>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
     <li>Ammo and reloading! Guns now require ammo and need to be reloaded.</li>
     <li>Melee weapons! Added 2 melee weapons: the K-bar (a knife), and the baseball bat.</li>
@@ -428,7 +428,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         content: `We have received the new arms and supply shipment from Mr. Flint. In the crates were all four weapons promised: the Mosin-Nagant, Ithaca Model 37, SAF-200, and Glock 19. These should help us dramatically, as we were in great need of additional and varied firepower. Additionally, the new medical items, gauze, colas, and medikits, will allow better treatment of injuries. However, they were not of the portable variety we requested, and we hope to resolve this soon.`,
         longContent: `<h2>Suroi v0.4.0</h2>
 
-<h3>New features & changes</h3>
+<h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Loot! Crates now drop guns and healing items. Players no longer spawn with guns.</li>
   <li>More guns! Added 4 guns: the Mosin-Nagant (a sniper), Model 37 (a pump shotgun), SAF-200 (a burst fire SMG), and G19 (a full auto pistol). Recoil has also been added, meaning guns slow you down when firing.</li>
@@ -440,7 +440,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
   <li>Increased M3K fire rate; decreased damage.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed a bug allowing players to move twice as fast when using the mobile controls and movement keys at the same time.</li>
   <li>Fixed a bug causing players' fists to get stuck in incorrect positions.</li>
@@ -454,7 +454,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         bannerImage: "../img/news/v0.3.0.png",
         content: `A mysterious orange gas is now being reported around the island. We collected a sample and were able to convert it to a solid at -9.3°C, but found it to be very toxic. You’ve been warned! In other news, if you’re the last one on the island left, you’ll get your very own chicken dinner courtesy of HAZEL, the perfect meal to enjoy your victory!`,
         longContent: `<h2>Suroi v0.3.0</h2>
-<h3>New features</h3>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
   <li>Gas! Toxic gas now slowly fills up the map as the game progresses.</li>
   <li>Chicken dinners! If you're the last man standing, you now get to enjoy a delicious chicken dinner.</li>
@@ -462,7 +462,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
   <li>Mobile controls! Suroi is now playable on mobile. To use the controls, simply press and drag. The left joystick (left half of the screen) controls movement, and the right joystick (right half of the screen) controls aim and shooting.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Bullets now spawn at the barrel of the gun instead of at the player body.</li>
   <li>Fixed a visual bug causing bullets to go in the wrong direction near the edges of the map.</li>
@@ -477,14 +477,14 @@ Surians can now customize their skins, and express themselves with emotes too! E
         bannerImage: "../img/news/v0.2.0.png",
         content: `This week's update introduces guns, health crates, and keybinds! There are only 2 guns for now: the AK-47 and the M3K. More will be added soon.<br>If you're having issues with textures, try <a href="https://its.uiowa.edu/support/article/719">clearing your cache.</a>`,
         longContent: `<h2>Suroi v0.2.0</h2>
-<h3>New features</h3>
+<h3>புதிய அம்சங்கள்</h3>
 <ul>
     <li>Guns! Added the AK-47 and M3K. More guns will be added soon, including the Mosin-Nagant.</li>
     <li>Health crates! These crates restore your health when broken. They are a temporary addition and will be removed once proper healing items are added.</li>
     <li>Keybinds! You can now remap keys. To edit keybinds, click the gear icon in the bottom right, or in-game, press Escape and click on Settings. Then, click on the Keybinds tab.</li>
 </ul>
 
-<h3>Bug fixes</h3>
+<h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
   <li>Fixed a visual bug causing players' fists to get stuck in the punching position.</li>
 </ul>`
