@@ -59,10 +59,10 @@ export const news: NewsPost[] = [
         longContent: `<h2>சரொய் v0.15.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
-  <li>**குண்டுகள்!** Added frag grenades and smoke grenades. Other throwables, like mines and MIRV equivalents, will be added in a future update.</li>
-  <li>**புதிய கட்டிடங்கள்!** Added the armory and mobile home.</li>
-  <li>**புதிய துப்பாக்கிகள்!** Added the Vector (an SMG), and the Vepr-12 (a full auto shotgun; equivalent to surviv's Saiga-12).</li>
-  <li>**புதுப்பிக்கப்பட்ட துறைமுகம்!** The port is now smaller, and a new type of ship, the oil tanker, has a 50% chance of spawning in place of the normal ship.</li>
+  <li>**குண்டுகள்!** கையெறி குண்டுகளும் புகைகுண்டுகளும் சேர்கப்பட்டுள்ளன. மற்ற குண்டுகளான கண்ணிவெடிகள் மற்றும் MIRV குண்டுகளும் வருங்காலத்தில் வரும் புதுப்பிப்புகளிள் சேற்கப்படும்.</li>
+  <li>**புதிய கட்டிடங்கள்!** Armory மற்றும் மோபைல் வீடு சேற்கப்பட்டுள்ளன.</li>
+  <li>**புதிய துப்பாக்கிகள்!** Vector, மற்றும் Vepr-12 சேற்கப்பட்டுள்ளன.</li>
+  <li>**புதுப்பிக்கப்பட்ட துறைமுகம்!** துறைமுகம் சிரிதாகபட்டுள்ளது மட்டுமன்று, என்னெய் டாங்கர், has a 50% chance of spawning in place of the normal ship.</li>
   <li>**புதிய கை-ஆயுதங்கள்** Added the maul (a heavy hammer), and the seax (a Viking dagger).</li>
   <li>**புதிய பயன்பாடு மென்பொருள் கட்டமைப்பு** The UI has been overhauled.</li>
   <li>நநி பாறைகள் சேர்கப்பட்டுள்ளன</li>
