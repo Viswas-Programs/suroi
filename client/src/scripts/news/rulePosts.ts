@@ -32,10 +32,10 @@ export const rules: RulesPost[] = [
 <p>எடுக்க/புதையல்/தொடர்பு - F</p>
 <p>ஏற்றவும் - R</p>
 <p>குணபட்டும்ம பொருள்ள பயன்படுத்த- பொருள் மேல இடது-அமுத்து அல்லது 7 இருந்து 0</p>
-<p>Cancel Action - X</p>
-<p>Toggle Fullscreen Map - G or M</p>
-<p>Toggle Minimap - N</p>
-<p>Use Emote Wheel - Hold Right-Click, drag, and release</p>
+<p>ரத்து செய்ய - X</p>
+<p>ஃபுல் ஸ்கிரீன் மப் மாற்ற - G அல்லது M</p>
+<p>மினி மப் மற்ற - N</p>
+<p>இமொட் வீல் பயன்படுத்த - Hold Right-Click, drag, and release</p>
 <p>Drop Item - Right-Click on item</p>
 <p>Equip Last Item - Q</p>
 <p>Swap Gun Slots - T</p>
