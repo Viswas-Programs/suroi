@@ -16,7 +16,7 @@ export const rules: RulesPost[] = [
         longContent: `<ul>
   <li><strong>ஒற்றை வீரர் முறையில் குழு சேரதல் கூடாது.</strong> ஒற்றை வீரர்கள் ஓட அதிக நேரதுகு செண்டு விளையாட கூடாது.</li>
   <li><strong>ஹாக்கின்க் பண்ணக்கூடாது.</strong> ஸ்கிரிப்ட்ஸ், பிளகின், எக்ஸ்டென்ஷன், பயன்படுத்தி, எதிராளிகளை விட சாதகமாக விளையாட்டை மாற்றுவது முற்றிலும் தடை செய்யப்பட்டுள்ளது.</li>
-  <li><strong>No inappropriate usernames.</strong> Our blocklists are very lenient, but some things are still blocked. Trying to evade filters for these specific words may incur consequences.</li>
+  <li><strong>பொருத்தமில்லாத பயன்பட்ட பெயர்கள் vெச்சுக்க kூடாது</strong> Our blocklists are very lenient, but some things are still blocked. Trying to evade filters for these specific words may incur consequences.</li>
 </ul>`
     },
     {
