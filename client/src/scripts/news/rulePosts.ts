@@ -24,11 +24,11 @@ export const rules: RulesPost[] = [
         author: "Katloo",
         title: "Tutorial",
         content: `நீங்கள் புது வீரர் இருந்தால், இந்த விலக்கம்ம படிங்கள்.`,
-        longContent: `<h2>Controls</h2>
-<p>Movement - WASD or Arrow Keys</p>
-<p>Aim - Mouse</p>
-<p>Attack - Left-Click</p>
-<p>Change Weapons - 1 through 3 or Scroll Wheel</p>
+        longContent: `<h2>விளையாட்டு கட்டுப்பாடுகள்</h2>
+<p>நடக்க  - W, A, S, D அல்லது அம்பு விசைகள்.</p>
+<p>நோக்கு - சுட்டி</p>
+<p>அடிக்க - இடது-கிளிக்</p>
+<p>ஆயுடங்கள் மாத - 1 இருந்து 3 அல்லது ஸ்குரோல் வீல்.</p>
 <p>Pickup/Loot/Interact - F</p>
 <p>Reload - R</p>
 <p>Use Healing Item - Left-Click on item or 7 through 0</p>
