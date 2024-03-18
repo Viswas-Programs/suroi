@@ -36,10 +36,10 @@ export const rules: RulesPost[] = [
 <p>ஃபுல் ஸ்கிரீன் மப் மாற்ற - G அல்லது M</p>
 <p>மினி மப் மற்ற - N</p>
 <p>இமொட் வீல் பயன்படுத்த - Hold Right-Click, drag, and release</p>
-<p>Drop Item - Right-Click on item</p>
-<p>Equip Last Item - Q</p>
-<p>Swap Gun Slots - T</p>
-<p>Equip Other Gun - Space</p>
+<p>பொருள் கீழ பொட - Right-Click on item</p>
+<p>கடைசி பொருள் பயன்படுத்த  - Q</p>
+<p>துப்பாக்கி இடத்தை மாத - T</p>
+<p>இறந்தாடு துப்பாக்கி பயன்படுத்த - Space</p>
 <p>Change Scope Zoom - Left-Click on Scope</p>
 
 <h3>Keybinds can be changed in settings!</h3>
