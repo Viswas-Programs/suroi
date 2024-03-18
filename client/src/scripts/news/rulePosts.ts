@@ -12,11 +12,11 @@ export const rules: RulesPost[] = [
         date: 1690908230000,
         author: "Katloo",
         title: "Rules",
-        content: `By playing Suroi, you agree to abide by the following rules. Breaking the rules may result in a ban.`,
+        content: `இந்த விளையாட்டை விளையாடுவதன் மூலம் நீங்கள் விதிமுறைகளை ஏற்றுக்கொள்கிறீர்கள். விதிமுறைகளை மீறுவது தடைக்கு வழிவகுக்கும்.`,
         longContent: `<ul>
-  <li><strong>No teaming in solo.</strong> Allying with other solo players for extended periods of time is not allowed.</li>
-  <li><strong>No hacking.</strong> The use of scripts, plugins, extensions, etc. to modify the game in order to gain an advantage over opponents is strictly forbidden.</li>
-  <li><strong>No inappropriate usernames.</strong> Our blocklists are very lenient, but some things are still blocked. Trying to evade filters for these specific words may incur consequences.</li>
+  <li><strong>ஒற்றை வீரர் முறையில் குழு சேரதல் கூடாது.</strong> ஒற்றை வீரர்கள் ஓட அதிக நேரதுகு செண்டு விளையாட கூடாது.</li>
+  <li><strong>ஹாக்கின்க் பண்ணக்கூடாது.</strong> ஸ்கிரிப்ட்ஸ், பிளகின், எக்ஸ்டென்ஷன், பயன்படுத்தி, எதிராளிகளை விட சாதகமாக விளையாட்டை மாற்றுவது முற்றிலும் தடை செய்யப்பட்டுள்ளது.</li>
+  <li><strong>பொருத்தமில்லாத பயன்பட்ட பெயர்கள் vெச்சுக்க kூடாது</strong> நம்மளோட தடைப் பட்டியல்கள் மிகவும் தளர்வானவாக இருக்கு. ஆனால் சில விஷயங்களுக்கு இன்னும் தடை விதிக்கப்பட்டிருக்கு. இந்த குறிப்பிட்ட வார்த்தைகளுக்கான வடிகட்டிகளை தாண்டி செயல்படப் பார்க்கிறீர்கனா, அப்போ விளைவுகள் வரலாம். </li>
 </ul>`
     },
     {
