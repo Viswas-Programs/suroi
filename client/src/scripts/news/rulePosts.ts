@@ -29,9 +29,9 @@ export const rules: RulesPost[] = [
 <p>நோக்கு - சுட்டி</p>
 <p>அடிக்க - இடது-அமுத்து</p>
 <p>ஆயுடங்கள் மாத - 1 இருந்து 3 அல்லது ஸ்குரோல் வீல்.</p>
-<p>Pickup/Loot/Interact - F</p>
-<p>Reload - R</p>
-<p>Use Healing Item - Left-Click on item or 7 through 0</p>
+<p>எடுக்க/புதையல்/தொடர்பு - F</p>
+<p>ஏற்றவும் - R</p>
+<p>குணபட்டும்ம பொருள்ள பயன்படுத்த- பொருள் மேல இடது-அமுத்து அல்லது 7 இருந்து 0</p>
 <p>Cancel Action - X</p>
 <p>Toggle Fullscreen Map - G or M</p>
 <p>Toggle Minimap - N</p>
