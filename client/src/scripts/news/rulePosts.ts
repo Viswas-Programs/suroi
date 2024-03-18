@@ -23,7 +23,7 @@ export const rules: RulesPost[] = [
         date: 1690908230000,
         author: "Katloo",
         title: "Tutorial",
-        content: `If you're a new player, check out this tutorial to learn how to play!`,
+        content: `நீங்கள் புது வீரர் இருந்தால், இந்த விலக்கம்ம படிங்கள்.`,
         longContent: `<h2>Controls</h2>
 <p>Movement - WASD or Arrow Keys</p>
 <p>Aim - Mouse</p>
