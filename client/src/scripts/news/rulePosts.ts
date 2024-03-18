@@ -34,9 +34,9 @@ export const rules: RulesPost[] = [
 <p>குணபட்டும்ம பொருள்ள பயன்படுத்த- பொருள் மேல இடது-அமுத்து அல்லது 7 இருந்து 0</p>
 <p>ரத்து செய்ய - X</p>
 <p>ஃபுல் ஸ்கிரீன் மப் மாற்ற - G அல்லது M</p>
-<p>மினி மப் மற்ற - N</p>
-<p>இமொட் வீல் பயன்படுத்த - Hold Right-Click, drag, and release</p>
-<p>பொருள் கீழ பொட - Right-Click on item</p>
+<p>சின்ன வரைபடம் மாற்ற - N</p>
+<p>இமொட் வீல் பயன்படுத்த - வலது-அமுத்து புடிச்சு, இல்லுட்டி, விடுங்கள்.</p>
+<p>பொருள் கீழ பொட - பொருள் மெளை வலது-அமுத்து</p>
 <p>கடைசி பொருள் பயன்படுத்த  - Q</p>
 <p>துப்பாக்கி இடத்தை மாத - T</p>
 <p>இறந்தாடு துப்பாக்கி பயன்படுத்த - Space</p>
@@ -44,14 +44,14 @@ export const rules: RulesPost[] = [
 
 <h3>Keybinds can be changed in settings!</h3>
 
-<h2>How to Play</h2>
+<h2>எப்புடி விளையாடுவது</h2>
 <p>The goal of Suroi is to be the last player standing. You'll start with nothing, so move around the map to get weapons, scopes, armor, healing items, and ammo. If you see another player, eliminate them for their loot!</p>
 
 <h2>Orange = Bad</h2>
 <p>You have another enemy to watch out for: a deadly orange gas. The gas slowly fills the map as the game progresses, making the safe zone smaller and smaller. The damage increases each time it shrinks.</p>
 
 <h2>Similar Games</h2>
-<p>If you've played games like PUBG, Fortnite, and Apex Legends, or other browser battle royales like surviv.io and zombsroyale.io, you might be familiar with the concept of the game!</p>
+<p>நீங்கள் பாட்னிட், அல்லது அபெக்ஸ் லேஜெண்ட்ஸ், அல்லது பப்ஜி அல்லது zombsroyale.io/surviv.io மாதிரி பாட்டில் ரோயல்கள் விலயடுர்கிங்கனா, suroi.io ஓட விளையாட்டு புரியும்.</p>
 `
     }
 ];
