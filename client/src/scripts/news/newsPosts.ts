@@ -71,9 +71,9 @@ export const news: NewsPost[] = [
 
 <h3>மாற்றங்கள்</h3>
 <ul>
-  <li>Winter mode is over.</li>
-  <li>Increased movement speed slightly, to match surviv.</li>
-  <li>Increased tick rate.</li>
+  <li>குளிர்காலம் முறை முடிந்தது.</li>
+  <li>இயக்க வேகம்ம சூர்விவ்உக்கு சம்மன எதவிட்டது.</li>
+  <li>டிக் ரெட் எதவிட்டது.</li>
   <li>The flint stone no longer drops healing items.</li>
   <li>Adjusted melee weapon stats.</li>
   <li>Adjusted obstacle multipliers for explosions.</li>
