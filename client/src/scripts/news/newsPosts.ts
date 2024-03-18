@@ -103,7 +103,7 @@ Of course, we've made a few மாற்றங்கள் and fixes, including 
 
 <h3>மாற்றங்கள்</h3>
 <ul>
-  <li><strong>Better rivers!</strong> River generation has been improved further. Rivers are now smoother, and loot flows down them.</li>
+  <li><strong>மேம்படுத்தப்பட்ட நதிகள்</strong> River generation has been improved further. Rivers are now smoother, and loot flows down them.</li>
   <li><strong>Circular action timer!</strong> A circular timer is now displayed when reloading/using healing items.</li>
   <li>Adjusted lobby timings. Players are now prevented from joining earlier on more active servers, and later on less active ones.</li>
   <li>Connected separated building walls.</li>
