@@ -206,7 +206,7 @@ $(async(): Promise<void> => {
                 }
             }
         }).fail(() => {
-            $("#splash-server-message-text").html("Error finding game.<br>Please try again.");
+            $("#splash-server-message-text").html("விளையாட்டுகள் கண்டுபிடிக்க இயலவில்லை.<br>மீன்டும் முயற்சிக்கவும்.");
             $("#splash-server-message").show();
             enablePlayButton();
         });
