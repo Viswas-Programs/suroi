@@ -86,43 +86,44 @@ export const news: NewsPost[] = [
     {
         date: 1702328915000,
         author: "HAZEL",
-        title: "Double Trouble",
+        title: "இரட்டை வேதணை",
         bannerImage: "../img/news/v0.14.0.png",
-        content: `The weather grows cold, the trees lose their leaves, and the snowdrifts pile high. But we've got a couple புதிய அம்சங்கள் to spice up the winter season! The entire map has been reskinned to frosty perfection, with more surprises in store soon! Also, we've added the long-awaited dual-wielding feature for pistols—if one isn't enough, grab another for twice the firepower!<br><br>
+        content: `குளிர் வானிலை, மரங்கள் தன் இலைகளை இழக்கின்றன, பனி குவிகிரது. ஆனால் சில புதிய அம்சங்கள் இந்த பனிக்காலத்தை நன்காக்கும். களத்தை பனிக்காலத்திற்காக மாற்றப்பட்டுள்ளது, அது மட்டுமன்று, நீங்கள் ரோம்ப-நால் காத்திருந்த இரட்டை துப்பாக்கி அம்சம் கைத்துப்பாக்கிகளிள் வந்துள்ளது. ஒன்று போரவில்லையா? இன்னொரு துப்பாக்கியை எடு, இரு மடங்கு சுடுதல் தன்மையுடன்!<br><br>
 
-Of course, we've made a few மாற்றங்கள் and fixes, including a circular action timer, reworked airdrops, and a larger map grid. Go warm yourself up with a toasty chicken dinner!`,
-        longContent: `<h2>Suroi v0.14.0</h2>
+நாங்கல் சில மாற்றங்கள் செய்துள்ளோம், வட்ட செயல்பாட்டு டைமர், மேம்படுத்தப்பட்ட காற்றுபெட்டிகள், மற்றும் பெறிய கள-சதுரடி.`,
+        longContent: `<h2>சரொய் v0.14.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
-  <li><strong>Winter mode!</strong> Just a reskin for now. More content coming soon.</li>
-  <li><strong>Dual wielding!</strong> You can now dual wield pistols.</li>
-  <li>You can now cancel actions on mobile.</li>
-  <li>Added 2 emotes.</li>
-  <li>Added keybind to toggle UI.</li>
+  <li><strong>பனிக்காலம் வந்துவிட்டது</strong> இப்பொழுதிற்கு மேலோட்டாகதான மாற்றப்பட்டுள்ளது, ஆனால் மேலும் புதுப்பிப்புகள் வரும்</li>
+  <li><strong>இரட்டை துப்பாக்கிகள்!</strong> இப்போது கைதுப்பாக்கிகளை இரட்டை கைதுப்பாக்கிகளாக மாற்றலாம்.</li>
+  <li>இப்போது அலைபேசிகளும் வேலைகளை நிறுத்தமுடியும்</li>
+  <li>புதிதாக இரண்டு உணர்ச்சிகள் சேர்கப்பட்டுள்ளன.</li>
+  <li>UI காண்பிக்கவோ மறைக்கவோ விசை பிணைப்பு சேர்கப்பட்டுள்ளது</li>
 </ul>
 
 <h3>மாற்றங்கள்</h3>
 <ul>
-  <li><strong>மேம்படுத்தப்பட்ட நதிகள்</strong> River generation has been improved further. Rivers are now smoother, and loot flows down them.</li>
-  <li><strong>Circular action timer!</strong> A circular timer is now displayed when reloading/using healing items.</li>
+  <li><strong>மேம்படுத்தப்பட்ட நதிகள்</strong> நதிகள் உருவாக்குதல் மேம்படுத்தப்பட்டுள்ளது. இப்போது நதிகள் மேலும் சீராகப்பட்டது மட்டுமல்லாமல் பெருட்கள் அதனுடன் அடித்து செல்லும்</li>
+  <li><strong>வட்ட வேலை நேரகாட்டி</strong> இப்போது துப்பாக்கியை ரீலோட் செய்வது, மருந்துகளை உண்பதன்கோது வட்ட வேலை நேரகாட்டி வரும்.</li>
   <li>Adjusted lobby timings. Players are now prevented from joining earlier on more active servers, and later on less active ones.</li>
-  <li>Connected separated building walls.</li>
-  <li>Increased map grid size.</li>
-  <li>Decreased Model 37 fire and switch delays to 900 ms.</li>
-  <li>Switched from howler.js to Pixi sound, which should improve loading times significantly.</li>
-  <li>Server performance improvements.</li>
-  <li>Improved ship hitbox.</li>
-  <li>Improved player count calculation code, which should make player counts more accurate.</li>
-  <li>New airdrop killfeed icon.</li>
-  <li>New helmet pickup sound.</li>
+  <li>இப்போது வீரர்கள் </li>
+  <li>கட்டிட-சுவருகள் தனித்தனியாக இருந்தவை சேர்கப்பட்டன.</li>
+  <li>களத்தின் ஒரு சதுரடியின் அளவு அதிகரிக்கப்பட்டுள்ளது.</li>
+  <li>Model 37 சுடும் தாமதம் மற்றும் மாற்றும் தாமதம் 900மில்லி வினாடிகளாக குறைக்கப்பட்டுள்ளது.</li>
+  <li>howler.jsஇல் இருந்து Pixi soundஇற்கு மாற்றப்பட்டுள்ளது.</li>
+  <li>சர்வர் செயல்திரன் மேம்படுத்தப்பட்டுள்ளது.</li>
+  <li>படகின் அமைப்பு மேம்படுத்தப்பட்டுள்ளது.</li>
+  <li>வீரர்கள் கணக்கு கணிப்பு மேம்புத்தப்பட்டுள்ளது. இதனால் வீரர்கள் கணக்கு மேலும் துல்லியமாக இருக்கும். </li>
+  <li>காற்றுபெட்டி ஒருவரை கொண்றபிறகு வரும் படம் மாற்றப்பட்டுள்ளது.</li>
+  <li>தலைகவச அனிவிப்பு சத்தம் மாற்றப்பட்டுள்ளது.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed airdrops spawning in the gas.</li>
-  <li>Fixed airdrop pings not showing up sometimes.</li>
-  <li>Fixed picking up skins on mobile.</li>
-  <li>Fixed being able to see inside the ship vault without opening the door.</li>
+  <li>காற்று-பெட்டிகள் கொடிய-வாயுவில் விழுவதை சரிசெய்துள்ளோம்.</li>
+  <li>காற்று-பெட்டி பிங்குகள்(pings) அவ்வப்போது ஒலிக்காததை சரிசெய்துள்ளோம்.</li>
+  <li>ஆடைகளை அலைபேசிகளிள் எடுப்பதை சரிசெய்துள்ளோம்.</li>
+  <li>கப்பல்-பெட்டகத்தின் கதவை திரக்காமல் உள்ளே பார்ப்பதை சரிசெய்துள்ளோம். </li>
   <li>Fixed generator interact message saying "Open Generator" instead of "Activate Generator."</li>
 </ul>`
     },
@@ -134,7 +135,7 @@ Of course, we've made a few மாற்றங்கள் and fixes, including 
         content: `Expect routine supply shipments from the A.E.G.I.S. aeronautical division, complete with everything you need to win a savory chicken dinner! Or, notify them directly by using a radio to get your own personal airdrop. If you're lucky, you'll get one of the 3 new and very powerful guns!<br><br>
 
 Erosion has worked its magic on the island, and rivers look much cleaner than they ever have before. We've made a whole host of மாற்றங்கள் and சரிசெய்துள்ள தவருகள், including better mobile layout and building visibility. Get out there, these airdrops are comin' in hot!`,
-        longContent: `<h2>Suroi v0.13.0</h2>
+        longContent: `<h2>சரொய் v0.13.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
   <li>Airdrops! Two airdrops now spawn every game. They can also be called with radios, which are a rare drop from crates.</li>
@@ -180,7 +181,7 @@ Erosion has worked its magic on the island, and rivers look much cleaner than th
         content: `The island grows dark. The trees begin to turn, the rivers run red, and the full moon rises. A new spooky orange obstacle drops one of two new weapons: a training weapon from A.E.G.I.S. stores, and a very powerful shotgun specially modified by H.A.Z.E.L.'s R&D team.<br><br>
 
 After checking out these frightening additions, enjoy your candy while reading all the சரிசெய்துள்ள தவருகள் and QoL மாற்றங்கள் this update brings. Happy Halloween!`,
-        longContent: `<h2>Suroi v0.12.0</h2>
+        longContent: `<h2>சரொய் v0.12.0</h2>
 <h3>Changelog</h3>
 <ul>
   <li>Halloween mode! Added 2 new guns and a new obstacle. Reskinned trees & blueberry bushes. New menu music.</li>
@@ -230,7 +231,7 @@ If you like swimming, you’re in luck! Rivers now snake through the landscape, 
 We've added two new guns to our arsenal: the Flues, a sawn-off double-barrel shotgun, and the M1895, a revolver.<br><br>
 
 In addition, we've made many quality of life மாற்றங்கள், including shorter guns, custom crosshairs, and a kill leader mechanic.`,
-        longContent: `<h2>Suroi v0.11.0</h2>
+        longContent: `<h2>சரொய் v0.11.0</h2>
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
   <li>Rivers & ocean! Rivers have been added. The ocean is now accessible.</li>
@@ -281,7 +282,7 @@ In addition, we've made many quality of life மாற்றங்கள், inc
 We're also happy to announce a large shipment containing 4 new types of guns, including two new DMRs! One gun is Italian, and three are American. Sources indicate the new LMG is particularly potent...<br><br>
 
 Our scouts have fully mapped out the island, including its beaches. We've decided to begin adding name markers to the map to aid in navigation. You're welcome!`,
-        longContent: `<h2>Suroi v0.10.0</h2>
+        longContent: `<h2>சரொய் v0.10.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
@@ -318,7 +319,7 @@ Special thanks to Leia and platonthek. This update wouldn't have been possible w
 There are also two new Austrian arrivals to the island. Like the Micro Uzi but want something that packs more of a punch? The Steyr AUG might be for you. If you prefer a challenge, grab the all-new full auto pistol, the CZ-75A.<br><br>
 
 Surians can now customize their skins, and express themselves with emotes too! Everything is unlocked until accounts are added.`,
-        longContent: `<h2>Suroi v0.9.0</h2>
+        longContent: `<h2>சரொய் v0.9.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
@@ -341,7 +342,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "HAZEL",
         title: "Untrodden Lands",
         content: `H.A.Z.E.L. has made various improvements to weapons systems to refine them further, and a small shipment of antiquated arms has been received from Flint Industries. Scouts have explored more of the island. We've mapped out the gas release points, allowing us to predict the gas's movement accurately. Additionally, new AR software updates have been pushed out to ensure battle readiness.`,
-        longContent: `<h2>Suroi v0.8.0</h2>
+        longContent: `<h2>சரொய் v0.8.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
@@ -361,7 +362,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "HAZEL",
         title: "Geared Up",
         content: `A long-awaited shipment, containing helmets, vests, backpacks, and scopes, has finally arrived on the island! Pack in extra ammo with backpacks, protect yourself with helmets and vests, and get the jump on your enemy with scopes. Unfortunately, due to supply shortages, guns have become more scarce.`,
-        longContent: `<h2>Suroi v0.7.0</h2>
+        longContent: `<h2>சரொய் v0.7.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
@@ -375,7 +376,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "HAZEL",
         title: "Tablets & Tweaks",
         content: `A new adrenaline item, tablets, can now be found! Tablets, along with all other healing items, can now be picked up and carried—but they no longer work instantly. Check out the Featured YouTubr and Streamr on the redesigned title screen! The kill feed and settings menu have also been redesigned. A golden object may drop a very powerful weapon...`,
-        longContent: `<h2>Suroi v0.6.0</h2>
+        longContent: `<h2>சரொய் v0.6.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
@@ -408,7 +409,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         title: "Locked & Loaded",
         bannerImage: "../img/news/v0.5.0.png",
         content: `The newest supply shipment to the island has arrived, along with a slew of new weapons! Blast enemies all day long with the 47 round pan on the Lewis gun, or test your marksmanship with the Tango 51. Prefer hand-to-hand combat? The K-bar or the baseball bat may be for you. A glint of gold may yield a fruitful surprise...`,
-        longContent: `<h2>Suroi v0.5.0</h2>
+        longContent: `<h2>சரொய் v0.5.0</h2>
 
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
@@ -426,7 +427,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         title: "Supplies received",
         bannerImage: "../img/news/v0.4.0.png",
         content: `We have received the new arms and supply shipment from Mr. Flint. In the crates were all four weapons promised: the Mosin-Nagant, Ithaca Model 37, SAF-200, and Glock 19. These should help us dramatically, as we were in great need of additional and varied firepower. Additionally, the new medical items, gauze, colas, and medikits, will allow better treatment of injuries. However, they were not of the portable variety we requested, and we hope to resolve this soon.`,
-        longContent: `<h2>Suroi v0.4.0</h2>
+        longContent: `<h2>சரொய் v0.4.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
@@ -453,13 +454,13 @@ Surians can now customize their skins, and express themselves with emotes too! E
         title: "Doublet State",
         bannerImage: "../img/news/v0.3.0.png",
         content: `A mysterious orange gas is now being reported around the island. We collected a sample and were able to convert it to a solid at -9.3°C, but found it to be very toxic. You’ve been warned! In other news, if you’re the last one on the island left, you’ll get your very own chicken dinner courtesy of HAZEL, the perfect meal to enjoy your victory!`,
-        longContent: `<h2>Suroi v0.3.0</h2>
+        longContent: `<h2>சரொய் v0.3.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
   <li>Gas! Toxic gas now slowly fills up the map as the game progresses.</li>
   <li>Chicken dinners! If you're the last man standing, you now get to enjoy a delicious chicken dinner.</li>
   <li>Minimap! There is now a minimap in the top left. To expand it, press G or M. On mobile, simply tap the map.</li>
-  <li>Mobile controls! Suroi is now playable on mobile. To use the controls, simply press and drag. The left joystick (left half of the screen) controls movement, and the right joystick (right half of the screen) controls aim and shooting.</li>
+  <li>Mobile controls! சரொய் is now playable on mobile. To use the controls, simply press and drag. The left joystick (left half of the screen) controls movement, and the right joystick (right half of the screen) controls aim and shooting.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
@@ -476,7 +477,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         title: "Fun guns",
         bannerImage: "../img/news/v0.2.0.png",
         content: `This week's update introduces guns, health crates, and keybinds! There are only 2 guns for now: the AK-47 and the M3K. More will be added soon.<br>If you're having issues with textures, try <a href="https://its.uiowa.edu/support/article/719">clearing your cache.</a>`,
-        longContent: `<h2>Suroi v0.2.0</h2>
+        longContent: `<h2>சரொய் v0.2.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
     <li>Guns! Added the AK-47 and M3K. More guns will be added soon, including the Mosin-Nagant.</li>
@@ -494,14 +495,14 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "hasanger",
         title: "We're back, baby",
         bannerImage: "../img/news/v0.1.0.png",
-        content: `Kongregate may have shut down Surviv Reloaded, but that's not gonna stop me! Today, I'm releasing the first ever beta version of Suroi, an open-source 2D battle royale game inspired by surviv.io.
-To report a bug or suggest something, <a href="https://discord.suroi.io" target="_blank" rel="noopener noreferrer">join the Discord server</a>. If you have any questions, check out the FAQ on <a href="https://suroi.io/news" target="_blank" rel="noopener noreferrer">the news page</a>.`,
+        content: `Kongregate may have shut down Surviv Reloaded, but that's not gonna stop me! Today, I'm releasing the first ever beta version of சரொய், an open-source 2D battle royale game inspired by surviv.io.
+To report a bug or suggest something, <a href="https://discord.சரொய்.io" target="_blank" rel="noopener noreferrer">join the Discord server</a>. If you have any questions, check out the FAQ on <a href="https://சரொய்.io/news" target="_blank" rel="noopener noreferrer">the news page</a>.`,
         longContent: `<h2>FAQ</h2>
-<h3>What is Suroi?</h3>
-<p>Suroi is a new open-source 2D battle royale game inspired by surviv.io. After Surviv Reloaded, my first surviv.io revival project, got DMCA'd by Kongregate, the Surviv Reloaded team started work on a new game, Suroi. Suroi is similar to surviv, but it's built from the ground up with 100% original assets and code.</p>
+<h3>What is சரொய்?</h3>
+<p>சரொய் is a new open-source 2D battle royale game inspired by surviv.io. After Surviv Reloaded, my first surviv.io revival project, got DMCA'd by Kongregate, the Surviv Reloaded team started work on a new game, சரொய். சரொய் is similar to surviv, but it's built from the ground up with 100% original assets and code.</p>
 
 <h3>Why isn't [feature] in the game yet? When will [feature] be added?</h3>
-<p>The initial beta version of Suroi is very basic. Essential features like guns, loot, and buildings will be added in the next few weeks. For more information, check out the #roadmap channel on the Discord.</p>
+<p>The initial beta version of சரொய் is very basic. Essential features like guns, loot, and buildings will be added in the next few weeks. For more information, check out the #roadmap channel on the Discord.</p>
 
 <h3>I can't move.</h3>
 <p>As the game is in early beta, we haven't added mobile controls yet. If you're on a mobile device, like a phone or tablet, there's no way to move yet.</p>

@@ -327,7 +327,7 @@ export class Game {
 
         this._socket.onerror = (): void => {
             this.error = true;
-            $("#splash-server-message-text").html("Error joining game.");
+            $("#splash-server-message-text").html("விளையாட்டிள் சேர முடியவில்லை");
             $("#splash-server-message").show();
             enablePlayButton();
         };
@@ -337,7 +337,7 @@ export class Game {
             if (!this.gameOver) {
                 if (this.gameStarted) {
                     $("#splash-ui").fadeIn();
-                    $("#splash-server-message-text").html("Connection lost.");
+                    $("#splash-server-message-text").html("இனைப்பு துண்டிக்கப்பட்டுள்ளது");
                     $("#splash-server-message").show();
                 }
                 $("#btn-spectate").addClass("btn-disabled");
@@ -702,7 +702,7 @@ export class Game {
                             case object instanceof Obstacle: {
                                 switch (object.definition.role) {
                                     case ObstacleSpecialRoles.Door:
-                                        interactText = object.door?.offset === 0 ? "Open Door" : "Close Door";
+                                        interactText = object.door?.offset === 0 ? "கதவை திர" : "கதவை மூடு";
                                         break;
                                     case ObstacleSpecialRoles.Activatable:
                                         interactText = `${object.definition.interactText} ${object.definition.name}`;
@@ -715,7 +715,7 @@ export class Game {
                                 break;
                             }
                             case isAction: {
-                                interactText = "Cancel";
+                                interactText = "நிறுத்துக";
                                 break;
                             }
                         }

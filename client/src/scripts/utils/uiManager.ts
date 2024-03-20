@@ -618,7 +618,7 @@ export class UIManager {
                 messageText = `<img class="kill-icon" src="./img/misc/skull_icon.svg" alt="Skull"> ${killerID
                     ? `${killerID !== playerID
                         ? `${killerName}${killerBadgeText}  கொலை முன்னனியாலரை கொன்றார்!`
-                        : " கொலை முன்னனியாலர் மரணரடைந்தார்!"}`
+                        : " கொலை முன்னனியாலர் மரணமடைந்தார்!"}`
                     : "கொலை முன்னனியாலர் தற்கொலை செய்தார்!"
                 }`;
                 if (killerID === this.game.activePlayerID) classes.push("kill-feed-item-killer");

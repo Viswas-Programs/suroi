@@ -171,25 +171,25 @@ $(async(): Promise<void> => {
                 let message: string;
                 switch (data.message) {
                     case "rateLimit":
-                        message = "Error joining game.<br>Please try again in a few minutes.";
+                        message = "விளையாட்டிள் சேர முடியவில்லை.<br>தயவுசெய்து பின்னர் முயர்சிக்கவும்";
                         break;
                     case "warning":
                         showWarningModal = true;
-                        title = "Teaming is against the rules!";
-                        message = "You have been reported for teaming. Allying with other players for extended periods is not allowed. If you continue to team, you will be banned.";
+                        title = "மற்ற வீரர்களுடன் சேர்வது விதிமுறைகளுக்கு அப்பாரான செயலாகும்!";
+                        message = "நீங்கள் மற்ற வீரர்களுடன் சேர்ந்ததற்காக புகார் வந்துள்ளது. மற்றவருடன் அதிக நெறம் சேர்ந்திருப்பது தவரு. மறுபடியும் செய்தால், தடை செய்யப்படுவீர்.";
                         break;
                     case "tempBan":
                         showWarningModal = true;
-                        title = "You have been banned for 1 day for teaming!";
-                        message = "Remember, allying with other players for extended periods is not allowed!<br><br>When your ban is up, reload the page to clear this message.";
+                        title = "மற்ற வீரர்களுடன் சேர்ந்ததனால் உன்மேல் ஒரு நால் தடைவிதிக்கப்பட்டது";
+                        message = "மற்ற வீரர்களுடன் சேர்வது ஓரு குற்றமாகும். <br><br>தடை எடுத்தபின், இதை ரீலோட் செய்க.";
                         break;
                     case "permaBan":
                         showWarningModal = true;
-                        title = "You have been permanently banned for hacking!";
-                        message = "The use of scripts, plugins, extensions, etc. to modify the game in order to gain an advantage over opponents is strictly forbidden.";
+                        title = "ஹாக்கிங் (hacking) செய்ததால் உன்மேல் வாழ்நால் தடை விதிக்கப்பட்டுள்ளது";
+                        message = "ஸ்கிரிப்ட்ஸ், பிளகின், எக்ஸ்டென்ஷன், பயன்படுத்தி, எதிராளிகளை விட தனக்கு சாதகமாக விளையாட்டை மாற்றுவது முற்றிலும் தடை செய்யப்பட்டுள்ளது.";
                         break;
                     default:
-                        message = "Error joining game.<br>Please try again in 30 seconds.";
+                        message = "விளையாட்டிள் சேர முடியவில்லை<br>30 வினாடிகளிள் திரும்ப முயர்சிக்கவும்.";
                         break;
                 }
                 enablePlayButton();

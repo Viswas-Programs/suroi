@@ -22,7 +22,7 @@ export const rules: RulesPost[] = [
     {
         date: 1690908230000,
         author: "Katloo",
-        title: "Tutorial",
+        title: "பயிற்சி",
         content: `If you're a new player, check out this tutorial to learn how to play!`,
         longContent: `<h2>Controls</h2>
 <p>Movement - WASD or Arrow Keys</p>
