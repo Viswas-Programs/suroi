@@ -476,18 +476,18 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "hasanger",
         title: "Fun guns",
         bannerImage: "../img/news/v0.2.0.png",
-        content: `இந்த வார புதுப்பிப்பில் துப்பாக்கிகள், மருந்து பெட்டிகள், மற்றும் விசைபினைப்புகள் வந்துள்ளன! There are only 2 guns for now: the AK-47 and the M3K. More will be added soon.<br>If you're having issues with textures, try <a href="https://its.uiowa.edu/support/article/719">clearing your cache.</a>`,
+        content: `இந்த வார புதுப்பிப்பில் துப்பாக்கிகள், மருந்து பெட்டிகள், மற்றும் விசைபினைப்புகள் வந்துள்ளன! இப்போது இரண்டு துப்பாக்கிகள் உள்ளன. அவை: AK-47 மற்றும் M3K ஆகியவையே. மேலும் சிலது பின்னற் சேற்கப்படும்.<br>விளையாட்டிளுள்ள படங்களிள் எதாவது பிரச்சனை இருந்தால், try <a href="https://its.uiowa.edu/support/article/719">cacheஐ மீட்டமைக்கவும்.</a>`,
         longContent: `<h2>சரொய் v0.2.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
-    <li>Guns! Added the AK-47 and M3K. More guns will be added soon, including the Mosin-Nagant.</li>
-    <li>Health crates! These crates restore your health when broken. They are a temporary addition and will be removed once proper healing items are added.</li>
-    <li>Keybinds! You can now remap keys. To edit keybinds, click the gear icon in the bottom right, or in-game, press Escape and click on Settings. Then, click on the Keybinds tab.</li>
+    <li>துப்பாக்கிகள்! AK-47 மற்றும் M3K சேற்கப்பட்டுள்ளது. மேலும் சில துப்பாக்கிகள் பின்னர் சேற்க்க படும்.</li>
+    <li>மருந்து பெட்டிகள்! இந்த பெட்டிகளை உடைத்தபின் உடல்நிலையை சீரமைக்கும். மருந்துகள் வந்த பின் இது அகற்றப்படும்.</li>
+    <li>விசைபினைப்புகள்! இப்போது ஒரு செயலுக்கான விசைபினைப்பை மாற்றமுடியும். பினைப்புகளை மாற்ற, கியர் படத்தை அழுத்துக, அல்லது விளையாட்டிள், Escape அழுத்தி அமைப்புகள் பட்டனை அழுத்துக. பிறகு, 'விசை பினைப்புகள்' பட்டனை அழுத்தவும்</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed a visual bug causing players' fists to get stuck in the punching position.</li>
+  <li>வீரர்களின் கைகள் குத்துவது போன்றே காட்சியலித்ததை சரிசெய்துள்ளோம்</li>
 </ul>`
     },
     {
