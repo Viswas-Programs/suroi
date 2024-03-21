@@ -1,4 +1,4 @@
-import $ from "jquery";
+﻿import $ from "jquery";
 import { Container, TilingSprite } from "pixi.js";
 import { AnimationType, GameConstants, ObjectCategory, PlayerActions, SpectateActions, ZIndexes } from "../../../../common/src/constants";
 import { Ammos } from "../../../../common/src/definitions/ammos";
@@ -475,7 +475,7 @@ export class Player extends GameObject<ObjectCategory.Player> {
 
                     actionSoundName = `${weaponDef.idString}_reload`;
                     if (this.isActivePlayer) {
-                        this.game.uiManager.animateAction("Reloading...", weaponDef.reloadTime);
+                        this.game.uiManager.animateAction("ரீலோட் செய்யப்படுகிறது...", weaponDef.reloadTime);
                     }
 
                     break;

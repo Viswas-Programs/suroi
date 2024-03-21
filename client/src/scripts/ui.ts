@@ -738,7 +738,7 @@ export function setupUI(game: Game): void {
             <div class="item-tooltip">
                 ${item.name}
                 <br>
-                Restores ${item.restoreAmount}${item.healType === HealType.Adrenaline ? "% adrenaline" : " health"}
+                ${item.restoreAmount}${item.healType === HealType.Adrenaline ? "% அதிக சக்தி" : " உடல்நிலை"} தரும்
             </div>
         </div>`);
 

@@ -476,7 +476,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "hasanger",
         title: "Fun guns",
         bannerImage: "../img/news/v0.2.0.png",
-        content: `This week's update introduces guns, health crates, and keybinds! There are only 2 guns for now: the AK-47 and the M3K. More will be added soon.<br>If you're having issues with textures, try <a href="https://its.uiowa.edu/support/article/719">clearing your cache.</a>`,
+        content: `இந்த வார புதுப்பிப்பில் துப்பாக்கிகள், மருந்து பெட்டிகள், மற்றும் விசைபினைப்புகள் வந்துள்ளன! There are only 2 guns for now: the AK-47 and the M3K. More will be added soon.<br>If you're having issues with textures, try <a href="https://its.uiowa.edu/support/article/719">clearing your cache.</a>`,
         longContent: `<h2>சரொய் v0.2.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
@@ -493,24 +493,18 @@ Surians can now customize their skins, and express themselves with emotes too! E
     {
         date: 1684625426000,
         author: "hasanger",
-        title: "We're back, baby",
+        title: "திரும்பி வந்துட்டேன்னு சொல்லு...",
         bannerImage: "../img/news/v0.1.0.png",
-        content: `Kongregate may have shut down Surviv Reloaded, but that's not gonna stop me! Today, I'm releasing the first ever beta version of சரொய், an open-source 2D battle royale game inspired by surviv.io.
-To report a bug or suggest something, <a href="https://discord.சரொய்.io" target="_blank" rel="noopener noreferrer">join the Discord server</a>. If you have any questions, check out the FAQ on <a href="https://சரொய்.io/news" target="_blank" rel="noopener noreferrer">the news page</a>.`,
+        content: `Kongregate, Surviv Reloadedஐ கொண்றிறுக்களாம், ஆணா என்ன தடுத்தி நிருத்த முடியாது! இன்றைக்கு நான் சரொயை சோதனை-பிரிவில் வெலியிடுகிரேன். இது surviv.ioவை சார்ந்த ஒரு 2D இனையவழி போர்களம் ஆகும். 
+தவருகளை புகார் செய்வதோ, பரிந்துரைக்காகவோ, <a href="https://discord.suroi.io" target="_blank" rel="noopener noreferrer">எங்கள் Discord சர்வரில்</a> சேரவும். ஏதாவது வினாக்கள் இருந்தால், செய்திகள் பக்கத்திளுள்ள <a href="https://suroi.io/news" target="_blank" rel="noopener noreferrer">உதவி பக்கத்தை அனுகவும்.</a>.`,
         longContent: `<h2>FAQ</h2>
-<h3>What is சரொய்?</h3>
-<p>சரொய் is a new open-source 2D battle royale game inspired by surviv.io. After Surviv Reloaded, my first surviv.io revival project, got DMCA'd by Kongregate, the Surviv Reloaded team started work on a new game, சரொய். சரொய் is similar to surviv, but it's built from the ground up with 100% original assets and code.</p>
+<h3>சரொய் என்பது என்ன?</h3>
+<p>சரொய் என்பது surviv.ioவை சார்ந்த ஒரு 2D இனையவழி போர்களம் ஆகும். Surviv Reloadedஐ அடுத்து, got DMCA'd by Kongregate, the Surviv Reloaded team started work on a new game, சரொய். சரொய் survivஐ சார்ந்தது தான், ஆனால் முழுமையாக எங்கள் படங்களும் கோடுகளும் மட்டுமே பயண்படுத்தப்படுகிறது</p>
 
-<h3>Why isn't [feature] in the game yet? When will [feature] be added?</h3>
-<p>The initial beta version of சரொய் is very basic. Essential features like guns, loot, and buildings will be added in the next few weeks. For more information, check out the #roadmap channel on the Discord.</p>
+<h3>ஏன் இந்த [அமைப்பு] விளையாட்டிள் இல்லை? அப்போது இது சேர்கப்படும்?</h3>
+<p>சரொய் இன்னும் சோதனை-பிரிவில் தான் இருக்கிரது, அதணால், சில அம்சங்கள் வர கொஞ்சம் தாமதமாகலாம். மேலும் சில தகவல்கலுக்கு, Discord சர்வரில் உள்ள #roadmap channelஇல் பார்க்கவும்</p>
 
-<h3>I can't move.</h3>
-<p>As the game is in early beta, we haven't added mobile controls yet. If you're on a mobile device, like a phone or tablet, there's no way to move yet.</p>
-
-<h3>My game is laggy.</h3>
-<p>The server is hosted in the United States. If you live far away from the US or you have slow Internet, lag is to be expected. In the future, servers will be hosted in other countries.</p>
-
-<h3>I found a bug.</h3>
-<p>To report a bug or suggest a feature, join the Discord. Post bugs in the #bugs channel, and suggestions in #suggestions. Before reporting a bug, please check to make sure someone else hasn't reported it already.</p>`
+<h3>ஒரு தவரைக்கண்டேன்.</h3>
+<p>தவரின்மேல் புகாரலிக்கவோ அல்லது அம்சங்களை பரிந்துரைக்கவோ, Discord சர்வரில் சேர்ந்து, அங்குள்ள #bugs channelஐல் அறிக்கையிடவும், மற்றும் பரிந்துரைக்களை #suggestions இல் செலுத்தவும். புகாரலிக்கும்முன், அந்த தவரை வேறொருவர் அதன்மேல் புகாரலித்திருக்கிராரா என்று செறிபாற்க்கவும்.</p>`
     }
 ];
