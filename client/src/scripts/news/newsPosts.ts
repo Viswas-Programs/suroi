@@ -451,24 +451,24 @@ Surians can now customize their skins, and express themselves with emotes too! E
     {
         date: 1685914769000,
         author: "Dr. Petrova",
-        title: "Doublet State",
+        title: "இரட்டை நிலை",
         bannerImage: "../img/news/v0.3.0.png",
-        content: `A mysterious orange gas is now being reported around the island. We collected a sample and were able to convert it to a solid at -9.3°C, but found it to be very toxic. You’ve been warned! In other news, if you’re the last one on the island left, you’ll get your very own chicken dinner courtesy of HAZEL, the perfect meal to enjoy your victory!`,
+        content: `ஒரு விசித்திர ஆரஞ்சு வாயு நம் தீவில் பரவுகிரதை பற்றி புகார் வந்துள்ளது. நான்கள் அதை ஓரு மாதிரியை அடுத்தோம். அதை -9.3 செல்சியஸ் பெருளாக மாற்றினோம், ஆனால் அது மிக கொடியது என்பதை கண்டரிந்துள்ளோம். எச்சிரக்கப்படுகிரீர்! அதைபோல, நீங்கள்தான் கடைசி வீரராக இருந்தால், HAZEL அவர்களின் சிக்கன் விருந்து உங்களுக்கு தரப்படும்!`,
         longContent: `<h2>சரொய் v0.3.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
-  <li>Gas! Toxic gas now slowly fills up the map as the game progresses.</li>
-  <li>Chicken dinners! If you're the last man standing, you now get to enjoy a delicious chicken dinner.</li>
-  <li>Minimap! There is now a minimap in the top left. To expand it, press G or M. On mobile, simply tap the map.</li>
-  <li>Mobile controls! சரொய் is now playable on mobile. To use the controls, simply press and drag. The left joystick (left half of the screen) controls movement, and the right joystick (right half of the screen) controls aim and shooting.</li>
+  <li>வாயு! கொடிய வாயு நேரம் போக களத்தினுல் வரும்</li>
+  <li>சிக்கன் விருந்து!  நீங்கள்தான் கடைசி வீரராக இருந்தால், நீங்கள் ஓரு சுவையான சிக்கன் விருந்தை உண்ணலாம்.</li>
+  <li>சின்ன வரைபடம்! மேலே ஒரு சின்ன வரைபடம் கொண்டுவரப்பட்டுள்ளது. அதை விரித்திட, G அல்லது M அழுத்தவும். அலைபேசிகலில், அந்த சின்ன வரைபடத்தை அழுத்தவும்.</li>
+  <li>அலைபேசி கட்டுப்பாடுகள்! சரொய் அலைபேசிகளிளும் இப்போது ஆடலாம். இதை பயன்படுத்த, அலைபேசியில் அழுத்தியவாரு இழுக்கவும். இடதுபுறத்திலுல்ல ஜாய்ஸ்டிக் நகருவதற்கான கட்டுப்பாட்டு ஆகும், அதைப்போல வலதுபுறத்திலுல்ல ஜாய்ஸ்டிக் குரிக்காகவும் சடுவதற்காகவும் பயன்படுத்தபடுகிறது.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Bullets now spawn at the barrel of the gun instead of at the player body.</li>
-  <li>Fixed a visual bug causing bullets to go in the wrong direction near the edges of the map.</li>
-  <li>Fixed a bug causing the wrong gun to continue firing when quickswitching.</li>
-  <li>Fixed a bug allowing players to see more of the map by zooming out.</li>
+  <li>துப்பாக்கி பொட்டுகள் வீரர் உடலிருந்து வருவதை துப்பாக்கியிலிருந்து வரும்படி மாற்றியிள்ளோம்</li>
+  <li>களத்தின் விளிம்பில் சுட்ட துப்பாக்கி பொட்டுகள் சுட்ட திசையில் செல்லாமல் வேறு திசையில் செல்வதை சரிசெய்துல்லோம்</li>
+  <li>துப்பாக்கிகளை விரைவாக மாற்றி சுடும்பொழுது சிலநேரம் பழைய துப்பாக்கியை சுடுவதை சரிசெய்துல்லோம்.</li>
+  <li>விரர்கள் திரையை பெரிதாக்கும்போது உருப்பெருக்கான் அளவை விட தூரமாக பார்ப்பதை சரிசெய்துல்லோம்.</li>
 </ul>`
     },
     {
