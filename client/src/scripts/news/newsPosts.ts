@@ -426,14 +426,14 @@ Surians can now customize their skins, and express themselves with emotes too! E
         author: "Dr. Felix Sterling",
         title: "Supplies received",
         bannerImage: "../img/news/v0.4.0.png",
-        content: `Mr. Flint எங்களுக்கு தேவையான ஆயுதங்களையும் விநியோகத்தையும் தந்துவிட்டது. பெட்டிகளிள் சொன்னவாறு நான்கு துப்பாக்கிகள் : Mosin-Nagant, Ithaca Model 37, SAF-200, மற்றும் Glock 19. அதிக துப்பாக்கிகளும் ஆயுதங்களும் வேண்டும் என்பதனால் இது எங்களுக்கு மிகவும் உதவிக்குறியது. அதையும் தான்டி, மருந்துகளும் வந்துள்ளன. அவை கட்டுகள், கோலாக்கள், மறுந்துபெட்டிகள், மற்றும் மாத்திரைகள், காயங்களை குணப்படுத்த உதவும். However, they were not of the portable variety we requested, and we hope to resolve this soon.`,
+        content: `Mr. Flint எங்களுக்கு தேவையான ஆயுதங்களையும் விநியோகத்தையும் தந்துவிட்டது. பெட்டிகளிள் சொன்னவாறு நான்கு துப்பாக்கிகள் : Mosin-Nagant, Ithaca Model 37, SAF-200, மற்றும் Glock 19. அதிக துப்பாக்கிகளும் ஆயுதங்களும் வேண்டும் என்பதனால் இது எங்களுக்கு மிகவும் உதவிக்குறியது. அதையும் தான்டி, மருந்துகளும் வந்துள்ளன. அவை கட்டுகள், கோலாக்கள், மறுந்துபெட்டிகள், மற்றும் மாத்திரைகள், காயங்களை குணப்படுத்த உதவும். ஆனால் இவை எடுத்துசெல்வதன் வகையில் இல்லை, அதை சரிசெய்ய விரும்புகிரோம்`,
         longContent: `<h2>சரொய் v0.4.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
-  <li>Loot! Crates now drop guns and healing items. Players no longer spawn with guns.</li>
-  <li>More guns! Added 4 guns: the Mosin-Nagant (a sniper), Model 37 (a pump shotgun), SAF-200 (a burst fire SMG), and G19 (a full auto pistol). Recoil has also been added, meaning guns slow you down when firing.</li>
-  <li>Server selector! You can now choose between 3 servers: one in North America (Detroit, Michigan), one in Europe (London, England), and one in Asia (Osaka, Japan).</li>
+  <li>பொருட்கள்! பெட்டிகள் துப்பாக்கிகளையும் மருந்துகளையுத் தரும். வீரர்கள் துப்பாக்கிகளுடன் வரமாட்டார்கள்</li>
+  <li>மேலும் சில துப்பாக்கிகள்! நான்கு புதிய துப்பாக்கிகளை சேர்துள்ளோம்: Mosin-Nagant, Model 37, SAF-200, மற்றும் G19. சடுவதன் பின்னடைவும் சேர்கப்பட்டுள்ளது. இதனால், வீரர்கள் சுடும்போது வேகம் குறையும்.</li>
+  <li>சர்வர் தொகுப்புகள்! இப்போது நீங்கள் மூன்றிள் ஒரு சர்வரை தேர்ந்தெடுக்களாம்: வடக்கு அமேரிக்கா (Detroit, Michigan), ஐரோப்பா(London, England), மற்றும் ஆசியா (Osaka, Japan).</li>
   <li>Added an "Equip Other Gun" keybind (defaults to space bar).</li>
   <li>Added a "Swap Gun Slots" keybind (defaults to T).</li>
   <li>Added a keybind to toggle the minimap (defaults to N).</li>

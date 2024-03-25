@@ -23,32 +23,32 @@ export const rules: RulesPost[] = [
         date: 1690908230000,
         author: "Katloo",
         title: "பயிற்சி",
-        content: `If you're a new player, check out this tutorial to learn how to play!`,
-        longContent: `<h2>Controls</h2>
-<p>Movement - WASD or Arrow Keys</p>
-<p>Aim - Mouse</p>
-<p>Attack - Left-Click</p>
-<p>Change Weapons - 1 through 3 or Scroll Wheel</p>
-<p>Pickup/Loot/Interact - F</p>
-<p>Reload - R</p>
-<p>Use Healing Item - Left-Click on item or 7 through 0</p>
-<p>Cancel Action - X</p>
-<p>Toggle Fullscreen Map - G or M</p>
-<p>Toggle Minimap - N</p>
-<p>Use Emote Wheel - Hold Right-Click, drag, and release</p>
-<p>Drop Item - Right-Click on item</p>
-<p>Equip Last Item - Q</p>
-<p>Swap Gun Slots - T</p>
-<p>Equip Other Gun - Space</p>
-<p>Change Scope Zoom - Left-Click on Scope</p>
+        content: `நீங்கள் இதற்கு புதியதாக இருந்தால், இதனை படித்து எவ்வாறு விளையாடனுமென்று கற்றுக்கொல்லலாம்`,
+        longContent: `<h2>கட்டுப்பாட்டுகள்</h2>
+<p>நகருவதற்கு - WASD அல்லது Arrow Keys</p>
+<p>குறி - Mouse</p>
+<p>தாக்குவதற்கு - Left-Click</p>
+<p>துப்பாக்கியை மாற்றுவதற்கு- 1இல் இருந்து 3 வறை அல்லது Scroll Wheel</p>
+<p>எடுப்பதற்கு\\பயன்படுத்துவதற்கு - F</p>
+<p>ரீலோட் - R</p>
+<p>மருந்துகளை பயன்படுத்துவதற்கு - மறுந்து காட்டியில் Left-Click அல்லது 7இல் இறுந்து 0 வறை</p>
+<p>வேலை நிறுத்துவதற்கு - X</p>
+<p>முழு வரைபடத்தை காண்பிக்க - G அல்லது M</p>
+<p>சின்ன வரைபடத்தை காண்பிக்க - N</p>
+<p>உணர்ச்சி சக்கரத்தை பயன்படுத்த - Right-Click, drag, பிறகு release</p>
+<p>பொருளை விடுவதற்கு - Right-Click on item</p>
+<p>கடைசியாக பயன்படுத்திய பொருளுக்கு மாற்ற - Q</p>
+<p>துப்பாக்கி பிடிப்பை இடமாற்றுவதற்கு - T</p>
+<p>வேறு துப்பாக்கிக்கு மாற்ற - Space</p>
+<p>உருப்பெருக்கான் மாற்றுவதற்கு - உருப்பெருக்கான் காட்டியில் Left-Click </p>
 
-<h3>Keybinds can be changed in settings!</h3>
+<h3>விசைபினைப்புகள் அமைப்புகள் பக்கத்தில் மாற்றலாம்!</h3>
 
-<h2>How to Play</h2>
-<p>The goal of Suroi is to be the last player standing. You'll start with nothing, so move around the map to get weapons, scopes, armor, healing items, and ammo. If you see another player, eliminate them for their loot!</p>
+<h2>எவ்வாறு விளையாடுவது</h2>
+<p>ஒரு சுற்றில் ஒருவரின் இலட்சியம் என்பது விளையாட்டிள் கடைசி வீரராக இருக்கவேண்டும். விளையாட்டிள் இரங்கும்போது எதுவும் இல்லாமல்தான் இரங்குவீர். அதனால் களத்திள் ஆங்காங்கு இருக்கும் துப்பாக்கிகள், உருப்பெருக்கான்கள், உடுப்புகள், மருந்துகள், மற்றும் அம்மோக்களை எடுத்துக்கொள்ளுங்கள். மற்றொரு வீரரை பாற்த்தால் அவரை கொண்று அவரின் பொருட்களை அடுக்களாம்!</p>
 
-<h2>Orange = Bad</h2>
-<p>You have another enemy to watch out for: a deadly orange gas. The gas slowly fills the map as the game progresses, making the safe zone smaller and smaller. The damage increases each time it shrinks.</p>
+<h2>ஆரஞ்சு = கெட்டது</h2>
+<p>மற்ற வீரர்கள் மட்டும் உன் எதிரியல்ல- ஒரு கொடிய ஆரஞ்சு வாயுவும் உள்ளது. இந்த வாயு களத்தை மெதுவாக ஆக்கிரமிக்கும், அதனால் மீதம் உள்ள பாதுகாப்பான மண்டலம் சிறிதாகிக்கொண்டே இருக்கும். பாதுகாப்பான மண்டலம் சுறுங்கச்சுறுங்க, வாயுவின் கொடிய-தன்மை அதிகரிக்கும்.</p>
 
 <h2>Similar Games</h2>
 <p>If you've played games like PUBG, Fortnite, and Apex Legends, or other browser battle royales like surviv.io and zombsroyale.io, you might be familiar with the concept of the game!</p>
