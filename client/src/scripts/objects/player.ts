@@ -681,7 +681,7 @@ export class Player extends GameObject<ObjectCategory.Player> {
     updateEquipmentSlot(equipmentType: "helmet" | "vest" | "backpack", def?: ArmorDefinition | BackpackDefinition): void {
         const container = $(`#${equipmentType}-slot`);
         if (def && def.level > 0) {
-            container.children(".item-name").text(`Lvl. ${def.level}`);
+            container.children(".item-name").text(`${def.level}வது நிலை`);
             container.children(".item-image").attr("src", `./img/game/loot/${def.idString}.svg`);
 
             let itemTooltip = def.name;
