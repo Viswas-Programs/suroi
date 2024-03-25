@@ -686,7 +686,7 @@ export class Player extends GameObject<ObjectCategory.Player> {
 
             let itemTooltip = def.name;
             if (def.itemType === ItemType.Armor) {
-                itemTooltip += `<br>Reduces ${def.damageReduction * 100}% damage`;
+                itemTooltip += `<br>${def.damageReduction * 100}% சேதம் குறைக்கும்`;
             }
             container.children(".item-tooltip").html(itemTooltip);
         }
