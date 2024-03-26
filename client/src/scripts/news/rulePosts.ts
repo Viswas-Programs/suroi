@@ -50,8 +50,8 @@ export const rules: RulesPost[] = [
 <h2>ஆரஞ்சு = கெட்டது</h2>
 <p>மற்ற வீரர்கள் மட்டும் உன் எதிரியல்ல- ஒரு கொடிய ஆரஞ்சு வாயுவும் உள்ளது. இந்த வாயு களத்தை மெதுவாக ஆக்கிரமிக்கும், அதனால் மீதம் உள்ள பாதுகாப்பான மண்டலம் சிறிதாகிக்கொண்டே இருக்கும். பாதுகாப்பான மண்டலம் சுறுங்கச்சுறுங்க, வாயுவின் கொடிய-தன்மை அதிகரிக்கும்.</p>
 
-<h2>Similar Games</h2>
-<p>If you've played games like PUBG, Fortnite, and Apex Legends, or other browser battle royales like surviv.io and zombsroyale.io, you might be familiar with the concept of the game!</p>
+<h2>இதைபோல உள்ள விளையாட்டுகள்</h2>
+<p>நீங்கள் PUBG, Fortnite, மற்றும் Apex Legends, அல்லது மற்ற இனையவழி போர்களங்களான surviv.io மற்றும் zombsroyale.io விளையாடியிருந்தால் இந்த விளையாட்டின் கூருகள் சிலது உங்களுக்கு தெரியலாம்!</p>
 `
     }
 ];

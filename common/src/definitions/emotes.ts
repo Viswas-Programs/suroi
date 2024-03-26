@@ -19,15 +19,15 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "thumbs_up",
-            name: "Thumbs Up"
+            name: "கட்டைவிரலை தூக்குவது"
         },
         {
             idString: "thumbs_down",
-            name: "Thumbs Down"
+            name: "கட்டைவிரல் இறக்குவது"
         },
         {
             idString: "disappointed_face",
-            name: "கவலையுடைய முகம்"
+            name: "கவலை முகம்"
         },
         {
             idString: "sobbing_face",
@@ -35,23 +35,23 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "angry_face",
-            name: "கோபமுடைய முகம்"
+            name: "கோப முகம்"
         },
         {
             idString: "heart_face",
-            name: "Heart Face"
+            name: "இதய முகம்"
         },
         {
             idString: "joyful_face",
-            name: "சிரிக்கும் முகம்"
+            name: "சிரித்த முகம்"
         },
         {
             idString: "cool_face",
-            name: "Cool Face"
+            name: "குளிற்ந்த முகம்"
         },
         {
             idString: "upside_down_face",
-            name: "Upside Down Face"
+            name: "தலகீழ் முகம்"
         },
         {
             idString: "picasso_face",
@@ -59,11 +59,11 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "alien",
-            name: "Alien"
+            name: "வேற்றுகிரகவாசி"
         },
         {
             idString: "headshot",
-            name: "Headshot"
+            name: "தலையில் சுடுவது"
         },
         {
             idString: "dab",
@@ -71,11 +71,11 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "devil_face",
-            name: "Devil Face"
+            name: "பிசாசு முகம்"
         },
         {
             idString: "bandaged_face",
-            name: "Bandaged Face"
+            name: "கட்டுப்போட்ட முகம்"
         },
         {
             idString: "cold_face",
@@ -83,19 +83,19 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "thinking_face",
-            name: "Thinking Face"
+            name: "யோசனை முகம்"
         },
         {
             idString: "nervous_face",
-            name: "Nervous Face"
+            name: "பதட்ட முகம்"
         },
         {
             idString: "sweating_face",
-            name: "Sweating Face"
+            name: "வேற்த்த முகம்"
         },
         {
             idString: "greedy_face",
-            name: "Greedy Face"
+            name: "பேராசையான முகம்"
         },
         {
             idString: "creepy_clown",
@@ -103,7 +103,7 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "lying_face",
-            name: "Lying Face"
+            name: "பொய்சொல்லும் முகம்"
         },
         {
             idString: "suroi_logo",
@@ -135,7 +135,7 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "question_mark",
-            name: "Question Mark"
+            name: "கேல்விக்குறி"
         },
         {
             idString: "skull",
@@ -163,7 +163,7 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "fire",
-            name: "Fire"
+            name: "நெறுப்பு"
         },
         {
             idString: "rip",
@@ -171,19 +171,19 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "monkey",
-            name: "Monkey"
+            name: "குரங்கு"
         },
         {
             idString: "carrot",
-            name: "Carrot"
+            name: "காரட்டு"
         },
         {
             idString: "tomato",
-            name: "Tomato"
+            name: "தக்காலி"
         },
         {
             idString: "egg",
-            name: "Egg"
+            name: "முட்டை"
         },
         {
             idString: "squid",
@@ -191,11 +191,11 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "wave",
-            name: "Wave"
+            name: "அலை"
         },
         {
             idString: "melting_face",
-            name: "Melting Face"
+            name: "உருகும் முகம்"
         },
         {
             idString: "grimacing_face",
@@ -203,15 +203,15 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "vomiting_face",
-            name: "Vomiting Face"
+            name: "வாந்தியெடுக்கும் முகம்"
         },
         {
             idString: "screaming_face",
-            name: "Screaming Face"
+            name: "அலரும் முகம்"
         },
         {
             idString: "pleading_face",
-            name: "Pleading Face"
+            name: "கெஞ்சும் முகம்"
         },
         {
             idString: "sad_smiling_face",
@@ -267,7 +267,7 @@ export const Emotes = new ObjectDefinitions<EmoteDefinition>(
         },
         {
             idString: "chicken",
-            name: "Chicken Dinner"
+            name: "சிக்கன் விருந்து"
         }
     ]
 );

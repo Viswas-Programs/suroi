@@ -424,7 +424,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
     {
         date: 1687026036000,
         author: "Dr. Felix Sterling",
-        title: "Supplies received",
+        title: "விநியோகங்கள் கிடைத்துவிட்டன",
         bannerImage: "../img/news/v0.4.0.png",
         content: `Mr. Flint எங்களுக்கு தேவையான ஆயுதங்களையும் விநியோகத்தையும் தந்துவிட்டது. பெட்டிகளிள் சொன்னவாறு நான்கு துப்பாக்கிகள் : Mosin-Nagant, Ithaca Model 37, SAF-200, மற்றும் Glock 19. அதிக துப்பாக்கிகளும் ஆயுதங்களும் வேண்டும் என்பதனால் இது எங்களுக்கு மிகவும் உதவிக்குறியது. அதையும் தான்டி, மருந்துகளும் வந்துள்ளன. அவை கட்டுகள், கோலாக்கள், மறுந்துபெட்டிகள், மற்றும் மாத்திரைகள், காயங்களை குணப்படுத்த உதவும். ஆனால் இவை எடுத்துசெல்வதன் வகையில் இல்லை, அதை சரிசெய்ய விரும்புகிரோம்`,
         longContent: `<h2>சரொய் v0.4.0</h2>
@@ -434,18 +434,18 @@ Surians can now customize their skins, and express themselves with emotes too! E
   <li>பொருட்கள்! பெட்டிகள் துப்பாக்கிகளையும் மருந்துகளையுத் தரும். வீரர்கள் துப்பாக்கிகளுடன் வரமாட்டார்கள்</li>
   <li>மேலும் சில துப்பாக்கிகள்! நான்கு புதிய துப்பாக்கிகளை சேர்துள்ளோம்: Mosin-Nagant, Model 37, SAF-200, மற்றும் G19. சடுவதன் பின்னடைவும் சேர்கப்பட்டுள்ளது. இதனால், வீரர்கள் சுடும்போது வேகம் குறையும்.</li>
   <li>சர்வர் தொகுப்புகள்! இப்போது நீங்கள் மூன்றிள் ஒரு சர்வரை தேர்ந்தெடுக்களாம்: வடக்கு அமேரிக்கா (Detroit, Michigan), ஐரோப்பா(London, England), மற்றும் ஆசியா (Osaka, Japan).</li>
-  <li>Added an "Equip Other Gun" keybind (defaults to space bar).</li>
-  <li>Added a "Swap Gun Slots" keybind (defaults to T).</li>
-  <li>Added a keybind to toggle the minimap (defaults to N).</li>
-  <li>Added an option to disable mobile controls, for those playing on a mobile device with a mouse and keyboard.</li>
-  <li>Increased M3K fire rate; decreased damage.</li>
+  <li>"வேறு துப்பாக்கிக்கு மாற்ற" விசைப்பினைப்பு சேர்கப்பட்டுள்ளது (space விசைக்கு பினைக்கப்பட்டுள்ளது).</li>
+  <li>"துப்பாக்கி பிடிப்பை இடமாற்றுவதற்கு" விசைப்பினைப்பு சேர்கப்பட்டுள்ளது (T விசைக்கு பினைக்கப்பட்டுள்ளது).</li>
+  <li>சின்ன வரைபடத்தை மறைக்க\\காண்பிக்க ஒரு விசைப்பினைப்பு சேர்கப்பட்டுள்ளது (N விசைக்கு பினைக்கப்பட்டுள்ளது).</li>
+  <li>அலைபேசியில் சுட்டி-விசைபலகையை வைத்து விளையாடுபவர்களுக்கு அலைபேசிக்கான கட்டுப்பாட்டுகளை மறைக்க\\காட்ட ஒரு அம்சம் சேர்கப்பட்டுள்ளது.</li>
+  <li>M3K இன்னும் வேகமாக சுடும். அதன்காரணமாக அதன் செய்யும் சேதம் குரைக்கப்பட்டுள்ளது.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed a bug allowing players to move twice as fast when using the mobile controls and movement keys at the same time.</li>
-  <li>Fixed a bug causing players' fists to get stuck in incorrect positions.</li>
-  <li>Fixed weapon switch sounds playing for all players, not just the active player.</li>
+  <li>வீரர்கள் அலைபேசி கட்டுப்பாட்டுகளும் விசைபலகை கட்டுப்பாட்டுகள் இரண்டின் கட்டுப்பாட்டையும் ஓரே நேரத்தில் பயன்படுத்தி இருமடங்கு வேகமாக செல்வதை தடுத்துள்ளோம்</li>
+  <li>வீரர்களின் கைகள் தவரான இடங்களிள் இருப்பதை சரிசெய்துல்லோம்</li>
+  <li>துப்பாக்கி மாற்றும் சத்தம் அந்த வீரருக்கு மட்டுமொலிக்காமல் அவர் அருகிலுள்ள வீரர்களுக்கும் ஒலிக்கும்</li>
 </ul>`
     },
     {
