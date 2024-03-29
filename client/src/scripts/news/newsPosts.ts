@@ -406,19 +406,19 @@ Surians can now customize their skins, and express themselves with emotes too! E
     {
         date: 1687625334000,
         author: "HAZEL",
-        title: "Locked & Loaded",
+        title: "ஆயுதங்கள் ரேடி, நீ ரெடியா?",
         bannerImage: "../img/news/v0.5.0.png",
-        content: `The newest supply shipment to the island has arrived, along with a slew of new weapons! Blast enemies all day long with the 47 round pan on the Lewis gun, or test your marksmanship with the Tango 51. Prefer hand-to-hand combat? The K-bar or the baseball bat may be for you. A glint of gold may yield a fruitful surprise...`,
+        content: `நமக்கான புதிய வினியோகங்கள் நம் தீவிர்கு வந்துல்லது, அதனுடன் சில துப்பாக்கிகள் வந்துள்ளன! 47 பொட்டுகளை கொண்ட Lewis Gunஐ வைத்து எதிரிகளை சிதரடியுங்கள், அல்லது உங்கள் குரியை சரிபார்க Tango 51 பயன்படுத்துங்கள். கைகளால் சன்டைபோடனுமா? கே-பார் அல்லது பேஸ்பால் மட்டை உங்களுக்குரியதாக இருக்கும். தங்கத்தில் இருக்கும் சிலதில் நல்ல பொருட்கள் இருக்கும்.`,
         longContent: `<h2>சரொய் v0.5.0</h2>
 
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
-    <li>Ammo and reloading! Guns now require ammo and need to be reloaded.</li>
-    <li>Melee weapons! Added 2 melee weapons: the K-bar (a knife), and the baseball bat.</li>
-    <li>More guns! Added 6 guns: the Lewis Gun (an LMG), MCX Spear (an assault rifle), Micro Uzi (an SMG), Tango 51 (a sniper), 940 Pro (a shotgun), and M16A4 (a burst fire assault rifle).</li>
-    <li>New crates! Added the AEGIS and Flint crates, which drop better loot than regular crates. Also added gauze, cola, and melee crates.</li>
-    <li>New obstacles! Added the oil tank, gold rock, and birch tree. The oil tank is an indestructible obstacle that makes for good cover. The gold rock drops a Mosin-Nagant; only one spawns per map.</li>
-    <li>More obstacle variations! Added mossy and cracked variants of the rock.</li>
+    <li>அம்மோ மற்றும் துப்பாக்கி ரீலோட்! துப்பாக்கிகள் இப்போது அதற்கான அம்மோவுடன் ரீலோட் செய்யவேண்டும்.</li>
+    <li>கை ஆயுதங்கள்! புதிதாக இரண்டு கை ஆயுதங்கள் வந்துள்ளது: கே-பார் (ஒரு கத்தி), மற்றும் பேஸ்பால் மட்டை.</li>
+    <li>மேலும் சில துப்பாக்கிகள்! ஆறு புதிய துப்பாக்கிகள் வந்துள்ளது: Lewis Gun, MCX Spear, Micro Uzi, Tango 51, 940 Pro, மற்றும் M16A4.</li>
+    <li>புதிய பெட்டிகள்! AEGIS மற்றும் Flint பெட்டிகள் சேர்கப்பட்டன. இவை சாதாரன பெட்டிகளை விட சிறந்த பொருட்களை தரும். அதை தவிர கட்டுகள், கோலாக்கள்,மற்றும் கையாயுத பெட்டிகள் சேற்கப்பட்டுள்ளன.</li>
+    <li>புதிய தடைகள்! என்னெய் டாங்கர், தங்கக்கல், மற்றும் பிர்ச் மரம் சேர்கப்பட்டுள்ளன. என்னெய் டாங்கரை அழிக்கமுடியாது, அதனால் எதிரியின் தாக்குதலிடமிறுந்து பாதுகாப்பு தரும். தங்கக்கள் Mosin-Nagantஐ குடுக்கும்; களத்தில் இவையில் ஒன்றே இருக்கும்.</li>
+    <li>மேலும் சில தடை-பிரிவுகள்! கற்களினிருந்து உடைந்த மற்றும் பாசியடைந்த கற்கள் சேர்கப்பட்டுள்ளன.</li>
 </ul>`
     },
     {

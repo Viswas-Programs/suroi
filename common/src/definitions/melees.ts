@@ -53,7 +53,7 @@ export const Melees: MeleeDefinition[] = [
     },
     {
         idString: "baseball_bat",
-        name: "மட்டை",
+        name: "பேஸ்பால் மட்டை",
         itemType: ItemType.Melee,
         damage: 34,
         obstacleMultiplier: 1.5,
