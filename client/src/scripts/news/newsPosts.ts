@@ -374,33 +374,33 @@ Surians can now customize their skins, and express themselves with emotes too! E
     {
         date: 1688328459000,
         author: "HAZEL",
-        title: "Tablets & Tweaks",
-        content: `A new adrenaline item, tablets, can now be found! Tablets, along with all other healing items, can now be picked up and carried—but they no longer work instantly. Check out the Featured YouTubr and Streamr on the redesigned title screen! The kill feed and settings menu have also been redesigned. A golden object may drop a very powerful weapon...`,
+        title: "மாத்திரைகளும் மேம்பாடுகளும்",
+        content: `புதிதாக சக்தி-அதிகரிக்கும் மருந்துகளான மாத்திரைகள் வந்துள்ளன! மாத்திரைகள், மற்ற மருந்துகலோடு, எடுத்து கொண்டுபோலாம்—ஆனால் அவை உடனே காயங்களை குனப்படுத்தாது, சில வினாடிகளாகும். சிறப்பான YouTubr மற்றும் Streamr மேம்படுத்தப்பட்ட முன்-பக்கத்தில் பார்க்களாம்! கொலைகுரியீடும் அமைப்பு பக்கமும் மேம்படுத்தப்பட்டுள்ளது. ஒரு தங்க பொருள் நல்லதாக ஓரு பொருளை தரலாம்...`,
         longContent: `<h2>சரொய் v0.6.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
-  <li>Better healing items! Healing items can now be picked up, and take time to use. Added tablets, which heal 50% adrenaline.</li>
-  <li>Better kill feed! Redesigned the kill feed. It now shows weapon icons instead of names.</li>
-  <li>South America server! A 4th server, hosted in São Paulo, Brazil, is now available. To select it, click on the dropdown above the play button.</li>
-  <li>Mobile improvements! Added auto loot pickup, and improved the UI.</li>
-  <li>Better settings! The settings menu has been redesigned. Added options to change minimap and joystick transparency, and joystick size.</li>
-  <li>The Lewis gun and Tango 51 are now more common. The MCX Spear is now less common.</li>
-  <li>The Tango 51 now has a chance to drop from gold rocks.</li>
-  <li>Buffed the 940 Pro.</li>
-  <li>The gas has been nerfed slightly, and now shrinks completely.</li>
-  <li>Added a background to the menu.</li>
-  <li>Added Featured YouTubr and Streamr to the menu.</li>
-  <li>Optimized minimap texture generation, which should improve load times on mobile.</li>
+  <li>மேம்படுத்தப்பட்ட மருந்துகள்! மருந்துகளை இப்போது எடுத்துக்கொள்ளளாம். இவை பயன்படுத்த சில வினாடிகளாகும். மாத்திரைகள் வந்துள்ளன, இவை 50% அதிக சக்தி தரும்.</li>
+  <li>மேம்படுத்தப்பட்ட கொலைகுரியீடு! கொலைகுரியீடை மேம்படுத்தியுள்ளோம். இப்போது அவை துப்பாக்கியின் பெயரை காட்டாமல் அதன் படத்தை காட்டும்.</li>
+  <li>தேற்கு அமேரிக்கா சர்வர்! இதுதான் எங்களது 4வது சர்வர் ஆகும். São Paulo, Brazilஇல் உள்ளது. அதை தேர்ந்தெடுக்க, கீழிருக்கும் பட்டியலில் அதை தேர்ந்தெடுத்து 'விளையாடு' பட்டனை அழுத்தவும்.</li>
+  <li>அலைபேசி கட்டுப்பாடு மேம்பாடுகள்! தானாக பொருட்களை எடுப்பதையும், இன்டர்பேசையும் மேம்படுத்தியுள்ளோம்.</li>
+  <li>மேம்படுத்தப்பட்ட அமைப்பு பக்கம்! அமைப்புகள் பக்கம் மேம்படுத்தப்பட்டது. வரைபட மற்றும் ஜாய்ஸ்டிக் வெலிப்படை தன்மை அளவுகோளையும், ஜாய்ஸ்டிக்கின் அளவையும் மாற்றமுடியும்படி சேர்துள்ளோம்.</li>
+  <li>Lewis gun மற்றும் Tango 51 இப்போது முன்னை விட அதிகமாக கானலாம். MCX Spear என்னிக்கை குரைக்கப்பட்டது.</li>
+  <li>Tango 51 இப்போது தங்கக்கல் இருந்து வர வாய்ப்பு உள்ளது.</li>
+  <li>940 Proவின் சக்தியை அதிகரித்துள்ளோம்.</li>
+  <li>கொடிய வாயுவின் சக்தி சிறிதளவு குறைக்கப்பட்டது, இதனால் முழுமையாக சுருங்கிடும்.</li>
+  <li>மெனு பக்கத்திற்கு பின்னனி சத்தம் சேர்கப்பட்டது.</li>
+  <li>சிறந்த YouTubr மற்றும் Streamr மெனு பக்கத்திற்கு சேர்கப்பட்டது.</li>
+  <li>சின்ன வரைபடத்தில் தோன்றும் படங்களை உகந்ததாக்கப்பட்டது, இதனால் அலைபேசிகளில் செயல்திறன் மேம்படுத்தப்பட்டப்பட்டது.</li>
   <li>Minor tweaks to textures and sound effects.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed a bug causing reloading to break when picking up a gun.</li>
-  <li>Fixed blood particles not appearing.</li>
-  <li>Blood particles no longer appear when the player is damaged by gas.</li>
-  <li>Fixed opaque obstacles on the minimap.</li>
+  <li>துப்பாக்கியை ரீலோட் செய்யும்போது வேரு துப்பாக்கியை எடுப்பது ரீலோடை சரியாக வேலைசெய்யாமல் இருப்பதை சரிசெய்துல்லோம்.</li>
+  <li>தாக்கும்பொது\\தாக்கப்படும்போது இரத்தம் வராமல் இருப்பதை சரிசெய்துல்லோம்.</li>
+  <li>வீரரை தாக்கும்போது அவர் வாயுவில் இருந்தால அவரிடமிருந்து இரத்தம் வராது.</li>
+  <li>சின்ன வரைபடத்தில் தடைகள் ஒளிப்புகாததன்போல் இருப்பதை சரிசெய்துல்லோம்.</li>
 </ul>`
     },
     {
