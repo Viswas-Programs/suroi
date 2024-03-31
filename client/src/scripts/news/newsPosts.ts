@@ -341,34 +341,34 @@ Surians can now customize their skins, and express themselves with emotes too! E
         date: 1689622834000,
         author: "HAZEL",
         title: "Untrodden Lands",
-        content: `H.A.Z.E.L. has made various improvements to weapons systems to refine them further, and a small shipment of antiquated arms has been received from Flint Industries. Scouts have explored more of the island. We've mapped out the gas release points, allowing us to predict the gas's movement accurately. Additionally, new AR software updates have been pushed out to ensure battle readiness.`,
+        content: `H.A.Z.E.L. துப்பாக்கி இயங்கும் வகையை மேம்படுத்துகின்றன, Flint தொழில்துரையிலிருந்து வந்த வினியோகத்தில் சில துப்பாக்கிகள் வந்துள்ளன. சாரணர்கள் நம் தீவை சுத்திபார்த்துள்ளன. வாயு வெலியெருமிடத்தை குரித்துள்ளோம், அதனால் வாயுவின் மாற்றங்களை துல்லியமாக கனிக்கமுடியும்.`,
         longContent: `<h2>சரொய் v0.8.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
-  <li>Bigger map! The map is now bigger, and games are longer.</li>
-  <li>More guns! Added 2 guns: the MP40 (an SMG), and the VSS (a DMR).</li>
-  <li>Gun improvements! Guns now slow you down when holding, and spread is higher when moving. Gun icons have been simplified.</li>
-  <li>Gas improvements! A white circle now appears on the map, showing where the gas will shrink to. Messages now appear when the gas is advancing, and gas death messages have been added.</li>
-  <li>Lots of tweaks to gun stats and loot tables.</li>
-  <li>New menu music!</li>
-  <li>New obstacle! Added the blueberry bush.</li>
-  <li>The secondary ammo counter now displays the total ammo in the inventory, instead of the gun clip size.</li>
-  <li>The gold rock is no longer shown on the map.</li>
+  <li>பெரிதாக்கப்பட்ட களம்! இப்போது களம் பெரிதாகிவிட்டது, அதுமட்டுமல்லாமல் ஒவ்வொரு சுற்றின் நேரமும் அதிகரிக்கப்பட்டுள்ளது.</li>
+  <li>மேலும் சில துப்பாக்கிகள்! 2 துப்பாக்கிகளை சேர்துள்ளோம்: MP40, மற்றும் VSS.</li>
+  <li>துப்பாக்கி மேம்பாடுகள்! இப்போது துப்பாக்கியை பிடிக்கும்போது வீரரை மெதுவாக்கும், மற்றும் வீரர் நகரும்போது குரிதப்பும். துப்பாக்கி படங்கள் மேம்படுத்தப்பட்டன.</li>
+  <li>வாயு மேம்பாடுகள்! ஒரு வெல்லை வட்டம் சின்ன வரைபடத்தில் தெரியும். அது வாயு எங்குவரை வரும் என்று குரிக்கும். Messages now appear when the gas is advancing, and gas death messages have been added.</li>
+  <li>துப்பாக்கியின் இயங்கும் வகையும் பெட்டிகள் தரும் பொருட்களையும் மேம்படுத்தியுள்ளோம்.</li>
+  <li>புதிய மெனு பாட்டு சத்தம்!</li>
+  <li>புதிய தடை! அவுரிநெல்லி புதரை சேர்துள்ளோம்.</li>
+  <li>இப்போது இரண்டாம் அம்மோ காட்டியில் துப்பாக்கியின் பொட்டு அளவை காட்டாமல் மோத்தமாக வைத்திருக்கும் அம்மோவை காட்டும், instead of the gun clip size.</li>
+  <li>இனிமேல் சின்ன வரைபடத்தில் தங்கக்கல்லை காட்டாது.</li>
 </ul>`
     },
     {
         date: 1688950260000,
         author: "HAZEL",
-        title: "Geared Up",
-        content: `A long-awaited shipment, containing helmets, vests, backpacks, and scopes, has finally arrived on the island! Pack in extra ammo with backpacks, protect yourself with helmets and vests, and get the jump on your enemy with scopes. Unfortunately, due to supply shortages, guns have become more scarce.`,
+        title: "தாக்குதலுக்காக தயாராகு",
+        content: `நிரைய நால் காத்திருந்த வினியோகம் வந்துவிட்டது. அதில் தலைகவசங்கள், உடுப்புகள், முதுகுப்பைகள், மற்றும் உருப்பெருக்கான்கள், நம் தீவிற்கு வந்துள்ளது! Pack in extra ammo with backpacks, protect yourself with helmets and vests, and get the jump on your enemy with scopes. Unfortunately, due to supply shortages, guns have become more scarce.`,
         longContent: `<h2>சரொய் v0.7.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
-  <li>Equipment! Added helmets, vests, backpacks, and scopes.</li>
-  <li>Replaced the 940 Pro with the HP18, a functionally identical gun which should be easier to distinguish from other shotguns.</li>
-  <li>Added client-side prediction, which should make the game feel a lot more responsive. It can be turned off in settings.</li>
+  <li>உபகரணங்கள்! தலைகவசங்கள், உடுப்புகள், முதுகுப்பைகள், மற்றும் உருப்பெருக்கான்கள் சேர்கப்பட்டுள்ளன.</li>
+  <li>940 Proவை HP18 உடன் இடமாற்றப்பட்டுள்ளது. இது பழையதை போண்றதே இருக்கும், ஆனால் மற்ற துப்பாக்கிகளை விட சில வித்யாசங்களும் உன்டு.</li>
+  <li>இயக்க-மென்மையாக்குதலை சேர்துல்லோம். இதன்மூலம் விளையாட்டின் செயல்திறன் மேம்படுத்தப்படும். இதை அமைப்பு பக்கத்தில் அனைக்கலாம்.</li>
 </ul>`
     },
     {
