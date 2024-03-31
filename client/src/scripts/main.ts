@@ -138,7 +138,7 @@ $(async(): Promise<void> => {
         const now = Date.now();
         if (now - lastPlayButtonClickTime < 1500) return; // Play button rate limit
         lastPlayButtonClickTime = now;
-        disablePlayButton("Connecting...");
+        disablePlayButton("தொடர்பு கொல்கிரோம்...");
         const urlPart = `${selectedRegion.https ? "s" : ""}://${selectedRegion.address}`;
         void $.get(`http${urlPart}/api/getGame`, (data: { success: boolean, message?: "rateLimit" | "warning" | "tempBan" | "permaBan", gameID: number }) => {
             if (data.success) {

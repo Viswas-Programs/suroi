@@ -312,29 +312,29 @@ Special thanks to Leia and platonthek. This update wouldn't have been possible w
     {
         date: 1690748181000,
         author: "HAZEL",
-        title: "Behind Closed Doors",
+        title: "மூடிய கதவுகள் பின்னால்",
         bannerImage: "../img/news/v0.9.0.png",
-        content: `We at HAZEL are proud to announce the construction of 3 new structures on the island. The cozy house is a great place to spend the night…although you’ll want to leave before the gas catches you. The warehouse, though abandoned, still contains some unopened shipments, just waiting to be looted. Lastly, if you need to do some “business”, there are plenty of porta potties around for that purpose.<br><br>
+        content: `இங்கு HAZEL மூன்று புதிய கட்டிடங்களை கட்ட முடிவு செய்துல்லதை பற்றி பெருமை கொள்கிறோம். வசதியான வீடுகள் இராத்திரியை கழிக்க ஒரு நல்ல இடமாகும்… ஆனால் வாயு வருவதன்முன் அங்கிருந்து வெலியேருங்கள். கிடங்குகள், பழுதடைந்தாலும், திரக்கப்படாத வினியோகங்கள், திரக்கப்பட காத்திருக்கின்றன. கடைசியாக, நீங்கள் சில “தனி வேலை” செய்யவேண்டுமென்றால், அதற்கேற்றவாரு களத்தில் ஆங்காங்கு இருக்கும் கழிவறைகளை பயன்படுத்துக.<br><br>
 
-There are also two new Austrian arrivals to the island. Like the Micro Uzi but want something that packs more of a punch? The Steyr AUG might be for you. If you prefer a challenge, grab the all-new full auto pistol, the CZ-75A.<br><br>
+ஆஸ்ட்றியாவிலிருந்து புதிதாக இரண்டு வினியோகங்கள் வந்துல்லன, அதாவது Micro Uzi போல. ஆனால் இன்னும் சக்திவாய்ந்த துப்பாக்கி வேண்டுமா? Steyr AUG உங்களுக்குரியதாக இருக்கும். ஒரு சவால் வேண்டுமானால், இந்த பதிய கைதுப்பாக்கியான CZ-75A உங்களுக்குரியது.<br><br>
 
-Surians can now customize their skins, and express themselves with emotes too! Everything is unlocked until accounts are added.`,
+வீரர்கள் தங்களினை ஆடைகளை மாற்றலாம். அதுமட்டுமன்று அவர் தன் உணர்வுகளை 'உணர்ச்சிகள்' அம்சம் மூலம் தெரிவிக்கலாம்! வீரர் விவர-கணக்குகள் வரும்வரை எல்லாமெ பயன்படுத்தலாம்.`,
         longContent: `<h2>சரொய் v0.9.0</h2>
 
 <h3>புதிய அம்சங்கள் & மாற்றங்கள்</h3>
 <ul>
-  <li>Buildings! Added 3 buildings: the house, the warehouse, and the porta potty.</li>
-  <li>Skins & emotes! Added 22 skins and 59 emotes. All skins and emotes will be unlocked until accounts are added.</li>
-  <li>More guns! Added 2 guns: the CZ-75A (a full auto pistol), and the AUG (an assault rifle). Also, the G19 is now semi-automatic.</li>
-  <li>Tweaked gun and scope stats.</li>
-  <li>Spectating! You can now spectate other players after you die. Also, a report system has been added, which will allow us to ban hackers.</li>
-  <li>Games are now longer.</li>
+  <li>கட்டிடங்கள்! மூன்று பதிய கட்டிடங்கள் சேர்கப்பட்டுள்ளன: வீடு, கிடங்கு, மற்றும் கழிவறைகள்.</li>
+  <li>ஆடைகள் மற்றும் உணர்சிகள்! 22 ஆடைகளும் 59 உணர்ச்சிகளும் சேர்கப்பட்டுள்ளன. வீரர் விவர-கணக்குகள் சேர்கும்வரையில் எல்லா ஆடைகளும் உணர்ச்சிகளும் பயன்படுத்தலாம்.</li>
+  <li>மேலும் சில துப்பாக்கிகள்! 2 புதிய துப்பாக்கிகளை சேர்துல்லோம்: CZ-75A, மற்றும் AUG.</li>
+  <li>துப்பாக்கி இயங்கும் வகைகள் மற்றும் உருப்பெருக்கான் இயங்கும் வகையும் மேம்படுத்தப்பட்டுள்ளது</li>
+  <li>பார்வையிடுவது! நீங்கள் செத்த பிறகு மற்ற வீரர்களை பார்வையிடலாம். அதுமட்டுமன்று, ஒரு புகாரலிக்கும் முறை சேர்கப்பட்டுள்ளது.  இதன்மூலம் ஹாக்கர்களையும் மற்றவருடன் கூடுவோரின் மீது புகாரலித்து அவரின் மீது தண்டனை விதிக்கலாம்.</li>
+  <li>ஒரு சுற்றின் நேரம் அதிகரிக்கப்பட்டுள்ளது.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed an issue with the game getting stuck on "Connecting..." on older iOS devices.</li>
-  <li>Fixed an issue causing the server to crash occasionally.</li>
+  <li>பழைய iOS அலைபேசிகளில் விளையாட்டு "தொடர்பு கொல்கிரோம்..." என்று விளையாட-விடாமல் தடுத்ததை சரிசெய்துல்லோம்.</li>
+  <li>அவ்வப்போது சர்வர் நின்றுவிடுவதை சரிசெய்துல்லோம்.</li>
 </ul>`
     },
     {
