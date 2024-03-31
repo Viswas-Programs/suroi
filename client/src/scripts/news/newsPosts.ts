@@ -474,7 +474,7 @@ Surians can now customize their skins, and express themselves with emotes too! E
     {
         date: 1685317752000,
         author: "hasanger",
-        title: "Fun guns",
+        title: "மகிழ்சியான துப்பாக்கிகள்",
         bannerImage: "../img/news/v0.2.0.png",
         content: `இந்த வார புதுப்பிப்பில் துப்பாக்கிகள், மருந்து பெட்டிகள், மற்றும் விசைபினைப்புகள் வந்துள்ளன! இப்போது இரண்டு துப்பாக்கிகள் உள்ளன. அவை: AK-47 மற்றும் M3K ஆகியவையே. மேலும் சிலது பின்னற் சேற்கப்படும்.<br>விளையாட்டிளுள்ள படங்களிள் எதாவது பிரச்சனை இருந்தால், try <a href="https://its.uiowa.edu/support/article/719">cacheஐ மீட்டமைக்கவும்.</a>`,
         longContent: `<h2>சரொய் v0.2.0</h2>
