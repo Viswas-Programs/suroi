@@ -132,45 +132,45 @@ export const news: NewsPost[] = [
         author: "HAZEL",
         title: "Terminal Velocity",
         bannerImage: "../img/news/v0.13.0.png",
-        content: `Expect routine supply shipments from the A.E.G.I.S. aeronautical division, complete with everything you need to win a savory chicken dinner! Or, notify them directly by using a radio to get your own personal airdrop. If you're lucky, you'll get one of the 3 new and very powerful guns!<br><br>
+        content: `A.E.G.I.S. வின்வெலி துரையிலிருந்து அடிக்கடி வினியோகங்கள் வர காத்திருக்கவும். விளையாட்டிள் வெற்றி பெற்று ஒரு சிக்கன் விருந்தை சாப்பிடலாம்! அல்லது அவர்களை நேரடியாக radio மூலம் உனக்கென்ற காற்றுப்பெட்டி வரும். அடிஷ்டம் இருந்தால், சேர்கப்பட்ட மூன்று சக்திவாய்ந்த துப்பாக்கிகளிள் ஒன்று கிடைக்கலாம்!<br><br>
 
-Erosion has worked its magic on the island, and rivers look much cleaner than they ever have before. We've made a whole host of மாற்றங்கள் and சரிசெய்துள்ள தவருகள், including better mobile layout and building visibility. Get out there, these airdrops are comin' in hot!`,
+அரிப்பு தன் வித்தையை நம் தீவில் காட்டியுல்லது, நதிகள் மேலும் சுத்தமடைந்தன. நாங்கள் நிறைய அம்சங்களும் மாற்றங்களும் செய்துல்லோம். அலைபேசி கட்டுப்பாடும் கட்டிட பார்வை மேம்பாடும் வந்துள்ளது. ஆனால் வெலியே போ! காற்றுபெட்டிகள் வந்துகொண்டிருக்கின்றன!`,
         longContent: `<h2>சரொய் v0.13.0</h2>
 <h3>புதிய அம்சங்கள்</h3>
 <ul>
-  <li>Airdrops! Two airdrops now spawn every game. They can also be called with radios, which are a rare drop from crates.</li>
-  <li>More guns! Added 3 guns, which spawn only in airdrops: the Barrett M95 (a sniper rifle; equivalent to surviv.io's AWM-S), the M1 Garand (a DMR), and the ACR (an assault rifle; equivalent to surviv.io's M4A1-S).</li>
-  <li>More skins! Added 3 airdrop exclusive skins, including the Ghillie Suit.</li>
+  <li>காற்றுபெட்டிகள்! இரண்டு காற்றுபெட்டிகள் விளையாட்டில் வரும். இவை Radio மூலமாகவும் அழைக்களாம், ஆனால் இது பெட்டிகளிள் இருந்து வருவது மிகவும் அறிது.</li>
+  <li>மேலும்சில துப்பாக்கிகள்! மூன்று புதிய துப்பாக்கிகள் சேற்கப்பட்டுள்ளன, இவை காற்றுபெட்டிகளிள் மட்டுமே இருக்கும்: Barrett M95, M1 Garand, ACR.</li>
+  <li>மேலும்சில ஆடைகள்! மூன்று புதிய ஆடைகள் சேற்கப்பட்டுள்ளன, இவை காற்றுபெட்டிகளிள் மட்டுமே இருக்கும். அதில் கில்லி ஆடையும் ஒன்று.</li>
 </ul>
 
 <h3>மாற்றங்கள்</h3>
 <ul>
-  <li>Tweaked loot tables. Higher level equipment and powerful weapons are now much rarer.</li>
-  <li>Better building visibility! You can now see inside buildings from further away, and through open doors.</li>
-  <li>Better river generation! Rivers can now branch, and the ends meet the ocean more cleanly.</li>
-  <li>Mobile layout improvements.</li>
-  <li>Migrated from Webpack to Vite.</li>
-  <li>The Stoner 63 now has a 1 in 100 chance of spawning in the refinery.</li>
-  <li>Rebalanced some guns.</li>
-  <li>Added unique pickup sounds for helmets, vests, and packs.</li>
-  <li>Tweaked kill feed icons.</li>
-  <li>New M1895 switch sound.</li>
-  <li>Updated MP40 reload sound.</li>
+  <li>மேல்நிலை உபகரணங்களும் துப்பாக்கிகளும் வருவது மிக அறிதாக்கப்பட்டது.</li>
+  <li>கட்டிட பார்வை மேம்பாடு! மேலும் சில தூரத்திலிருந்தும் திரந்த கதவுகளினாலும் கட்டிடத்தின் உட்பகுதியை பார்க்கமுடியும்.</li>
+  <li>மேம்படுத்தப்பட்ட நதிகள் அமைப்பு! நதிகள் கிளையிடளாம், மற்றும் நதி பெருங்கடளோடு மென்மையாக கலக்கும்.</li>
+  <li>அலைபேசி கட்டுப்பாடு மேம்பாடுகள்.</li>
+  <li>Webpackஇல் இருந்து Viteஇற்கு மாற்றியுள்ளோம்.</li>
+  <li>Stoner 63, Refineryயில் நூறில் ஒருதிடவை வர வாய்ப்புள்ளது.</li>
+  <li>துப்பாக்கி வேலை-அமைப்புகள் சரிசெய்துள்ளன.</li>
+  <li>தலைகவசங்களை, உடுப்புகள், மற்றும் முதுகுப்பைகளை எடுக்கப்படும் சத்தம் ஒவ்வொற்றிர்கும் மாற்றப்பட்டுள்ளது.</li>
+  <li>கொலை-குரியீடு படங்களை மேம்படுத்தியுள்ளன.</li>
+  <li>M1895 துப்பாக்கி-மாற்று சத்தம் மாற்றப்பட்டுள்ளது.</li>
+  <li>MP40 ரீலோட் சத்தம் மாற்றப்பட்டுள்ளது.</li>
   <li>Obstacles now play only one hit sound at once.</li>
-  <li>2 blocks of ammo are now dropped along with guns, instead of 1.</li>
-  <li>Increased maximum size of ammo stacks dropped by dead players.</li>
+  <li>துப்பாக்கிகளுடன் ஒரு அம்மோ பொருள் வருவதை இரண்டாக மாற்றியுள்ளோம்.</li>
+  <li>செத்த வீரர்களிள் இருந்து வரும் அம்மோ-அடுக்குகளினுல் இருக்கும் அம்மோ அளவு அதிகரிக்கப்பட்டுள்ளது.</li>
   <li>Disallowed extended ASCII characters in usernames.</li>
 </ul>
 
 <h3>சரிசெய்துள்ள தவருகள்</h3>
 <ul>
-  <li>Fixed the gas always shrinking to the center of the map.</li>
-  <li>Fixed barrel smoke particles not showing.</li>
-  <li>Fixed door hitbox issues.</li>
-  <li>Fixed used toilets never spawning in the house.</li>
-  <li>Fixed "Connection lost" issue when spectating a winning player.</li>
-  <li>Fixed spectate options not hiding when fullscreen map is shown.</li>
-  <li>Fixed players being promoted to kill leader after death.</li>
+  <li>வாயு களத்தின் நடுவிற்கு வரை மட்டும் சுருங்குவதை சரிசெய்துள்ளோம்.</li>
+  <li>பேரல்(Barrel) அடிக்கும்போது புகை-துகள் வராமல் இருப்பதை சரிசெய்துள்ளோம்.</li>
+  <li>கதவுகளை சரிசெய்துள்ளோம்.</li>
+  <li>பயன்படுத்திய கழிவரைகள் வீடுகளிள் வராமல் இருந்ததை சரிசெய்துள்ளோம்.</li>
+  <li>வெற்றிபெரும் வீரரை பார்வையிடும்போது "இனைப்பு துண்டிக்கப்பட்டது" பிரச்சனை வருவதை சரிசெய்துள்ளோம்.</li>
+  <li>பெரிய வரைபடம் இருக்கும்போது பார்வையிடுதல் கட்டுப்பாடுகள் காமிப்பதை சரிசெய்துள்ளோம்.</li>
+  <li>Fசெத்த வீரர்கள் கொலை முன்னனியாலராகுவதை சரிசெய்துள்ளோம்.</li>
 </ul>`
     },
     {
